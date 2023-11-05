@@ -14,6 +14,7 @@ Spark and Map Reduce
     practice/mapreduce/skewdata_reduce
     practice/mapreduce/skewed_dataset_correction
     practice/mapreduce/skewed_dataset
+    practice/mapreduce/sql_map_reduce
 
 .. nblinkgallery::
     :caption: Spark

@@ -9,6 +9,7 @@ Notebooks sur Spark
     mapreduce/skewdata_reduce
     mapreduce/skewed_dataset_correction
     mapreduce/skewed_dataset
+    mapreduce/sql_map_reduce
 
 .. toctree::
     :caption: Spark

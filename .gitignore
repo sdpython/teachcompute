@@ -25,6 +25,11 @@ _doc/examples/plot_*.xlsx
 _doc/examples/*.html
 _doc/_static/require.js
 _doc/_static/viz.js
+_doc/practice/mapreduce/*.gz
+_doc/practice/mapreduce/mortality.*
 _doc/practice/spark/*.csv
 _doc/practice/spark/*.txt
 _doc/c_data/*.csv
+_unittests/ut_datasets/*.gz
+_unittests/ut_datasets/*.db3
+_unittests/ut_datasets/*.txt

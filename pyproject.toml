@@ -53,4 +53,5 @@ max-complexity = 10
 [tool.ruff.per-file-ignores]
 "_doc/conf.py" = ["F821", "E501"]
 "teachcompute/__init__.py" = ["E501"]
+"teachcompute/datasets/__init__.py" = ["F401"]
 "teachcompute/fctmr/__init__.py" = ["F401"]
