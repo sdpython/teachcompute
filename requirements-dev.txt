@@ -1,5 +1,6 @@
 black
 black-nb
+cloudpickle
 coverage
 cytoolz
 furo

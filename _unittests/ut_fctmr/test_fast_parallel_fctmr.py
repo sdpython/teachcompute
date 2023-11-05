@@ -26,7 +26,7 @@ class TestParallelFctMr(ExtTestCase):
         out = list(fast_parallel_mapper(func2, li, nogil=True, sigin="f8", sigout="f8"))
         self.assertEqual(out[:10], [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0])
         out = map_custom(li)
-        self.assertEqual(
+        self.assertEqualArray(
             out[:10], numpy.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0])
         )
         out = list(map(func2, li))
@@ -40,7 +40,7 @@ class TestParallelFctMr(ExtTestCase):
         out = list(fast_parallel_mapper(func2, li, nogil=False, nopython=False))
         self.assertEqual(out[:10], [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0])
         out = map_custom(li)
-        self.assertEqual(
+        self.assertEqualArray(
             out[:10], numpy.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0])
         )
         out = list(map(func2, li))

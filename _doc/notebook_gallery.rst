@@ -9,7 +9,11 @@ Spark and Map Reduce
 .. nblinkgallery::
     :caption: Map Reduce
 
+    practice/mapreduce/recursive_reducers
+    practice/mapreduce/reservoir_sampling
     practice/mapreduce/skewdata_reduce
+    practice/mapreduce/skewed_dataset_correction
+    practice/mapreduce/skewed_dataset
 
 .. nblinkgallery::
     :caption: Spark
