@@ -3,8 +3,13 @@
 Tous les notebooks
 ==================
 
-Spark
-======
+Spark and Map Reduce
+====================
+
+.. nblinkgallery::
+    :caption: Map Reduce
+
+    practice/mapreduce/skewdata_reduce
 
 .. nblinkgallery::
     :caption: Spark

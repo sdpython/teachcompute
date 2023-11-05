@@ -20,4 +20,5 @@ sphinx-gallery
 sphinx-issues
 git+https://github.com/sdpython/sphinx-runpython.git
 tqdm
+ujson
 wheel
