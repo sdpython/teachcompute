@@ -11,6 +11,7 @@ openpyxl
 pandas
 pillow
 protobuf<4
+pyspark
 pytest
 pytest-cov
 ruff
