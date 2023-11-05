@@ -42,7 +42,7 @@ contient beaucoup d'exemples sur beaucoup de sujets,
 souvent reliés au machine learning.
 Le contenu est sur `github <https://github.com/sdpython/teachcompute/>`_.
 
-.. image:: https://ci.appveyor.com/api/projects/status/5jl303wl14dtesl0?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/fl1sge2kumhg8v51?svg=true
     :target: https://ci.appveyor.com/project/sdpython/teachcompute
     :alt: Build Status Windows
 
