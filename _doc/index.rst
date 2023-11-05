@@ -30,7 +30,6 @@ pas ou eu programmer. Le contenu est disponible sur
     :maxdepth: 1
     :caption: Compléments
 
-    practice/years/index
     i_index
     license
     CHANGELOGS

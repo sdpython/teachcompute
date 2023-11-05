@@ -7,6 +7,6 @@ Spark
 ======
 
 .. nblinkgallery::
-    :caption: Python
+    :caption: Spark
 
-    practice/py-base/classes_2048
+    practice/spark/spark_matrix_3_columns
