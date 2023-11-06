@@ -3,6 +3,7 @@ Notebooks sur Spark
 
 .. toctree::
     :caption: Map Reduce
+    :maxdepth: 1
     
     mapreduce/recursive_reducers
     mapreduce/reservoir_sampling
@@ -13,5 +14,6 @@ Notebooks sur Spark
 
 .. toctree::
     :caption: Spark
+    :maxdepth: 1
     
     spark/spark_matrix_3_columns

@@ -134,6 +134,7 @@ class TestDocumentationNotebook(ExtTestCase):
         this = os.path.abspath(os.path.dirname(__file__))
         folds = [
             os.path.join(this, "..", "..", "_doc", "practice", "spark"),
+            os.path.join(this, "..", "..", "_doc", "practice", "mapreduce"),
         ]
         for fold in folds:
             cls.add_test_methods_path(os.path.normpath(fold))
