@@ -18,6 +18,7 @@ pas ou eu programmer. Le contenu est disponible sur
     :caption: Lectures
 
     introduction
+    build
     articles/index
 
 .. toctree::
