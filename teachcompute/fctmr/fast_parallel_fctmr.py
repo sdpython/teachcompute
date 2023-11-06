@@ -46,7 +46,7 @@ def fast_parallel_mapper(
 
     :param fct: function
     :param gen: generator
-    :param chunk_size: see :ref:`l-parallel-mapper-chunk-size`
+    :param chunk_size: chunk size
     :param parallel: see
         `parallel
         <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#parallel>`_
@@ -67,7 +67,7 @@ def fast_parallel_mapper(
     the genericity of the mapper. :epkg:`python`
     is not a good language to do that. See unit test
     `test_parallel_fctmr.py
-    <https://github.com/sdpython/teachcompute/blob/main/_unittests/ut_fctmr/test_parallel_fctmr.py>`_.
+    <https://github.com/sdpython/teachcompute/blob/main/_unittests/ut_fctmr/test_fast_parallel_fctmr.py>`_.
     """
     if sigin is not None and sigout is not None:
         sig1 = "{0}({1})".format(sigout, sigin)

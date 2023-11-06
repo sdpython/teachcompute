@@ -2,7 +2,7 @@
 :epkg:`joblib` uses a module not documented
 in the official :epkg:`Python` documentation:
 `Python's undocumented ThreadPool
-<https://lucasb.eyer.be/snips/python-thread-pool.html>`_.
+<http://lucasb.eyer.be/snips/python-thread-pool.html>`_.
 """
 from typing import Callable, Iterable, Optional
 from multiprocessing.pool import ThreadPool

@@ -14,9 +14,11 @@ grands jeux de données de façon distribuée.
 * map/reduce et notion d'itérateurs, illustration avec python, map, filter, combiner (join)
 * distribution, hash
 * spark en local : :ref:`RDD, Dataframe, collect <nbl-practice-spark-spark_first_steps>`
-* multiplication de matrice avec spark : :ref:`Multiplication de matrices <spark_matrix_3_columns>`
-* `sparkmllib <https://spark.apache.org/mllib/>`_ : :ref:`Spark et MLlib <nbl-practice-spark-spark_mllib>`
-* quelques problèmes sympatiques : :ref:`Reservoir Sampling distribué <nbl-practice-mapreduce-reservoir_smapling>`,
+* multiplication de matrice avec spark :
+  :ref:`Multiplication de matrices <nbl-practice-spark-spark_matrix_3_columns>`
+* `sparkmllib <https://spark.apache.org/mllib/>`_ :
+  :ref:`Spark et MLlib <nbl-practice-spark-spark_mllib>`
+* quelques problèmes sympatiques : :ref:`Reservoir Sampling distribué <nbl-practice-mapreduce-reservoir_sampling>`,
   jointure déséquilibrée : :ref:`Skewed dataset <nbl-practice-mapreduce-skewed_dataset>`
 * spark sur un cluster :epkg:`kubernetes`
 
