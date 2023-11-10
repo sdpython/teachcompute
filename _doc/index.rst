@@ -58,7 +58,7 @@ souvent reliés au machine learning.
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
     :alt: MIT License
-    :target: http://opensource.org/licenses/MIT
+    :target: https://opensource.org/licenses/MIT
 
 .. image:: https://codecov.io/github/sdpython/teachcompute/branch/main/graph/badge.svg?token=zmROB7lJAt 
     :target: https://codecov.io/github/sdpython/teachcompute

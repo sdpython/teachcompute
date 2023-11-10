@@ -232,7 +232,6 @@ epkg_dictionary = {
     "tqdm": "https://tqdm.github.io/",
     "ujson": "https://github.com/ultrajson/ultrajson",
     "Visual Studio Code": "https://code.visualstudio.com/",
-    "Visualize a scikit-learn pipeline": "http://www.xavierdupre.fr/app/mlinsights/helpsphinx/notebooks/visualize_pipeline.html",
     "viz.js": "https://github.com/mdaines/viz-js",
     "X-tree": "https://en.wikipedia.org/wiki/X-tree",
     "XML": "https://fr.wikipedia.org/wiki/Extensible_Markup_Language",
