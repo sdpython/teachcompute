@@ -2,16 +2,20 @@
 .. |gitlogo| image:: _static/git_logo.png
              :height: 20
 
-======================================
-Apprendre la programmation avec Python
-======================================
+===============
+Calcul intensif
+===============
 
-Internet est une source quasi-infinie de documents, papiers, bouts de
-code sur beaucoup de sujets mais il faut savoir picorer.
-Ce site se veut plus facile à lire de façon traditionnelle,
-un peu comme un livre. Il s'adresse surtout à ceux qui ne savent
-pas ou eu programmer. Le contenu est disponible sur
-`GitHub/teachcompute <https://github.com/sdpython/teachcompute>`_ |gitlogo|.
+Un seul ordinateur ne suffit plus aujourd'hui pour satisfaire tous les besoins
+des datascientists. Ils ont besoin de nombreuses machines pour traiter
+des volumns gigantesques de données. Ils ont besoin d'écrire du code
+efficace pour apprendre des modèles de machines learning de plus en plus
+gros. Calculs des statistiques simples sur des données de plusieurs centaines
+de gigaoctets se fait le plus souvent avec une technologique Map/Reduce
+sur des clusters de machine. Apprendre des réseaux de neurones profonds
+se fait le plus souvent avec des processeurs :epkg:`GPU` et de façon
+parallélisée. Ce site `GitHub/teachcompute <https://github.com/sdpython/teachcompute>`_ |gitlogo|
+introduit ces deux voies.
 
 .. toctree::
     :maxdepth: 1
@@ -41,7 +45,6 @@ par la programmation et principalement avec le langgage python.
 Le site `Xavier Dupré <http://www.xavierdupre.fr/>`_
 contient beaucoup d'exemples sur beaucoup de sujets,
 souvent reliés au machine learning.
-Le contenu est sur `github <https://github.com/sdpython/teachcompute/>`_.
 
 .. image:: https://ci.appveyor.com/api/projects/status/fl1sge2kumhg8v51?svg=true
     :target: https://ci.appveyor.com/project/sdpython/teachcompute
@@ -55,7 +58,7 @@ Le contenu est sur `github <https://github.com/sdpython/teachcompute/>`_.
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
     :alt: MIT License
-    :target: http://opensource.org/licenses/MIT
+    :target: https://opensource.org/licenses/MIT
 
 .. image:: https://codecov.io/github/sdpython/teachcompute/branch/main/graph/badge.svg?token=zmROB7lJAt 
     :target: https://codecov.io/github/sdpython/teachcompute

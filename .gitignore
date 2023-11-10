@@ -29,6 +29,10 @@ _doc/practice/mapreduce/*.gz
 _doc/practice/mapreduce/mortality.*
 _doc/practice/spark/*.csv
 _doc/practice/spark/*.txt
+_doc/practice/spark/*.zip
+_doc/practice/spark/data_adult*
+_doc/practice/spark/out*
+_doc/practice/spark/target*
 _doc/c_data/*.csv
 _unittests/ut_datasets/*.gz
 _unittests/ut_datasets/*.db3

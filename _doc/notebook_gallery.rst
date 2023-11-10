@@ -19,4 +19,7 @@ Spark and Map Reduce
 .. nblinkgallery::
     :caption: Spark
 
+    practice/spark/spark_first_steps
     practice/spark/spark_matrix_3_columns
+    practice/spark/spark_mllib
+

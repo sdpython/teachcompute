@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 import os
 import sys
 
@@ -26,7 +26,6 @@ extensions = [
     "sphinx_runpython.epkg",
     "sphinx_runpython.gdot",
     "sphinx_runpython.runpython",
-    "sphinxcontrib.blockdiag",
     "matplotlib.sphinxext.plot_directive",
 ]
 
@@ -185,12 +184,23 @@ preamble = """
 
 epkg_dictionary = {
     "Anaconda": "https://www.anaconda.com/",
+    "API REST": "https://fr.wikipedia.org/wiki/Representational_state_transfer",
     "BLAS": "https://www.netlib.org/blas/",
     "C++": "https://fr.wikipedia.org/wiki/C%2B%2B",
+    "cacher": "https://en.wikipedia.org/wiki/Cache_(computing)",
+    "cloudpickle": "https://github.com/cloudpipe/cloudpickle",
+    "CPU": "https://fr.wikipedia.org/wiki/Processeur",
     "cython": "https://cython.org/",
     "dot": "https://fr.wikipedia.org/wiki/DOT_(langage)",
     "DOT": "https://fr.wikipedia.org/wiki/DOT_(langage)",
+    "générateur": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9rateur_(informatique)",
+    "GPU": "https://fr.wikipedia.org/wiki/Processeur_graphique",
+    "itérateur": "https://fr.wikipedia.org/wiki/It%C3%A9rateur",
+    "JSON": "https://en.wikipedia.org/wiki/JSON",
+    "kubernetes": "https://kubernetes.io/fr/",
+    "mllib": "https://spark.apache.org/mllib/",
     "notebook": "https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html#notebook-document",
+    "numba": "https://numba.pydata.org/",
     "numpy": (
         "https://www.numpy.org/",
         ("https://docs.scipy.org/doc/numpy/reference/generated/numpy.{0}.html", 1),
@@ -210,15 +220,18 @@ epkg_dictionary = {
     "protobuf": "https://protobuf.dev/",
     "pypi": "https://pypi.org/",
     "PyPi": "https://pypi.org/",
+    "pyspark": "https://spark.apache.org/",
     "python": "https://www.python.org/",
     "Python": "https://www.python.org/",
     "sérialisation": "https://fr.wikipedia.org/wiki/S%C3%A9rialisation",
+    "spark": "https://spark.apache.org/",
+    "Spark": "https://spark.apache.org/",
     "teachcompute": "https://sdpython.github.io/doc/teachcompute/dev/",
     "teachpyx": "https://sdpython.github.io/doc/teachpyx/dev/",
     "threads": "https://fr.wikipedia.org/wiki/Thread_(informatique)",
     "tqdm": "https://tqdm.github.io/",
+    "ujson": "https://github.com/ultrajson/ultrajson",
     "Visual Studio Code": "https://code.visualstudio.com/",
-    "Visualize a scikit-learn pipeline": "http://www.xavierdupre.fr/app/mlinsights/helpsphinx/notebooks/visualize_pipeline.html",
     "viz.js": "https://github.com/mdaines/viz-js",
     "X-tree": "https://en.wikipedia.org/wiki/X-tree",
     "XML": "https://fr.wikipedia.org/wiki/Extensible_Markup_Language",

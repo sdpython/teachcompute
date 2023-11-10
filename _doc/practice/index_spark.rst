@@ -16,4 +16,6 @@ Notebooks sur Spark
     :caption: Spark
     :maxdepth: 1
     
+    spark/spark_first_steps
     spark/spark_matrix_3_columns
+    spark/spark_mllib

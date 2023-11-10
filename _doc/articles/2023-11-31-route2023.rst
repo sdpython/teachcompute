@@ -3,6 +3,31 @@ _l-feuille-route-2023:
 2023-11-31 : rappel feuille de route 2023
 =========================================
 
-Séance 4
-++++++++
+Séance 4 : spark
+++++++++++++++++
+
+:epkg:`Spark` est une solution logicielle qui permet de manipuler de très
+grands jeux de données de façon distribuée.
+
+* problème pour lesquels spark est adapté : gestion de logs,
+  apprentissage de modèles de machine learning
+* map/reduce et notion d'itérateurs, illustration avec python, map, filter, combiner (join)
+* distribution, hash
+* `HDFS <https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html>`_: système de fichier distributés
+* duplication
+* spark en local : :ref:`RDD, Dataframe, collect <nbl-practice-spark-spark_first_steps>`
+* multiplication de matrice avec spark :
+  :ref:`Multiplication de matrices <nbl-practice-spark-spark_matrix_3_columns>`
+* `sparkmllib <https://spark.apache.org/mllib/>`_ :
+  :ref:`Spark et MLlib <nbl-practice-spark-spark_mllib>`
+* quelques problèmes sympatiques : :ref:`Reservoir Sampling distribué <nbl-practice-mapreduce-reservoir_sampling>`,
+  jointure déséquilibrée : :ref:`Skewed dataset <nbl-practice-mapreduce-skewed_dataset>`
+* spark sur un cluster :epkg:`kubernetes`
+* `spark sur SSPCloud <https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Spark%22%5D>`_,
+  `Spark Kubernetes Cluster <https://github.com/InseeFrLab/formation-spark/blob/main/3-spark-kubernetes/3-spark-kubernetes.ipynb>`_
+
+  
+  
+
+
 
