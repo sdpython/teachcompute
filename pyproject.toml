@@ -20,7 +20,7 @@ classifiers = [
 ]
 dependencies = ["numpy", "scipy"]
 description = "Teaching materials, python and C++"
-keywords = ["", "CUDA", "openmp", "cmake", "cython", "pybind11"]
+keywords = ["CUDA", "openmp", "cmake", "cython", "pybind11"]
 license = {file = "LICENSE.txt"}
 name = "teachcompute"
 readme = "README.rst"

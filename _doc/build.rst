@@ -18,9 +18,9 @@ Build from source
 The packages relies on :epkg:`cmake` to build the C++ extensions.
 whether it wrapped with :epkg:`pybind11` or :epkg:`cython`.
 Both options are available and can be linked with :epkg:`openmp`,
-:epkg:`eigen`, :epkg:`onnxruntime`, :epkg:`CUDA`.
+:epkg:`eigen`, :epkg:`CUDA`.
 *cmake* is called from `setup.py
-<https://github.com/sdpython/onnx-extended/blob/main/setup.py#L198>`_
+<https://github.com/sdpython/teachcompute/blob/main/setup.py#L198>`_
 with two instructions:
 
 * ``python setup.py build_ext --inplace``, the legacy way
@@ -39,13 +39,6 @@ can be specified:
 ::
 
     python setup.py build_ext --inplace --cuda-version=11.8
-
-The development versions of :epkg:`onnxruntime` can be used if it was already build
-``--ort-version=<version or build path>``. Example:
-
-::
-
-    python setup.py build_ext --inplace --cuda-version=11.8 --ort-version=/home/github/onnxruntime/build/linux_cuda/Release
 
 .. toctree::
     :maxdepth: 1    

@@ -195,6 +195,7 @@ epkg_dictionary = {
     "cacher": "https://en.wikipedia.org/wiki/Cache_(computing)",
     "cloudpickle": "https://github.com/cloudpipe/cloudpickle",
     "CPU": "https://fr.wikipedia.org/wiki/Processeur",
+    "cmake": "https://cmake.org/",
     "cython": "https://cython.org/",
     "dot": "https://fr.wikipedia.org/wiki/DOT_(langage)",
     "DOT": "https://fr.wikipedia.org/wiki/DOT_(langage)",
@@ -211,6 +212,7 @@ epkg_dictionary = {
         ("https://docs.scipy.org/doc/numpy/reference/generated/numpy.{0}.html", 1),
         ("https://docs.scipy.org/doc/numpy/reference/generated/numpy.{0}.{1}.html", 2),
     ),
+    "openmp": "https://www.openmp.org/",
     "OpenMP": "https://www.openmp.org/",
     "pandas": (
         "https://pandas.pydata.org/pandas-docs/stable/",
@@ -223,6 +225,7 @@ epkg_dictionary = {
     "programmation impérative": "https://fr.wikipedia.org/wiki/Programmation_imp%C3%A9rative",
     "programmation fonctionnelle": "https://fr.wikipedia.org/wiki/Programmation_fonctionnelle",
     "protobuf": "https://protobuf.dev/",
+    "pybind11": "https://github.com/pybind/pybind11",
     "pypi": "https://pypi.org/",
     "PyPi": "https://pypi.org/",
     "pyspark": "https://spark.apache.org/",

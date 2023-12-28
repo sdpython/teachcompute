@@ -9,7 +9,7 @@ cmake
 +++++
 
 The first step is to load the extension `FindCudaExtension.cmake
-<https://github.com/sdpython/onnx-extended/blob/main/_cmake/externals/FindCudaExtension.cmake>`_
+<https://github.com/sdpython/teachcompute/blob/main/_cmake/externals/FindCudaExtension.cmake>`_
 with `find_package(CudaExtension)`. This file exposes function
 `cuda_pybind11_add_module(name pybindfile)` called for
 every extension to build and used as follows:
@@ -20,9 +20,9 @@ every extension to build and used as follows:
 
         cuda_pybind11_add_module(
             cuda_example_py                                             # name
-            ../onnx_extended/validation/cuda/cuda_example_py.cpp        # pybind11 file
-            ../onnx_extended/validation/cuda/cuda_example.cu            # CUDA code
-            ../onnx_extended/validation/cuda/cuda_example_reduce.cu)    # CUDA code
+            ../teachcompute/validation/cuda/cuda_example_py.cpp        # pybind11 file
+            ../teachcompute/validation/cuda/cuda_example.cu            # CUDA code
+            ../teachcompute/validation/cuda/cuda_example_reduce.cu)    # CUDA code
 
     endif()
 
@@ -35,7 +35,7 @@ These project define constant `CUDA_VERSION`. For example, version 11.8 becomes
 setup.py
 ++++++++
 
-`setup.py <https://github.com/sdpython/onnx-extended/blob/main/setup.py>`_
+`setup.py <https://github.com/sdpython/teachcompute/blob/main/setup.py>`_
 defines a custom command to call cmake. Another line must be added
 to register the extension in the setup.
 
@@ -55,8 +55,8 @@ to register the extension in the setup.
             ext_modules = [
                 ...
                 CMakeExtension(
-                    "onnx_extended.validation.cuda.cuda_example_py",
-                    f"onnx_extended/validation/cuda/cuda_example_py.{ext}",
+                    "teachcompute.validation.cuda.cuda_example_py",
+                    f"teachcompute/validation/cuda/cuda_example_py.{ext}",
                 ),
             ]
         )
