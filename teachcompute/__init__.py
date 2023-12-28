@@ -33,15 +33,16 @@ def check_installation(val: bool = False, verbose: bool = False):
 
         if verbose:
             local_print("[check_installation] import teachcompute")
-        from teachcompute.validation.cython.vector_function_cy import sgemm_dot
+        from teachcompute.validation.cython.vector_function_cy import vector_sum_cy
 
         a = (
-            ((numpy.arange(0).astype(numpy.float32) - 5) / 10)
+            ((numpy.arange(9).astype(numpy.float32) - 5))
             .astype(numpy.float32)
             .reshape((3, -1))
         )
-        c = sgemm_dot(a, a)
-        assert c.shape == (3, 3)
+        c = vector_sum_cy(a)
+        assert isinstance(c, float)
+        assert c == -9
         if verbose:
             local_print("[check_installation] cast_float32_to_e4m3fn")
         if verbose:

@@ -14,6 +14,7 @@ build/*
 dist/*
 *egg-info/*
 temp_*
+teachcompute/_config.py
 .ipynb_checkpoints
 _doc/CHANGELOGS.rst
 _doc/LICENSE.txt
