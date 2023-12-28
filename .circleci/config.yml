@@ -55,6 +55,12 @@ jobs:
           key: v2-dependencies-{{ checksum "requirements-dev.txt" }}
         
       - run:
+          name: build
+          command: |
+            python -m setup.py build_ext --inplace
+            python -m setup.py install
+
+      - run:
           name: run tests
           command: |
             python -m pytest _unittests
