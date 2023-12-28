@@ -1,3 +1,82 @@
+[project]
+authors = [{name="Xavier Dupré", email="xavier.dupre@gmail.com"}]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: C",
+    "Programming Language :: Python",
+    "Topic :: Software Development",
+    "Topic :: Scientific/Engineering",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = ["numpy", "scipy"]
+description = "Teaching materials, python and C++"
+keywords = ["", "CUDA", "openmp", "cmake", "cython", "pybind11"]
+license = {file = "LICENSE.txt"}
+name = "teachcompute"
+readme = "README.rst"
+requires-python = ">=3.9"
+version = "0.2.0"
+
+[project.urls]
+Homepage = "https://sdpython.github.io/doc/teachcompute/dev/"
+Documentation = "https://sdpython.github.io/doc/teachcompute/dev/"
+Repository = "https://github.com/sdpython/teachcompute/"
+Changelog = "https://github.com/sdpython/teachcompute/blob/main/CHANGELOGS.rst"
+Issues = "https://github.com/sdpython/teachcompute/issues"
+
+[project.optional-dependencies]
+dev = [
+    "autopep8",
+    "black",
+    "clang-format",
+    "cmakelang",
+    "coverage",
+    "cython",
+    "cython-lint",
+    "flake8",
+    "furo",
+    "isort",
+    "joblib",
+    "lightgbm",
+    "matplotlib",
+    "ml-dtypes",
+    "pandas",
+    "psutil",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "scikit-learn",
+    "sphinx",
+    "sphinx-gallery",
+    "sphinx-issues",
+    "tqdm",
+    "wheel",
+    "xgboost",
+]
+
+[build-system]
+requires = [
+    "abi3audit; sys_platform == 'linux'",
+    "auditwheel-symbols; sys_platform == 'linux'",
+    "Cython",
+    "cmake",
+    "numpy",
+    "pybind11",
+    "scipy",
+    "setuptools",
+    "wheel",
+]
+
 [tool.rstcheck]
 report_level = "INFO"
 ignore_directives = [
@@ -33,17 +112,52 @@ ignore_messages = [
     ".*Unexpected possible title overline or transition..*",
 ]
 
-[tool.ruff]
+[tool.setuptools.packages.find]
+namespaces = false
 
-# Exclude a variety of commonly ignored directories.
+[tool.setuptools.package-data]
+"*" = ["*.cc", "*.cpp", "*.cu", "*.cuh", "*.dll", "*.dylib", "*.h", "*.hpp", "*.pyd", "*.so*"]
+
+[tool.cibuildwheel]
+build = "*"
+manylinux-x86_64-image = "manylinux2014"
+test-command = "python -c \"import teachcompute;teachcompute.check_installation(val=True)\""
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64"]
+build = "cp*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp312-* pypy* *musllinux*"
+manylinux-x86_64-image = "manylinux2014"
+before-build = "pip install auditwheel-symbols abi3audit"
+build-verbosity = 1
+repair-wheel-command = "auditwheel-symbols --manylinux 2014 {wheel} ; abi3audit {wheel} ; auditwheel repair -w {dest_dir} {wheel} || exit 0"
+test-command = "python -c \"import teachcompute;teachcompute.check_installation(val=True)\"&&python -c \"import teachcompute;teachcompute.check_installation(val=True,verbose=True)\""
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64"]
+build = "cp*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp312-* pypy* pp*"
+
+[tool.cibuildwheel.windows]
+archs = ["AMD64"]
+build = "cp*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp312-* pypy*"
+
+[tool.cython-lint]
+max-line-length = 88
+
+[tool.mypy]
+ignore_missing_imports = true
+packages = ["teachcompute"]
 exclude = [
-    ".eggs",
-    ".git",
-    "build",
-    "dist",
+    "^_doc/examples",  # skips examples in the documentation
+    "^_unittests",  # skips unit tests
+    "^build",  # skips build
+    "^dist",  # skips dist
 ]
 
-# Same as Black.
+[tool.ruff]
+exclude = [".eggs", ".git", "build", "dist"]
 line-length = 88
 
 [tool.ruff.mccabe]
