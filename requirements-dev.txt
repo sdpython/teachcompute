@@ -2,7 +2,7 @@ black
 black-nb
 clang-format
 cloudpickle
-cmake-lint
+cmakelang
 coverage
 cython
 cytoolz
