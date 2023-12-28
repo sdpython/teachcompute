@@ -13,9 +13,9 @@ The first step is to load the extension `FindLocalPyBind11
 <https://github.com/sdpython/teachcompute/blob/main/_cmake/externals/FindLocalPyBind11.cmake>`_
 with ``find_package(LocalPyBind11 REQUIRED)``.
 This extension fetches the content of pybind11 and builds it with
-`FetchContent_Populate(pybind11)`. The version is registered there.
+``FetchContent_Populate(pybind11)``. The version is registered there.
 It must be done once.
-It defines a function `local_pybind11_add_module(name omp_lib)` called for
+It defines a function ``local_pybind11_add_module(name omp_lib)`` called for
 every extension to build and used as follows:
 
 ::
@@ -26,7 +26,7 @@ every extension to build and used as follows:
     ../teachcompute/validation/cpu/_validation.cpp     # source file
     ../teachcompute/validation/cpu/vector_sum.cpp)     # source file
 
-Additional libraries can be added with `target_link_libraries(name PRIVATE lib_name)`.
+Additional libraries can be added with ``target_link_libraries(name PRIVATE lib_name)``.
 
 setup.py
 ++++++++

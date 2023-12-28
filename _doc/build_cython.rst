@@ -12,8 +12,8 @@ cmake
 
 The first step is to load the extension `FindCython.cmake
 <https://github.com/sdpython/teachcompute/blob/main/_cmake/externals/FindCython.cmake>`_
-with `find_package(Cython REQUIRED)`. This file exposes function
-`cython_add_module(name pyx_file omp_lib)` called for
+with ``find_package(Cython REQUIRED)``. This file exposes function
+``cython_add_module(name pyx_file omp_lib)`` called for
 every extension to build and used as follows:
 
 ::
@@ -25,7 +25,7 @@ every extension to build and used as follows:
         ../teachcompute/validation/cpu/vector_function.cpp)        # sources files
 
 The function accepts many source files. Other link dependencies can be added as well
-by adding an instructions like `target_link_libraries(name PRIVATE lib_name)`.
+by adding an instructions like ``target_link_libraries(name PRIVATE lib_name)``.
 This function *cythonize* the *pyx_file* into a cpp file before building
 the dynamic library.
 

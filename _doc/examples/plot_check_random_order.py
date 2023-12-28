@@ -12,6 +12,7 @@ Setup
 """
 from tqdm import tqdm
 import numpy as np
+import pandas
 
 unique_values = np.array(
     [2.1102535724639893, 0.5986238718032837, -0.49545818567276], dtype=np.float32
@@ -42,6 +43,7 @@ def check_orders(values, n=200, bias=0):
     double_sums = []
     sums = []
     reduced_sums = []
+    reduced_dsums = []
     for i in tqdm(range(n)):
         permuted_values = np.random.permutation(values)
         s = np.array(bias, dtype=np.float32)
@@ -52,16 +54,25 @@ def check_orders(values, n=200, bias=0):
         sums.append(s)
         double_sums.append(sd)
         reduced_sums.append(permuted_values.sum() + bias)
+        reduced_dsums.append(permuted_values.astype(np.float64).sum() + bias)
 
+    data = []
     mi, ma = min(sums), max(sums)
+    data.append(dict(name="seq_fp32", min=mi, max=ma, bias=bias))
     print(f"min={mi} max={ma} delta={ma-mi}")
     mi, ma = min(double_sums), max(double_sums)
+    data.append(dict(name="seq_fp64", min=mi, max=ma, bias=bias))
     print(f"min={mi} max={ma} delta={ma-mi} (double)")
     mi, ma = min(reduced_sums), max(reduced_sums)
+    data.append(dict(name="red_f32", min=mi, max=ma, bias=bias))
     print(f"min={mi} max={ma} delta={ma-mi} (reduced)")
+    mi, ma = min(reduced_dsums), max(reduced_dsums)
+    data.append(dict(name="red_f64", min=mi, max=ma, bias=bias))
+    print(f"min={mi} max={ma} delta={ma-mi} (reduced)")
+    return data
 
 
-check_orders(values)
+data1 = check_orders(values)
 
 ############################
 # This example clearly shows the order has an impact.
@@ -79,7 +90,20 @@ check_orders(values)
 
 mean = unique_values.mean()
 values -= mean
-check_orders(values, bias=len(values) * mean)
+data2 = check_orders(values, bias=len(values) * mean)
 
 ######################################
 # The differences are clearly lower.
+
+df = pandas.DataFrame(data1 + data2)
+df["delta"] = df["max"] - df["min"]
+piv = df.pivot(index="name", columns="bias", values="delta")
+print(piv)
+
+######################################
+# Plots.
+
+ax = piv.plot.barh()
+ax.set_title("max(sum) - min(sum) over random orders")
+ax.get_figure().tight_layout()
+ax.get_figure().savefig("plot_check_random_order.png")

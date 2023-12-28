@@ -22,6 +22,8 @@ import numpy
 import ujson
 import cloudpickle
 import pickle
+import matplotlib.pyplot as plt
+import pandas
 
 
 data = {
@@ -145,15 +147,20 @@ data = {
 #########################################
 #
 
-
-timeit.timeit("json.dump(data, StringIO())", globals=globals(), number=100)
+data_time = []
+expression = "json.dump(data, StringIO())"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 
 #########################################
 #
 
-
-timeit.timeit("ujson.dump(data, StringIO())", globals=globals(), number=100)
+expression = "ujson.dump(data, StringIO())"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 
 #########################################
@@ -164,20 +171,27 @@ timeit.timeit("ujson.dump(data, StringIO())", globals=globals(), number=100)
 buffer = StringIO()
 ujson.dump(data, buffer)
 res = buffer.getvalue()
-timeit.timeit("json.load(StringIO(res))", globals=globals(), number=100)
 
+expression = "json.load(StringIO(res))"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 #########################################
 #
 
-timeit.timeit("ujson.load(StringIO(res))", globals=globals(), number=100)
-
+expression = "ujson.load(StringIO(res))"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 #########################################
 # On enlève le temps passé dans la creation du buffer.
 
-
-timeit.timeit("StringIO(res)", globals=globals(), number=100)
+expression = "StringIO(res)"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 
 #########################################
@@ -323,14 +337,18 @@ read.att1, read.att2
 #
 
 data = B("r")
-timeit.timeit("pickle.dump(data, BytesIO())", globals=globals(), number=100)
-
+expression = "pickle.dump(data, BytesIO())"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 #########################################
 #
 
-timeit.timeit("pickle.load(BytesIO(seq))", globals=globals(), number=100)
-
+expression = "pickle.load(BytesIO(seq))"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 #########################################
 # La sérialisation binaire est habituellement plus rapide dans les langages
@@ -339,12 +357,10 @@ timeit.timeit("pickle.load(BytesIO(seq))", globals=globals(), number=100)
 # Il est possible d'accélérer un peu les choses.
 
 
-timeit.timeit(
-    "pickle.dump(data, BytesIO(), protocol=pickle.HIGHEST_PROTOCOL)",
-    globals=globals(),
-    number=100,
-)
-
+expression = "pickle.dump(data, BytesIO(), protocol=pickle.HIGHEST_PROTOCOL)"
+d = timeit.timeit(expression, globals=globals(), number=100)
+data_time.append(dict(expression=expression, time=d))
+d
 
 #########################################
 # Cas des fonctions
@@ -521,3 +537,23 @@ try:
     pickle.dump(data, buffer)
 except Exception as e:
     print(e)
+
+
+##################################
+# Summary
+# =======
+
+fig, ax = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
+df = pandas.DataFrame(data_time)
+print(df)
+
+####################################
+#
+
+df.set_index("expression").plot.barh(ax=ax[0])
+df.loc[0, "time"] = numpy.nan
+df.set_index("expression").plot.barh(ax=ax[1])
+ax[0].set_title("Time")
+ax[1].set_title("Time without `json.dump`")
+fig.tight_layout()
+fig.savefig("plot_serialisation_examples.png")

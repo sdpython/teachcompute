@@ -19,7 +19,7 @@ every extension to build and used as follows:
     if(CUDA_AVAILABLE)
 
         cuda_pybind11_add_module(
-            cuda_example_py                                             # name
+            cuda_example_py                                            # name
             ../teachcompute/validation/cuda/cuda_example_py.cpp        # pybind11 file
             ../teachcompute/validation/cuda/cuda_example.cu            # CUDA code
             ../teachcompute/validation/cuda/cuda_example_reduce.cu)    # CUDA code
@@ -28,7 +28,7 @@ every extension to build and used as follows:
 
 The function accepts many source files whether they have extension c, cpp, cc, cu.
 Other link dependencies can be added as well
-by adding an instructions like `target_link_libraries(name PRIVATE lib_name)`.
+by adding an instructions like ``target_link_libraries(name PRIVATE lib_name)``.
 These project define constant `CUDA_VERSION`. For example, version 11.8 becomes
 `11080`.
 
@@ -81,5 +81,5 @@ On Linux, the following error may happen:
     load_externals.cmake:9 (find_package)
     CMakeLists.txt:19 (include)
 
-It can be fixed by adding `--cuda-nvcc=<path ot nvcc>`. An example:
-`--cuda-nvcc=/usr/local/cuda-12.1/bin/nvcc`.
+It can be fixed by adding ``--cuda-nvcc=<path ot nvcc>``. An example:
+``--cuda-nvcc=/usr/local/cuda-12.1/bin/nvcc``.

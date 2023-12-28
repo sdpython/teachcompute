@@ -47,8 +47,8 @@ Le site `Xavier Dupré <http://www.xavierdupre.fr/>`_
 contient beaucoup d'exemples sur beaucoup de sujets,
 souvent reliés au machine learning.
 
-.. image:: https://dev.azure.com/xavierdupre3/teachcompute/_build/latest?definitionId=29&branchName=main
-    :target: https://dev.azure.com/xavierdupre3/teachcompute/_apis/build/status%2Fsdpython.teachcompute?branchName=main
+.. image:: https://dev.azure.com/xavierdupre3/teachcompute/_apis/build/status%2Fsdpython.teachcompute?branchName=main
+    :target: https://dev.azure.com/xavierdupre3/teachcompute/_build/latest?definitionId=29&branchName=main
 
 .. image:: https://ci.appveyor.com/api/projects/status/fl1sge2kumhg8v51?svg=true
     :target: https://ci.appveyor.com/project/sdpython/teachcompute
@@ -72,6 +72,8 @@ souvent reliés au machine learning.
     :target: https://github.com/sdpython/teachcompute/
     :alt: size
 
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 Older versions
 ++++++++++++++
