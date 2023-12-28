@@ -6,6 +6,9 @@
 *.so
 *.bin
 *.log
+plot*.png
+plot*.csv
+plot*.xlsx
 .coverage
 __pycache__
 .eggs/*
