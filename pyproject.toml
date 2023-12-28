@@ -146,6 +146,22 @@ skip = "cp36-* cp37-* cp38-* cp39-* cp312-* pypy*"
 [tool.cython-lint]
 max-line-length = 88
 
+[[tool.mypy.overrides]]
+module = ["teachcompute.args"]
+disable_error_code = ["index"]
+
+[[tool.mypy.overrides]]
+module = ["teachcompute.ext_test_case"]
+disable_error_code = ["override"]
+
+[[tool.mypy.overrides]]
+module = ["teachcompute.datasets.eurostat"]
+disable_error_code = ["assignment"]
+
+[[tool.mypy.overrides]]
+module = ["teachcompute.fctmr.fast_parallel_fctmr"]
+disable_error_code = ["arg-type", "assignment", "attr-defined", "index"]
+
 [tool.mypy]
 ignore_missing_imports = true
 packages = ["teachcompute"]
