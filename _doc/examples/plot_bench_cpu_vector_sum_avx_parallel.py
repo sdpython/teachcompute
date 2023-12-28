@@ -14,8 +14,8 @@ from tqdm import tqdm
 import numpy
 import matplotlib.pyplot as plt
 from pandas import DataFrame
-from onnx_extended.ext_test_case import measure_time, unit_test_going
-from onnx_extended.validation.cpu._validation import (
+from teachcompute.ext_test_case import measure_time, unit_test_going
+from teachcompute.validation.cpu._validation import (
     vector_sum_array as vector_sum,
     vector_sum_array_parallel as vector_sum_parallel,
     vector_sum_array_avx as vector_sum_avx,

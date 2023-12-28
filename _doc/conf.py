@@ -110,6 +110,15 @@ nitpick_ignore = [
     ("py:class", "True"),
     ("py:class", "pipeline.Pipeline"),
     ("py:class", "default=sklearn.utils.metadata_routing.UNCHANGED"),
+    ("py:class", "sklearn.ensemble.RandomForestRegressor"),
+    ("py:class", "unittest.case.TestCase"),
+]
+
+nitpick_ignore_regex = [
+    ("py:class", ".*numpy[.].*"),
+    ("py:func", ".*[.]PyCapsule[.].*"),
+    ("py:func", ".*numpy[.].*"),
+    ("py:func", ".*scipy[.].*"),
 ]
 
 sphinx_gallery_conf = {
@@ -117,7 +126,6 @@ sphinx_gallery_conf = {
     "examples_dirs": os.path.join(os.path.dirname(__file__), "examples"),
     # path where to save gallery generated examples
     "gallery_dirs": "auto_examples",
-    "ignore_pattern": "schema_pb.*[.]py",
 }
 
 # next
@@ -186,10 +194,13 @@ epkg_dictionary = {
     "C++": "https://fr.wikipedia.org/wiki/C%2B%2B",
     "cacher": "https://en.wikipedia.org/wiki/Cache_(computing)",
     "cloudpickle": "https://github.com/cloudpipe/cloudpickle",
+    "cmake": "https://cmake.org/",
     "CPU": "https://fr.wikipedia.org/wiki/Processeur",
+    "CUDA": "https://developer.nvidia.com/cuda-gpus",
     "cython": "https://cython.org/",
     "dot": "https://fr.wikipedia.org/wiki/DOT_(langage)",
     "DOT": "https://fr.wikipedia.org/wiki/DOT_(langage)",
+    "eigen": "https://eigen.tuxfamily.org/",
     "générateur": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9rateur_(informatique)",
     "GPU": "https://fr.wikipedia.org/wiki/Processeur_graphique",
     "itérateur": "https://fr.wikipedia.org/wiki/It%C3%A9rateur",
@@ -203,6 +214,8 @@ epkg_dictionary = {
         ("https://docs.scipy.org/doc/numpy/reference/generated/numpy.{0}.html", 1),
         ("https://docs.scipy.org/doc/numpy/reference/generated/numpy.{0}.{1}.html", 2),
     ),
+    "nvidia-smi": "https://developer.nvidia.com/nvidia-system-management-interface",
+    "openmp": "https://www.openmp.org/",
     "OpenMP": "https://www.openmp.org/",
     "pandas": (
         "https://pandas.pydata.org/pandas-docs/stable/",
@@ -215,11 +228,13 @@ epkg_dictionary = {
     "programmation impérative": "https://fr.wikipedia.org/wiki/Programmation_imp%C3%A9rative",
     "programmation fonctionnelle": "https://fr.wikipedia.org/wiki/Programmation_fonctionnelle",
     "protobuf": "https://protobuf.dev/",
+    "pybind11": "https://github.com/pybind/pybind11",
     "pypi": "https://pypi.org/",
     "PyPi": "https://pypi.org/",
     "pyspark": "https://spark.apache.org/",
     "python": "https://www.python.org/",
     "Python": "https://www.python.org/",
+    "psutil": "https://psutil.readthedocs.io/en/latest/",
     "sérialisation": "https://fr.wikipedia.org/wiki/S%C3%A9rialisation",
     "spark": "https://spark.apache.org/",
     "Spark": "https://spark.apache.org/",

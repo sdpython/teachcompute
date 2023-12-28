@@ -30,7 +30,7 @@ jobs:
         print_all: false
         timeout: 5
         retry_count# : 3
-        # exclude_urls: https://dumps.wikimedia.org/other/pageviews/%Y/%Y-%m/pageviews-%Y%m%d-%H0000.gz,https://dumps.wikimedia.org/frwiki/latest/latest-all-titles-in-ns0.gz
+        exclude_urls: https://github.com/sdpython/teachcompute/raw/main/_data/data_adult.zip
         exclude_patterns: https://dumps.wikimedia.org/
         # force_pass : true
 
@@ -42,6 +42,6 @@ jobs:
         print_all: false
         timeout: 5
         retry_count# : 3
-        exclude_urls: http://www.w3.org/1999/xlink,https://creativecommons.org/licenses/by-sa/4.0/deed.fr,https://github.com/sdpython/teachcompute/raw/spark/_data/data_adult.zip
+        exclude_urls: http://www.w3.org/1999/xlink,https://creativecommons.org/licenses/by-sa/4.0/deed.fr,https://github.com/sdpython/teachcompute/raw/main/_data/data_adult.zip
         exclude_patterns: https://www.data.gouv.fr/
         # force_pass : true

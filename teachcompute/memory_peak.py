@@ -87,7 +87,7 @@ def _process_memory_spy(conn):
     process = psutil.Process(pid)
 
     if cuda:
-        from onnx_extended.validation.cuda.cuda_monitor import (
+        from teachcompute.validation.cuda.cuda_monitor import (
             nvml_device_get_count,
             nvml_device_get_memory_info,
             nvml_init,
@@ -209,7 +209,7 @@ def start_spying_on(
 
     .. code-block:: python
 
-        from onnx_extended.memory_peak import start_spying_on
+        from teachcompute.memory_peak import start_spying_on
 
         p = start_spying_on()
         # ...

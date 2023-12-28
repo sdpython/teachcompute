@@ -4,7 +4,6 @@
 message(STATUS "+ PYBIND11 teachcompute.validation.cpu._validation")
 
 add_library(lib_validation_cpp STATIC
-  ../teachcompute/validation/cpu/speed_metrics.cpp
   ../teachcompute/validation/cpu/vector_function.cpp)
 target_compile_definitions(lib_validation_cpp PRIVATE PYTHON_MANYLINUX=${PYTHON_MANYLINUX})
 target_include_directories(lib_validation_cpp PRIVATE "${ROOT_INCLUDE_PATH}")

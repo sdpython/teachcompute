@@ -746,7 +746,7 @@ setup(
     author_email="xavier.dupre@gmail.com",
     url="https://github.com/sdpython/teachcompute",
     package_data=get_package_data(),
-    setup_requires=["numpy", "scipy"],
+    setup_requires=["numpy", "scipy", "cython", "pybind11"],
     install_requires=get_requirements(here),
     classifiers=[
         "Intended Audience :: Science/Research",

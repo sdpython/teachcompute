@@ -1,13 +1,17 @@
 black
 black-nb
+clang-format
 cloudpickle
+cmakelang
 coverage
 cython
+cython-lint
 cytoolz
 furo
 ipython
 jupyter
 matplotlib
+mypy
 nbsphinx
 numba
 openpyxl

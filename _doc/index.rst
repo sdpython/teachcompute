@@ -29,6 +29,7 @@ introduit ces deux voies.
     :maxdepth: 1
     :caption: Exercices
 
+    practice/index_expose
     practice/index_spark
 
 .. toctree::
@@ -46,12 +47,12 @@ Le site `Xavier Dupré <http://www.xavierdupre.fr/>`_
 contient beaucoup d'exemples sur beaucoup de sujets,
 souvent reliés au machine learning.
 
+.. image:: https://dev.azure.com/xavierdupre3/teachcompute/_build/latest?definitionId=29&branchName=main
+    :target: https://dev.azure.com/xavierdupre3/teachcompute/_apis/build/status%2Fsdpython.teachcompute?branchName=main
+
 .. image:: https://ci.appveyor.com/api/projects/status/fl1sge2kumhg8v51?svg=true
     :target: https://ci.appveyor.com/project/sdpython/teachcompute
     :alt: Build Status Windows
-
-.. image:: https://dl.circleci.com/status-badge/img/gh/sdpython/teachcompute/tree/main.svg?style=svg
-    :target: https://dl.circleci.com/status-badge/redirect/gh/sdpython/teachcompute/tree/main
 
 .. image:: https://badge.fury.io/py/teachcompute.svg
     :target: https://pypi.org/project/teachcompute/

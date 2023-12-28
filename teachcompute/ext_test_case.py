@@ -113,7 +113,7 @@ def measure_time(
 
         from pprint import pprint
         from math import cos
-        from onnx_extended.ext_test_case import measure_time
+        from teachcompute.ext_test_case import measure_time
 
         res = measure_time(lambda: cos(0.5))
         pprint(res)
@@ -291,6 +291,10 @@ class ExtTestCase(unittest.TestCase):
     def assertStartsWith(self, prefix: str, full: str):
         if not full.startswith(prefix):
             raise AssertionError(f"prefix={prefix!r} does not start string  {full!r}.")
+
+    def assertEndsWith(self, full: str, suffix: str):
+        if not full.endswith(suffix):
+            raise AssertionError(f"suffix={suffix!r} does not end string  {full!r}.")
 
     @classmethod
     def tearDownClass(cls):

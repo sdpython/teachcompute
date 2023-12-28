@@ -34,9 +34,6 @@ jobs:
       cmake-lint _cmake/CMake* --disabled-codes C0103 C0113 --line-width=88
     displayName: 'cmake-lint'
   - script: |
-      rstcheck -r ./_doc ./teachcompute
-    displayName: 'rstcheck'
-  - script: |
       cython-lint .
     displayName: 'cython-lint'
   - script: |
@@ -86,10 +83,10 @@ jobs:
       architecture: 'x64'
   - script: sudo apt-get update
     displayName: 'AptGet Update'
-  # - script: sudo apt-get install -y pandoc
-  #   displayName: 'Install Pandoc'
-  # - script: sudo apt-get install -y inkscape
-  #   displayName: 'Install Inkscape'
+  - script: sudo apt-get install -y pandoc
+    displayName: 'Install Pandoc'
+  - script: sudo apt-get install -y inkscape
+    displayName: 'Install Inkscape'
   - script: sudo apt-get install -y graphviz
     displayName: 'Install Graphviz'
   - script: python -m pip install --upgrade pip setuptools wheel
