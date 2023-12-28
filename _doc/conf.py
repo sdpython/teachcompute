@@ -95,13 +95,10 @@ intersphinx_mapping = {
     "IPython": ("https://ipython.readthedocs.io/en/stable/", None),
     "matplotlib": ("https://matplotlib.org/", None),
     "numpy": ("https://numpy.org/doc/stable", None),
-    "onnx": ("https://onnx.ai/onnx/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
     "python": (f"https://docs.python.org/{sys.version_info.major}", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
-    "skl2onnx": ("https://onnx.ai/sklearn-onnx/", None),
     "sklearn": ("https://scikit-learn.org/stable/", None),
-    "sklearn-onnx": ("https://onnx.ai/sklearn-onnx/", None),
     "torch": ("https://pytorch.org/docs/stable/", None),
 }
 

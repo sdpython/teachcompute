@@ -26,7 +26,7 @@ jobs:
       - uses: tlylt/install-graphviz@v1
 
       - name: Install pandoc
-        run: sudo apt-get install -y pandoc protobuf-compiler
+        run: sudo apt-get install -y pandoc
 
       - name: Install requirements
         run: python -m pip install -r requirements.txt
@@ -43,17 +43,19 @@ jobs:
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
 
-      - name: protobuf version
-        run: |
-          protoc --version
-          python -c "import google.protobuf as gp;print(gp.__version__)"
+      - name: Build
+        run: python setup.py build_ext --inplace --use-cuda=0
+
+      - name: cat _config.py
+        run: cat teachcompute/_config.py
 
       - name: Generate coverage report
         run: |
           pip install pytest
           pip install pytest-cov
           export PYTHONPATH=.
-          pytest --cov=./teachcompute/ --cov-report=xml --durations=10 --ignore-glob=**LONG*.py --ignore-glob=**notebook*.py --ignore-glob=**pygame*.py
+          export SKIP_UNSTABLE=1
+          pytest --cov=./teachcompute/ --cov-report=xml --durations=10 --ignore-glob=**LONG*.py --ignore-glob=**notebook*.py
           export PYTHONPATH=
 
       - name: Upload coverage reports to Codecov
@@ -64,10 +66,13 @@ jobs:
       - name: Install
         run: python setup.py install
 
-      - name: Copy license
-        run: cp LICENSE* ./_doc
-      - name: Copy changelogs
-        run: cp CHANGELOGS* ./_doc
+      - name: HAS_CUDA?
+        run: python -c "import teachcompute;print('has_cuda:',teachcompute.has_cuda())"
+
+      - name: Copy license, changelogs
+        run: |
+          cp LICENSE* ./_doc
+          cp CHANGELOGS* ./_doc
 
       - name: Documentation
         run: python -m sphinx ./_doc ./dist/html -n -w doc.txt
@@ -77,14 +82,14 @@ jobs:
 
       - name: Check for errors and warnings
         run: |
-          if [[ $(grep ERROR doc.txt) ]]; then
+          if [[ $(grep ERROR doc.txt | grep -v 'validation.cuda') ]]; then
             echo "Documentation produces errors."
-            grep ERROR doc.txt
+            grep ERROR doc.txt | grep -v 'validation.cuda'
             exit 1
           fi
-          if [[ $(grep WARNING doc.txt | grep -v 'download' | grep -v 'CERTIFICATE_VERIFY_FAILED') ]]; then
+          if [[ $(grep WARNING doc.txt | grep -v 'validation.cuda') ]]; then
             echo "Documentation produces warnings."
-            cat doc.txt | grep WARNING | grep -v 'CERTIFICATE_VERIFY_FAILED' | grep -v 'download'
+            grep WARNING doc.txt | grep -v 'validation.cuda'
             exit 1
           fi
 

@@ -46,8 +46,7 @@ class TestDocumentationExamples(ExtTestCase):
                 raise FileNotFoundError(st)
             if len(st) > 0 and "Traceback" in st:
                 if '"dot" not found in path.' in st:
-                    # dot not installed, this part
-                    # is tested in onnx framework
+                    # dot not installed
                     if verbose:
                         print(f"failed: {name!r} due to missing dot.")
                     return -1
