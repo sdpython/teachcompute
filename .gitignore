@@ -38,3 +38,5 @@ _doc/c_data/*.csv
 _unittests/ut_datasets/*.gz
 _unittests/ut_datasets/*.db3
 _unittests/ut_datasets/*.txt
+demo_mlifetable.tsv.gz
+mortality.txt

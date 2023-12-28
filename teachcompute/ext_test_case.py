@@ -292,6 +292,10 @@ class ExtTestCase(unittest.TestCase):
         if not full.startswith(prefix):
             raise AssertionError(f"prefix={prefix!r} does not start string  {full!r}.")
 
+    def assertEndsWith(self, full: str, suffix: str):
+        if not full.endswith(suffix):
+            raise AssertionError(f"suffix={suffix!r} does not end string  {full!r}.")
+
     @classmethod
     def tearDownClass(cls):
         for name, line, w in cls._warns:
