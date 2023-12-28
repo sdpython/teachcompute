@@ -42,6 +42,6 @@ jobs:
         print_all: false
         timeout: 5
         retry_count# : 3
-        exclude_urls: http://www.w3.org/1999/xlink,https://creativecommons.org/licenses/by-sa/4.0/deed.fr,https://github.com/sdpython/teachcompute/raw/spark/_data/data_adult.zip
+        exclude_urls: http://www.w3.org/1999/xlink,https://creativecommons.org/licenses/by-sa/4.0/deed.fr
         exclude_patterns: https://www.data.gouv.fr/
         # force_pass : true
