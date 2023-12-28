@@ -33,7 +33,7 @@ def check_installation(val: bool = False, verbose: bool = False):
 
         if verbose:
             local_print("[check_installation] import teachcompute")
-        from onnx_extended.validation.cython.vector_function_cy import sgemm_dot
+        from teachcompute.validation.cython.vector_function_cy import sgemm_dot
 
         a = (
             ((numpy.arange(0).astype(numpy.float32) - 5) / 10)

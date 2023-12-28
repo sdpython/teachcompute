@@ -113,7 +113,7 @@ def measure_time(
 
         from pprint import pprint
         from math import cos
-        from onnx_extended.ext_test_case import measure_time
+        from teachcompute.ext_test_case import measure_time
 
         res = measure_time(lambda: cos(0.5))
         pprint(res)

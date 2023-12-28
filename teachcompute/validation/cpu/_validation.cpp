@@ -2,7 +2,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "speed_metrics.h"
 #include "vector_sum.h"
 
 namespace py = pybind11;
@@ -16,12 +15,6 @@ PYBIND11_MODULE(_validation, m) {
       R"pbdoc(C++ experimental implementations.)pbdoc"
 #endif
       ;
-
-  py::class_<ElementTime> clf(m, "ElementTime");
-  clf.def(py::init<int64_t, int64_t, double>());
-  clf.def_readwrite("trial", &ElementTime::trial);
-  clf.def_readwrite("row", &ElementTime::row);
-  clf.def_readwrite("time", &ElementTime::time);
 
   m.def("vector_sum", &vector_sum, py::arg("n_columns"), py::arg("values"), py::arg("by_rows"),
         R"pbdoc(Computes the sum of all elements in an array

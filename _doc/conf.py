@@ -110,6 +110,15 @@ nitpick_ignore = [
     ("py:class", "True"),
     ("py:class", "pipeline.Pipeline"),
     ("py:class", "default=sklearn.utils.metadata_routing.UNCHANGED"),
+    ("py:class", "sklearn.ensemble.RandomForestRegressor"),
+    ("py:class", "unittest.case.TestCase"),
+]
+
+nitpick_ignore_regex = [
+    ("py:class", ".*numpy[.].*"),
+    ("py:func", ".*[.]PyCapsule[.].*"),
+    ("py:func", ".*numpy[.].*"),
+    ("py:func", ".*scipy[.].*"),
 ]
 
 sphinx_gallery_conf = {
@@ -117,7 +126,6 @@ sphinx_gallery_conf = {
     "examples_dirs": os.path.join(os.path.dirname(__file__), "examples"),
     # path where to save gallery generated examples
     "gallery_dirs": "auto_examples",
-    "ignore_pattern": "schema_pb.*[.]py",
 }
 
 # next
@@ -220,6 +228,7 @@ epkg_dictionary = {
     "pyspark": "https://spark.apache.org/",
     "python": "https://www.python.org/",
     "Python": "https://www.python.org/",
+    "psutil": "https://psutil.readthedocs.io/en/latest/",
     "sérialisation": "https://fr.wikipedia.org/wiki/S%C3%A9rialisation",
     "spark": "https://spark.apache.org/",
     "Spark": "https://spark.apache.org/",
