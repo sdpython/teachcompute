@@ -1,7 +1,7 @@
 Change Logs
 ===========
 
-0.1.1
+0.2.0
 +++++
 
 * :pr:`1`: new notebooks on spark
