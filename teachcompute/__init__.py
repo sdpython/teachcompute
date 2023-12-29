@@ -112,3 +112,11 @@ def get_stdcpp() -> int:
     from ._config import CMAKE_CXX_STANDARD
 
     return CMAKE_CXX_STANDARD
+
+
+def log(verbose: int, fct, level: int = 1):
+    """
+    Displays a message if verbose is True.
+    """
+    if verbose >= level:
+        print(fct())
