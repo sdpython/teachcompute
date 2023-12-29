@@ -1,12 +1,10 @@
-"""
-Datasets from :epkg:`Eurostat`.
-"""
 import os
 import gzip
 import urllib.request
 from typing import Optional
 import numpy
 import pandas
+from .. import log
 
 
 def mortality_table(
@@ -46,6 +44,7 @@ def mortality_table(
     * PROBDEATH: Probabilité de décès entre deux âges exacts (qx)
     * TOTPYLIVED: Nombre total d'années personne vécues après l'âge exact (Tx)
     """
+
     final_name = os.path.join(to, "mortality.txt")
     if os.path.exists(final_name) and os.stat(final_name).st_size > 1e7:
         return final_name
@@ -91,8 +90,7 @@ def mortality_table(
             return numpy.nan
         return float(s.strip(" ebp"))
 
-    if verbose:
-        print("[mortality_table] read")
+    log(verbose, lambda: "[mortality_table] read")
     dff = pandas.read_csv(final_name, sep="\t", encoding="utf8")
 
     if stop_at is not None:
@@ -103,31 +101,27 @@ def mortality_table(
     else:
         df = dff
 
-    if verbose:
-        print(f"[mortality] step 1, shape is {df.shape}")
+    log(verbose, lambda: f"[mortality] step 1, shape is {df.shape}")
     dfi = df.reset_index().set_index("indic_de,sex,age,geo\\time")
     dfi = dfi.drop("index", axis=1)
     dfs = dfi.stack()
     dfs = pandas.DataFrame({"valeur": dfs})
 
-    if verbose:
-        print(f"[mortality] step 2, shape is {dfs.shape}")
+    log(verbose, lambda: f"[mortality] step 2, shape is {dfs.shape}")
     dfs["valeur"] = dfs["valeur"].astype(str)
     dfs["valeur"] = dfs["valeur"].apply(format_value)
     dfs = dfs[dfs.valeur >= 0].copy()
     dfs = dfs.reset_index()
     dfs.columns = ["index", "annee", "valeur"]
 
-    if verbose:
-        print(f"[mortality] step 3, shape is {dfs.shape}")
+    log(verbose, lambda: f"[mortality] step 3, shape is {dfs.shape}")
     dfs["age"] = dfs["index"].apply(lambda i: format_age(i.split(",")[2]))
     dfs["age_num"] = dfs["index"].apply(lambda i: format_age_num(i.split(",")[2]))
     dfs["indicateur"] = dfs["index"].apply(lambda i: i.split(",")[0])
     dfs["genre"] = dfs["index"].apply(lambda i: i.split(",")[1])
     dfs["pays"] = dfs["index"].apply(lambda i: i.split(",")[3])
 
-    if verbose:
-        print(f"[mortality] step 4, shape is {dfs.shape}")
+    log(verbose, lambda: f"[mortality] step 4, shape is {dfs.shape}")
     dfy = dfs.drop("index", axis=1)
     dfy.to_csv(final_name, sep="\t", encoding="utf8", index=False)
     return final_name

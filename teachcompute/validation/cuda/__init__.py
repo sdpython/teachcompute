@@ -9,6 +9,4 @@ def cuda_version() -> str:
         # No CUDA
         return "0.0"
     v = cv()
-    major = v // 1000
-    minor = (v % 1000) // 10
-    return f"{major}.{minor}"
+    return f"{v // 1000}.{(v % 1000) // 10}"
