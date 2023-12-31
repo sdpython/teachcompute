@@ -30,6 +30,7 @@ introduit ces deux voies.
     :caption: Exercices
 
     practice/index_expose
+    practice/index_mpareduce
     practice/index_spark
 
 .. toctree::
