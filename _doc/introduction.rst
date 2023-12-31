@@ -16,3 +16,8 @@ d'entrée principal au deep learning. Les datascientists manipulent
 les briques implémentées en les assemblant pour former des réseaux de
 neurones. Chaque brique est optimisée par des ingénieurs connaissant
 les spécificités de plusieurs processeurs et systèmes d'exploitations.
+L'implémentation d'une brique comme la multiplication de matrices
+est optimisée de telle sorte qu'elle est différente sur chaque machine.
+Il est difficile d'écrire une version plus rapide dans le cas général
+mais il est parfois possible d'écrire une implémentation plus
+efficace pour un cas particulier.
