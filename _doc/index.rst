@@ -29,8 +29,9 @@ introduit ces deux voies.
     :maxdepth: 1
     :caption: Exercices
 
-    practice/index_expose
-    practice/index_spark
+    index_expose
+    index_spark
+    index_vector_sum
 
 .. toctree::
     :maxdepth: 1

@@ -79,8 +79,8 @@ Il ensuite exécuter les instuctions suivantes en ligne de commande.
 
 :: 
 
-    git clone https://github.com/sdpython/onnx-extended.git
-    cd onnx-extended
+    git clone https://github.com/sdpython/teachcompute.git
+    cd teachcompute
     python setup.py build_ext --inplace
 
 Si ça ne marche, installer cmake: ``conda install cmake``.
@@ -138,12 +138,12 @@ Séance 5
 
 CUDA
 
-Les séances pratiques s'appuient sur le package :epkg:`onnx-extended`.
+Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 
 ::
 
-    git clone https://github.com/sdpython/onnx-extended.git
-    cd onnx-extended
+    git clone https://github.com/sdpython/teachcompute.git
+    cd teachcompute
     python setup.py build_ext --inplace
 
 1.

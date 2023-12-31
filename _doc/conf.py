@@ -224,7 +224,7 @@ epkg_dictionary = {
         ("https://docs.scipy.org/doc/numpy/reference/generated/numpy.{0}.{1}.html", 2),
     ),
     "nvidia-smi": "https://developer.nvidia.com/nvidia-system-management-interface",
-    "onnx-extended": "",
+    "onnx-extended": "https://sdpython.github.io/doc/onnx-extended/dev/",
     "openmp": "https://www.openmp.org/",
     "OpenMP": "https://www.openmp.org/",
     "pandas": (
