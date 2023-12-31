@@ -22,10 +22,13 @@ from numpy.testing import assert_almost_equal
 import matplotlib.pyplot as plt
 from pandas import DataFrame, concat
 from teachcompute.validation.cython.mul_cython_omp import dmul_cython_omp
-from teachcompute.ext_test_case import measure_time_dim
+from teachcompute.ext_test_case import measure_time_dim, unit_test_going
 
 dfs = []
-sets = list(range(2, 145, 20))
+if unit_test_going():
+    sets = [2, 4, 6]
+else:
+    sets = list(range(2, 145, 20))
 
 ##############################
 # numpy mul
@@ -155,16 +158,16 @@ fig, ax = plt.subplots(3, 2, figsize=(10, 8), sharex=True, sharey=True)
 ccnp = cc.fct == "numpy"
 cct = cc.fct.str.contains("-T")
 cca0 = cc.fct.str.contains("a=0")
-cc[ccnp | (~cct & cca0)].pivot(index="N", column="fct", values="average").plot(
+cc[ccnp | (~cct & cca0)].pivot(index="N", columns="fct", values="average").plot(
     logy=True, logx=True, ax=ax[0, 0]
 )
-cc[ccnp | (~cct & ~cca0)].pivot(index="N", column="fct", values="average").plot(
+cc[ccnp | (~cct & ~cca0)].pivot(index="N", columns="fct", values="average").plot(
     logy=True, logx=True, ax=ax[0, 1]
 )
-cc[ccnp | (cct & cca0)].pivot(index="N", column="fct", values="average").plot(
+cc[ccnp | (cct & cca0)].pivot(index="N", columns="fct", values="average").plot(
     logy=True, logx=True, ax=ax[1, 0]
 )
-cc[ccnp | (~cct & ~cca0)].pivot(index="N", column="fct", values="average").plot(
+cc[ccnp | (~cct & ~cca0)].pivot(index="N", columns="fct", values="average").plot(
     logy=True, logx=True, ax=ax[1, 1]
 )
 cc[ccnp | cca0].pivot(index="N", columns="fct", values="average").plot(

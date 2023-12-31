@@ -32,10 +32,10 @@ mm2 = m1 @ (m2 @ m3)
 
 print(mm1.shape, mm2.shape)
 
-t1 = measure_time(lambda: (m1 @ m2) @ m3, context={}, number=100, repeat=100)
+t1 = measure_time(lambda: (m1 @ m2) @ m3, context={}, number=50, repeat=50)
 pprint.pprint(t1)
 
-t2 = measure_time(lambda: m1 @ (m2 @ m3), context={}, number=100, repeat=100)
+t2 = measure_time(lambda: m1 @ (m2 @ m3), context={}, number=50, repeat=50)
 pprint.pprint(t2)
 
 ###########################################
@@ -48,11 +48,11 @@ for i in tqdm([50, 100, 125, 150, 175, 200]):
     m2 = numpy.random.rand(i, 10)
     m3 = numpy.random.rand(10, i)
 
-    t1 = measure_time(lambda: (m1 @ m2) @ m3, context={}, number=100, repeat=100)
+    t1 = measure_time(lambda: (m1 @ m2) @ m3, context={}, number=50, repeat=50)
     t1["formula"] = "(m1 @ m2) @ m3"
     t1["size"] = i
     obs.append(t1)
-    t2 = measure_time(lambda: m1 @ (m2 @ m3), context={}, number=100, repeat=100)
+    t2 = measure_time(lambda: m1 @ (m2 @ m3), context={}, number=50, repeat=50)
     t2["formula"] = "m1 @ (m2 @ m3)"
     t2["size"] = i
     obs.append(t2)

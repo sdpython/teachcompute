@@ -18,7 +18,7 @@ from tqdm import tqdm
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
-from teachcompute.ext_test_case import measure_time
+from teachcompute.ext_test_case import measure_time, unit_test_going
 
 
 def parallel_dot_joblib(va, vb, max_workers=2):
@@ -46,10 +46,13 @@ print(parallel_dot_joblib(va, vb), numpy.dot(va, vb))
 
 ###############################
 # Let's benchmark.
-
+if unit_test_going():
+    tries = [10, 20]
+else:
+    tries = [1000, 2000]
 
 res = []
-for n in tqdm([1000, 2000]):
+for n in tqdm(tries):
     va = numpy.random.randn(n).astype(numpy.float64)
     vb = numpy.random.randn(n).astype(numpy.float64)
 

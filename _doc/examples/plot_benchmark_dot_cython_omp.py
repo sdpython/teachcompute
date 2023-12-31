@@ -36,7 +36,7 @@ from teachcompute.validation.cython.dot_cython_omp import (
     get_omp_max_threads,
     ddot_array_openmp_16,
 )
-from teachcompute.ext_test_case import measure_time_dim
+from teachcompute.ext_test_case import measure_time_dim, unit_test_going
 
 
 def get_vectors(fct, n, h=250, dtype=numpy.float64):
@@ -102,7 +102,7 @@ for fct in [
     ddot_omp_cpp,
     ddot_omp_cpp_16,
 ]:
-    ctxs = get_vectors(fct, 40000)
+    ctxs = get_vectors(fct, 400 if unit_test_going() else 40000)
 
     print(fct.__name__)
     df = DataFrame(list(measure_time_dim("dot(va, vb)", ctxs, verbose=1)))
