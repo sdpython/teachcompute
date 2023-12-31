@@ -1,11 +1,7 @@
 .. _l-feuille-de-route-2023-3A:
 
-Feuille de route 2022-2023 (3A)
-===============================
-
-.. contents::
-    :local:
-    :depth: 1
+2023-05-31: Feuille de route 2022-2023 (3A)
+===========================================
 
 Plan
 ++++
@@ -21,9 +17,6 @@ Notes
 +++++
 
 Liens, notebooks prévus pour les séances pratiques.
-
-.. contents::
-    :local:
 
 Séance 1
 ^^^^^^^^
