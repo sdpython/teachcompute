@@ -54,7 +54,43 @@ validation.cython.dot_cython
 
 .. autofunction:: teachcompute.validation.cython.dot_cython_omp.ddot_array_openmp_16
 
+validation.cython.experiment_cython
+===================================
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.pyfilter_dmax
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.filter_dmax_cython
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.filter_dmax_cython_optim
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.cyfilter_dmax
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.cfilter_dmax
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.cfilter_dmax2
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.cfilter_dmax4
+
+.. autofunction:: teachcompute.validation.cython.experiment_cython.cfilter_dmax16
+
+validation.cython.mul_cython_omp
+================================
+
+.. autofunction:: teachcompute.validation.cython.mul_cython_omp.dmul_cython_omp
+
+validation.cython.td_mul_cython
+===============================
+
+.. autofunction:: teachcompute.validation.cython.td_mul_cython.multiply_matrix
+
+.. autofunction:: teachcompute.validation.cython.td_mul_cython.c_multiply_matrix_parallel
+
+.. autofunction:: teachcompute.validation.cython.td_mul_cython.c_multiply_matrix
+
+.. autofunction:: teachcompute.validation.cython.td_mul_cython.c_multiply_matrix_parallel_transposed
+
 validation.cython.vector_function_cy
 ====================================
 
 .. autofunction:: teachcompute.validation.cython.vector_function_cy.vector_add_c
+

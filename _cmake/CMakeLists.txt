@@ -48,6 +48,7 @@ include("targets/vector_function_cy.cmake")
 include("targets/direct_blas_lapack_cy.cmake")
 include("targets/dot_blas_lapack.cmake")
 include("targets/dot_cython.cmake")
+include("targets/experiment_cython.cmake")
 
 #
 # finalize
