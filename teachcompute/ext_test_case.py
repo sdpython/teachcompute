@@ -204,8 +204,10 @@ def measure_time(
     mes["warmup_time"] = warmup_time
     return mes
 
-def measure_time_dim(stmt, contexts, repeat=10, number=50,
-                     div_by_number=True, verbose=0):
+
+def measure_time_dim(
+    stmt, contexts, repeat=10, number=50, div_by_number=True, verbose=0
+):
     """
     Measures a statement multiple time with function :func:`measure_time_dim`.
 
@@ -240,16 +242,21 @@ def measure_time_dim(stmt, contexts, repeat=10, number=50,
     """
     if verbose > 0:
         from tqdm import tqdm
+
         contexts = tqdm(contexts)
 
     for context in contexts:
-        if 'x_name' not in context:
-            raise ValueError("The context must contain field 'x_name', "
-                             "usually the X coordinate to draw the benchmark.")
-        res = measure_time(stmt, context, repeat=repeat,
-                           number=number, div_by_number=div_by_number)
-        res['x_name'] = context['x_name']
+        if "x_name" not in context:
+            raise ValueError(
+                "The context must contain field 'x_name', "
+                "usually the X coordinate to draw the benchmark."
+            )
+        res = measure_time(
+            stmt, context, repeat=repeat, number=number, div_by_number=div_by_number
+        )
+        res["x_name"] = context["x_name"]
         yield res
+
 
 class ExtTestCase(unittest.TestCase):
     _warns: List[Tuple[str, int, Warning]] = []
