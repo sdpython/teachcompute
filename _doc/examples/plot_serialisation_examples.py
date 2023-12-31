@@ -543,13 +543,13 @@ except Exception as e:
 # Summary
 # =======
 
-fig, ax = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
 df = pandas.DataFrame(data_time)
 print(df)
 
 ####################################
 #
 
+fig, ax = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
 df.set_index("expression").plot.barh(ax=ax[0])
 df.loc[0, "time"] = numpy.nan
 df.set_index("expression").plot.barh(ax=ax[1])
