@@ -8,3 +8,4 @@ validation
 
     validation_cpu
     validation_cuda
+    validation_cython
