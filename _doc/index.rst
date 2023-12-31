@@ -24,6 +24,7 @@ introduit ces deux voies.
     introduction
     build
     articles/index
+    api/index
 
 .. toctree::
     :maxdepth: 1
