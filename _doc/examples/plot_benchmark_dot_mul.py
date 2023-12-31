@@ -155,16 +155,16 @@ fig, ax = plt.subplots(3, 2, figsize=(10, 8), sharex=True, sharey=True)
 ccnp = cc.fct == "numpy"
 cct = cc.fct.str.contains("-T")
 cca0 = cc.fct.str.contains("a=0")
-cc[ccnp | (~cct & cca0)].pivot("N", "fct", "average").plot(
+cc[ccnp | (~cct & cca0)].pivot(index="N", column="fct", values="average").plot(
     logy=True, logx=True, ax=ax[0, 0]
 )
-cc[ccnp | (~cct & ~cca0)].pivot("N", "fct", "average").plot(
+cc[ccnp | (~cct & ~cca0)].pivot(index="N", column="fct", values="average").plot(
     logy=True, logx=True, ax=ax[0, 1]
 )
-cc[ccnp | (cct & cca0)].pivot("N", "fct", "average").plot(
+cc[ccnp | (cct & cca0)].pivot(index="N", column="fct", values="average").plot(
     logy=True, logx=True, ax=ax[1, 0]
 )
-cc[ccnp | (~cct & ~cca0)].pivot("N", "fct", "average").plot(
+cc[ccnp | (~cct & ~cca0)].pivot(index="N", column="fct", values="average").plot(
     logy=True, logx=True, ax=ax[1, 1]
 )
 cc[ccnp | cca0].pivot(index="N", columns="fct", values="average").plot(
