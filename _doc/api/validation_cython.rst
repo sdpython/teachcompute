@@ -44,6 +44,16 @@ validation.cython.dot_cython
 
 .. autofunction:: teachcompute.validation.cython.dot_cython.ddot_array_16_sse
 
+**openmp**
+
+.. autofunction:: teachcompute.validation.cython.dot_cython_omp.get_omp_max_threads
+
+.. autofunction:: teachcompute.validation.cython.dot_cython_omp.ddot_cython_array_omp
+
+.. autofunction:: teachcompute.validation.cython.dot_cython_omp.ddot_array_openmp
+
+.. autofunction:: teachcompute.validation.cython.dot_cython_omp.ddot_array_openmp_16
+
 validation.cython.vector_function_cy
 ====================================
 
