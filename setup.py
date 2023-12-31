@@ -687,6 +687,14 @@ def get_ext_modules():
             f"teachcompute/validation/cython/direct_blas_lapack_cy.{ext}",
         ),
         CMakeExtension(
+            "teachcompute.validation.cython.dot_blas_lapack",
+            f"teachcompute/validation/cython/dot_blas_lapack.{ext}",
+        ),
+        CMakeExtension(
+            "teachcompute.validation.cython.dot_cython",
+            f"teachcompute/validation/cython/dot_cython.{ext}",
+        ),
+        CMakeExtension(
             "teachcompute.validation.cpu._validation",
             f"teachcompute/validation/cpu/_validation.{ext}",
         ),

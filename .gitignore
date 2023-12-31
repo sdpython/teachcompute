@@ -43,5 +43,6 @@ _unittests/ut_datasets/*.gz
 _unittests/ut_datasets/*.db3
 _unittests/ut_datasets/*.txt
 teachcompute/validation/cython/dot_blas_lapack.cpp
+teachcompute/validation/cython/dot_cython.cpp
 demo_mlifetable.tsv.gz
 mortality.txt

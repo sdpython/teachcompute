@@ -1,23 +1,26 @@
-"""
-Unit tests for ``random_strategy``.
-"""
 import unittest
 import numpy
-from td3a_cpp.tutorial import pydot, cblas_ddot, cblas_sdot
-from td3a_cpp.tutorial.dot_cython import (
-    dot_product, ddot_cython_array,
-    ddot_cython_array_optim, ddot_array,
-    ddot_array_16, ddot_array_16_sse
+from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.validation.cython.dotpy import pydot
+from teachcompute.validation.cython.dot_blas_lapack import cblas_ddot, cblas_sdot
+from teachcompute.validation.cython.dot_cython import (
+    dot_product,
+    ddot_cython_array,
+    ddot_cython_array_optim,
+    ddot_array,
+    ddot_array_16,
+    ddot_array_16_sse,
 )
-from td3a_cpp.tutorial.dot_cython import (
+from teachcompute.validation.cython.dot_cython import (
     sdot_cython_array,
-    sdot_cython_array_optim, sdot_array,
-    sdot_array_16, sdot_array_16_sse
+    sdot_cython_array_optim,
+    sdot_array,
+    sdot_array_16,
+    sdot_array_16_sse,
 )
 
 
-class TestTutorialDot(unittest.TestCase):
-
+class TestTutorialDot(ExtTestCase):
     def test_dot_product(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = numpy.random.randn(100).astype(numpy.float64)
@@ -118,5 +121,5 @@ class TestTutorialDot(unittest.TestCase):
         self.assertTrue(abs(res1 - res2) <= 1e-13)
 
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

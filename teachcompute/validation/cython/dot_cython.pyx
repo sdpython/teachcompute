@@ -63,7 +63,7 @@ def sdot_cython_array(const float[::1] va, const float[::1] vb):
 def ddot_cython_array_optim(const double[::1] va, const double[::1] vb):
     """
     dot product implemented with C types with
-    disabled checkings (see :epkg:`compiler directives`.
+    disabled checkings (see :epkg:`compiler directives`).
     
     :param va: first vector, dtype must be float64
     :param vb: second vector, dtype must be float64
@@ -82,7 +82,7 @@ def ddot_cython_array_optim(const double[::1] va, const double[::1] vb):
 def sdot_cython_array_optim(const float[::1] va, const float[::1] vb):
     """
     dot product implemented with C types with
-    disabled checkings (see :epkg:`compiler directives`.
+    disabled checkings (see :epkg:`compiler directives`).
     
     :param va: first vector, dtype must be float32
     :param vb: second vector, dtype must be float32
