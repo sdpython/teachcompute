@@ -9,6 +9,5 @@ En diagonal
 
     notebook_gallery
     auto_examples/index
-    api/index
     i_ex
     i_faq
