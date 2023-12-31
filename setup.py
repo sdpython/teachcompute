@@ -695,6 +695,10 @@ def get_ext_modules():
             f"teachcompute/validation/cython/dot_cython.{ext}",
         ),
         CMakeExtension(
+            "teachcompute.validation.cython.dot_cython_omp",
+            f"teachcompute/validation/cython/dot_cython_omp.{ext}",
+        ),
+        CMakeExtension(
             "teachcompute.validation.cpu._validation",
             f"teachcompute/validation/cpu/_validation.{ext}",
         ),
