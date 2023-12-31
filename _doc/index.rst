@@ -33,6 +33,9 @@ introduit ces deux voies.
     index_expose
     index_spark
     index_vector_sum
+    index_dot
+    index_filter
+    index_process
 
 .. toctree::
     :maxdepth: 1

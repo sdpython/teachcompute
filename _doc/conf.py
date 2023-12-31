@@ -238,6 +238,7 @@ epkg_dictionary = {
             2,
         ),
     ),
+    "prange": "https://cython.readthedocs.io/en/stable/src/userguide/parallelism.html",
     "processus": "https://en.wikipedia.org/wiki/Process_(computing)",
     "programmation impérative": "https://fr.wikipedia.org/wiki/Programmation_imp%C3%A9rative",
     "programmation fonctionnelle": "https://fr.wikipedia.org/wiki/Programmation_fonctionnelle",
