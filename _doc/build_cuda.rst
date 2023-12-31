@@ -61,7 +61,7 @@ to register the extension in the setup.
             ]
         )
 
-Function `find_cuda()` executes :epkg:`nvidia-smi` to check
+Function ``find_cuda()`` executes :epkg:`nvidia-smi` to check
 the installation of CUDA.
 
 Possible errors

@@ -19,6 +19,7 @@ dist/*
 temp_*
 teachcompute/_config.py
 .ipynb_checkpoints
+_doc/sg_execution_times.rst
 _doc/CHANGELOGS.rst
 _doc/LICENSE.txt
 _doc/auto_examples/*

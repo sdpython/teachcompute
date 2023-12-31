@@ -2,9 +2,9 @@ Build with cython
 =================
 
 Any :epkg:`cython` extension is built by cmake.
-It first calls cython to convert a pyx file into a C++ file
+It first calls cython to convert a ``pyx`` file into a C++ file
 before it is compiled and linked. Using cmake + cython
-instead of cython only make it easier to link with static
+instead of cython makes it easier to link with static
 libraries and write unit tests in C++.
 
 cmake
@@ -19,9 +19,9 @@ every extension to build and used as follows:
 ::
 
     cython_add_module(
-        vector_function_cy                                          # name
+        vector_function_cy                                         # name
         ../teachcompute/validation/cython/vector_function_cy.pyx   # pyx_file
-        OpenMP::OpenMP_CXX                                          # link with this target
+        OpenMP::OpenMP_CXX                                         # link with this target
         ../teachcompute/validation/cpu/vector_function.cpp)        # sources files
 
 The function accepts many source files. Other link dependencies can be added as well

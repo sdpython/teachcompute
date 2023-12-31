@@ -3,7 +3,7 @@ Build with pybind11
 
 Any :epkg:`pybind11` extension is built by cmake.
 Using cmake + pybind11 instead of pybind11
-only make it easier to link with static
+makes it easier to link with static
 libraries and write unit tests in C++.
 
 cmake
@@ -21,8 +21,8 @@ every extension to build and used as follows:
 ::
 
     local_pybind11_add_module(
-    _validation                                         # name
-    OpenMP::OpenMP_CXX                                  # link with this library
+    _validation                                        # name
+    OpenMP::OpenMP_CXX                                 # link with this library
     ../teachcompute/validation/cpu/_validation.cpp     # source file
     ../teachcompute/validation/cpu/vector_sum.cpp)     # source file
 
