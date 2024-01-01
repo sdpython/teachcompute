@@ -20,7 +20,7 @@ validation.cython.dot_cython
 
 **float32**
 
-.. autofunction:: teachcompute.validation.cython.dot_cython.cblas_ddot
+.. autofunction:: teachcompute.validation.cython.dot_cython.dot_product
 
 .. autofunction:: teachcompute.validation.cython.dot_cython.sdot_cython_array
 

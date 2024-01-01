@@ -28,7 +28,7 @@ from teachcompute.ext_test_case import measure_time_dim
 # +++++++++++++++++
 #
 # The first function :func:`pydot
-# <teachcompute.validation.cython.pydot>` uses
+# <teachcompute.validation.cython.dotpy.pydot>` uses
 # python to implement the dot product.
 
 ctxs = [
