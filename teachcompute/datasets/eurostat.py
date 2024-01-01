@@ -51,7 +51,9 @@ def mortality_table(
 
     dest = os.path.join(to, "demo_mlifetable.tsv.gz")
     if not os.path.exists(dest) or os.stat(dest).st_size < 1e7:
-        url = "https://github.com/sdpython/data/raw/main/mortality/demo_mlifetable.tsv.gz"
+        url = (
+            "https://github.com/sdpython/data/raw/main/mortality/demo_mlifetable.tsv.gz"
+        )
         with urllib.request.urlopen(url) as u:
             content = u.read()
         with open(dest, "wb") as f:
