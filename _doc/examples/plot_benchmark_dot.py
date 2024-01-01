@@ -1,7 +1,4 @@
 """
-
-.. _l-example-dot:
-
 Compares dot implementations (numpy, python, blas)
 ==================================================
 
@@ -14,7 +11,7 @@ Compared implementations:
 
 * :func:`pydot <teachcompute.validation.cython.dotpy.pydot>`
 * `cblas_ddot <https://github.com/sdpython/teachcompute/
-  blob/master/teachcompute/validation/cython/dot_blas_lapack.pyx#L39>`_
+  blob/main/teachcompute/validation/cython/dot_blas_lapack.pyx#L39>`_
 
 """
 

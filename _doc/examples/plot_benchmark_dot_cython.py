@@ -1,7 +1,4 @@
 """
-
-.. _l-example-dot-cython:
-
 Compares dot implementations (numpy, cython, c++, sse)
 ======================================================
 
@@ -12,24 +9,24 @@ implementations with cython. The tested functions are
 the following:
 
 * :func:`dot_product <teachcompute.validation.cython.dot_cython.dot_product>`
-  `code <https://github.com/sdpython/teachcompute/blob/
-  master/teachcompute/validation/cython/dot_cython.pyx#L15>`_
+  `dot_product <https://github.com/sdpython/teachcompute/blob/
+  main/teachcompute/validation/cython/dot_cython.pyx#L15>`_
 * :func:`ddot_cython_array <teachcompute.validation.cython.dot_cython.ddot_cython_array>`
-  `code <https://github.com/sdpython/teachcompute/blob/
-  master/teachcompute/validation/cython/dot_cython.pyx#L29>`_
+  `ddot_cython_array <https://github.com/sdpython/teachcompute/blob/
+  main/teachcompute/validation/cython/dot_cython.pyx#L29>`_
 * :func:`ddot_cython_array_optim
   <teachcompute.validation.cython.dot_cython.ddot_cython_array_optim>`
-  `code <https://github.com/sdpython/teachcompute/blob/
-  master/teachcompute/validation/cython/dot_cython.pyx#L63>`_
+  `ddot_cython_array_optim <https://github.com/sdpython/teachcompute/blob/
+  main/teachcompute/validation/cython/dot_cython.pyx#L63>`_
 * :func:`ddot_array <teachcompute.validation.cython.dot_cython.ddot_array>`
-  `code <https://github.com/sdpython/teachcompute/blob/
-  master/teachcompute/validation/cython/dot_cython.pyx#L141>`_
+  `dot_cython <https://github.com/sdpython/teachcompute/blob/
+  main/teachcompute/validation/cython/dot_cython.pyx#L141>`_
 * :func:`ddot_array_16 <teachcompute.validation.cython.dot_cython.ddot_array_16>`
-  `code <https://github.com/sdpython/teachcompute/blob/
-  master/teachcompute/validation/cython/dot_cython.pyx#L188>`_
+  `ddot_array_16 <https://github.com/sdpython/teachcompute/blob/
+  main/teachcompute/validation/cython/dot_cython.pyx#L188>`_
 * :func:`ddot_array_16_sse <teachcompute.validation.cython.dot_cython.ddot_array_16_sse>`
-  `code <https://github.com/sdpython/teachcompute/blob/
-  master/teachcompute/validation/cython/dot_cython.pyx#L230>`_
+  `ddot_array_16_sse <https://github.com/sdpython/teachcompute/blob/
+  main/teachcompute/validation/cython/dot_cython.pyx#L230>`_
 """
 
 import numpy

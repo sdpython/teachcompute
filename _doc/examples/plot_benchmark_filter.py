@@ -1,7 +1,4 @@
 """
-
-.. _l-example-filter:
-
 Compares filtering implementations (numpy, cython)
 ==================================================
 
@@ -11,31 +8,31 @@ is replaced by *mx*. It compares several implementation
 to :epkg:`numpy`.
 
 * :func:`cfilter_dmax <teachcompute.validation.cython.experiment_cython.cfilter_dmax>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `cfilter_dmax <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L93>`_
 * :func:`cfilter_dmax2 <teachcompute.validation.cython.experiment_cython.cfilter_dmax2>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `cfilter_dmax2 <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L107>`_
 * :func:`cfilter_dmax4 <teachcompute.validation.cython.experiment_cython.cfilter_dmax4>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `cfilter_dmax4 <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L138>`_
 * :func:`cfilter_dmax16 <teachcompute.validation.cython.experiment_cython.cfilter_dmax16>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `cfilter_dmax16 <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L122>`_
 * :func:`cyfilter_dmax <teachcompute.validation.cython.experiment_cython.cyfilter_dmax>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `cyfilter_dmax <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L72>`_
 * :func:`filter_dmax_cython
   <teachcompute.validation.cython.experiment_cython.filter_dmax_cython>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `filter_dmax_cython <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L28>`_
 * :func:`filter_dmax_cython_optim
   <teachcompute.validation.cython.experiment_cython.filter_dmax_cython_optim>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `filter_dmax_cython_optim <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L43>`_
 * :func:`pyfilter_dmax
   <teachcompute.validation.cython.experiment_cython.pyfilter_dmax>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `pyfilter_dmax <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L15>`_
 """
 

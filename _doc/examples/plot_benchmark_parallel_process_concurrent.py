@@ -1,7 +1,4 @@
 """
-
-.. _l-example-dot-process:
-
 Parallelization of a dot product with processes (concurrent.futures)
 ====================================================================
 

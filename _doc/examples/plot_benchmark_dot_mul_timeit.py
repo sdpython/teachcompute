@@ -1,7 +1,4 @@
 """
-
-.. _l-example-mul-timeit:
-
 Compares matrix multiplication implementations with timeit
 ==========================================================
 
@@ -12,18 +9,18 @@ The following uses :mod:`timeit` to compare implementations.
 Compared implementations:
 
 * :func:`multiply_matrix <teachcompute.validation.cython.td_mul_cython.multiply_matrix>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `multiply_matrix <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/td_mul_cython.pyx#L14>`_
 * :func:`c_multiply_matrix <teachcompute.validation.cython.td_mul_cython.c_multiply_matrix>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `c_multiply_matrix <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/td_mul_cython.pyx#L69>`_
 * :func:`c_multiply_matrix_parallel
   <teachcompute.validation.cython.td_mul_cython.c_multiply_matrix_parallel>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `c_multiply_matrix_parallel <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/td_mul_cython.pyx#L49>`_
 * :func:`c_multiply_matrix_parallel_transposed
   <teachcompute.validation.cython.td_mul_cython.c_multiply_matrix_parallel_transposed>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `c_multiply_matrix_parallel_transposed <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/td_mul_cython.pyx#L106>`_
 
 

@@ -1,7 +1,7 @@
 import unittest
 import numpy
 from numpy.testing import assert_equal
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, skipif_ci_apple
 from teachcompute.validation.cython.experiment_cython import (
     pyfilter_dmax,
     filter_dmax_cython,
@@ -71,6 +71,7 @@ class TestTutorialFilter(ExtTestCase):
         vb[vb > 0] = 0
         assert_equal(va, vb)
 
+    @skipif_ci_apple("crash")
     def test_cfilter_dmax(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = va.copy()

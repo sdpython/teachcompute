@@ -1,7 +1,4 @@
 """
-
-.. _l-example-dot-joblib:
-
 Parallelization of a dot product with processes (joblib)
 ========================================================
 

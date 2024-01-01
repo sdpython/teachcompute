@@ -1,7 +1,4 @@
 """
-
-.. _l-example-mul:
-
 Compares matrix multiplication implementations
 ==============================================
 
@@ -11,7 +8,7 @@ matrix multiplication. There are many ways to be slower.
 Compared implementations:
 
 * :func:`dmul_cython_omp <teachcompute.validation.cython.mul_cython_omp.dmul_cython_omp>`
-  `code <https://github.com/sdpython/teachcompute/blob/master/
+  `code <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/mul_cython_omp.pyx#L171>`_
 
 """
