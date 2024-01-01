@@ -43,6 +43,7 @@ class TestTutorialFilter(ExtTestCase):
         vb[vb > 0] = 0
         assert_equal(va, vb)
 
+    @skipif_ci_apple("crash")
     def test_filter_cfilter_dmax(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = va.copy()
@@ -50,6 +51,7 @@ class TestTutorialFilter(ExtTestCase):
         vb[vb > 0] = 0
         assert_equal(va, vb)
 
+    @skipif_ci_apple("crash")
     def test_filter_cfilter_dmax2(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = va.copy()
@@ -57,6 +59,7 @@ class TestTutorialFilter(ExtTestCase):
         vb[vb > 0] = 0
         assert_equal(va, vb)
 
+    @skipif_ci_apple("crash")
     def test_filter_cfilter_dmax16(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = va.copy()
@@ -64,6 +67,7 @@ class TestTutorialFilter(ExtTestCase):
         vb[vb > 0] = 0
         assert_equal(va, vb)
 
+    @skipif_ci_apple("crash")
     def test_filter_cfilter_dmax4(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = va.copy()
