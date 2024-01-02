@@ -46,6 +46,9 @@ include("targets/_validation_cuda_example_py.cmake")
 include("targets/_validation_cuda_monitor.cmake")
 include("targets/vector_function_cy.cmake")
 include("targets/direct_blas_lapack_cy.cmake")
+include("targets/dot_blas_lapack.cmake")
+include("targets/dot_cython.cmake")
+include("targets/experiment_cython.cmake")
 
 #
 # finalize

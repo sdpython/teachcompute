@@ -31,7 +31,7 @@ jobs:
         timeout: 5
         retry_count# : 3
         exclude_urls: https://github.com/sdpython/teachcompute/raw/main/_data/data_adult.zip
-        exclude_patterns: https://dumps.wikimedia.org/
+        exclude_patterns: https://dumps.wikimedia.org/,https://github.com/sdpython/teachcompute/blob/
         # force_pass : true
 
     - name: urls-checker-docs
@@ -43,5 +43,5 @@ jobs:
         timeout: 5
         retry_count# : 3
         exclude_urls: http://www.w3.org/1999/xlink,https://creativecommons.org/licenses/by-sa/4.0/deed.fr,https://github.com/sdpython/teachcompute/raw/main/_data/data_adult.zip
-        exclude_patterns: https://www.data.gouv.fr/
+        exclude_patterns: https://www.data.gouv.fr/,https://github.com/sdpython/teachcompute/blob/,https://github.com/sdpython/teachcompute/raw/main/_data/data_adult.zip
         # force_pass : true

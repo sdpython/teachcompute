@@ -679,6 +679,10 @@ def get_ext_modules():
         )
     ext_modules = [
         CMakeExtension(
+            "teachcompute.validation.cpu._validation",
+            f"teachcompute/validation/cpu/_validation.{ext}",
+        ),
+        CMakeExtension(
             "teachcompute.validation.cython.vector_function_cy",
             f"teachcompute/validation/cython/vector_function_cy.{ext}",
         ),
@@ -687,8 +691,28 @@ def get_ext_modules():
             f"teachcompute/validation/cython/direct_blas_lapack_cy.{ext}",
         ),
         CMakeExtension(
-            "teachcompute.validation.cpu._validation",
-            f"teachcompute/validation/cpu/_validation.{ext}",
+            "teachcompute.validation.cython.dot_blas_lapack",
+            f"teachcompute/validation/cython/dot_blas_lapack.{ext}",
+        ),
+        CMakeExtension(
+            "teachcompute.validation.cython.dot_cython",
+            f"teachcompute/validation/cython/dot_cython.{ext}",
+        ),
+        CMakeExtension(
+            "teachcompute.validation.cython.dot_cython_omp",
+            f"teachcompute/validation/cython/dot_cython_omp.{ext}",
+        ),
+        CMakeExtension(
+            "teachcompute.validation.cython.experiment_cython",
+            f"teachcompute/validation/cython/experiment_cython.{ext}",
+        ),
+        CMakeExtension(
+            "teachcompute.validation.cython.mul_cython_omp",
+            f"teachcompute/validation/cython/mul_cython_omp.{ext}",
+        ),
+        CMakeExtension(
+            "teachcompute.validation.cython.td_mul_cython",
+            f"teachcompute/validation/cython/td_mul_cython.{ext}",
         ),
         *cuda_extensions,
     ]

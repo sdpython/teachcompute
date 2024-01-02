@@ -9,6 +9,7 @@ cython-lint
 cytoolz
 furo
 ipython
+joblib
 jupyter
 matplotlib
 mypy

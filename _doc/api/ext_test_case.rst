@@ -20,3 +20,8 @@ measure_time
 ============
 
 .. autofunction:: teachcompute.ext_test_case.measure_time
+
+measure_time_dim
+================
+
+.. autofunction:: teachcompute.ext_test_case.measure_time_dim

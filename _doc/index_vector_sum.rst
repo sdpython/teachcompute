@@ -7,7 +7,7 @@ It may be simple as a computation examples but it is not simple to
 parallelize.
 
 .. toctree::
-    :caption: Map Reduce
+    :caption: Vector Sum
     :maxdepth: 1
     
     auto_examples/plot_bench_cpu_vector_sum
