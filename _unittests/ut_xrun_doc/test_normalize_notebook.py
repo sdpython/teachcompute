@@ -3,11 +3,11 @@ import os
 import pprint
 from nbformat import reader, writes
 from nbformat.validator import normalize
-from teachpyx import __file__ as teachpyx_file
-from teachpyx.ext_test_case import ExtTestCase
+from teachcompute import __file__ as teachcompute_file
+from teachcompute.ext_test_case import ExtTestCase
 
 VERBOSE = 0
-ROOT = os.path.realpath(os.path.abspath(os.path.join(teachpyx_file, "..", "..")))
+ROOT = os.path.realpath(os.path.abspath(os.path.join(teachcompute_file, "..", "..")))
 
 
 class TestDocumentationNotebook(ExtTestCase):
