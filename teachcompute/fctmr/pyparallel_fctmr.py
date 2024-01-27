@@ -4,6 +4,7 @@ in the official :epkg:`Python` documentation:
 `Python's undocumented ThreadPool
 <http://lucasb.eyer.be/snips/python-thread-pool.html>`_.
 """
+
 from typing import Callable, Iterable, Optional
 from multiprocessing.pool import ThreadPool
 

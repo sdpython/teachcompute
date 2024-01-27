@@ -10,6 +10,7 @@ summation of random permutation of the same array of values.
 Setup
 +++++
 """
+
 from tqdm import tqdm
 import numpy as np
 import pandas

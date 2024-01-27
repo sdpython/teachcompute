@@ -10,6 +10,7 @@ AVX instructions.
 Vector Sum
 ++++++++++
 """
+
 from tqdm import tqdm
 import numpy
 import matplotlib.pyplot as plt

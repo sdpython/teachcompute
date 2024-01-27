@@ -1,6 +1,7 @@
 """
 Simple *mapper* and *reducer* implemented in :epkg:`Python`
 """
+
 from typing import Callable, Iterable
 from itertools import groupby
 

@@ -9,6 +9,7 @@ a mapper but the number of round trip between :epkg:`python`
 and compiled :epkg:`C` makes it difficult to write something
 generic.
 """
+
 from typing import Callable, Iterable, Optional
 import numpy
 from numba import jit, njit, prange
