@@ -9,6 +9,7 @@ by rows or by columns when the computation is parallelized.
 Vector Sum
 ++++++++++
 """
+
 from tqdm import tqdm
 import numpy
 import matplotlib.pyplot as plt

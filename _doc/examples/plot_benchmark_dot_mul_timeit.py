@@ -27,6 +27,7 @@ Compared implementations:
 Preparation
 +++++++++++
 """
+
 import timeit
 import numpy
 
