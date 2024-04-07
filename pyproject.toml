@@ -170,6 +170,7 @@ exclude = [
     "^_unittests",  # skips unit tests
     "^build",  # skips build
     "^dist",  # skips dist
+    "^teachcompute/torch_models",  # skips torch models
 ]
 
 [tool.ruff]
