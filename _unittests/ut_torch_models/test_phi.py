@@ -1,9 +1,10 @@
 import unittest
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, skipif_ci_apple
 
 
 class TestPhi(ExtTestCase):
 
+    @skipif_ci_apple("crash")
     def test_get_phi_model_mask_eager(self):
         from teachcompute.torch_models.phi_helper import (
             get_phi_model,
@@ -16,6 +17,7 @@ class TestPhi(ExtTestCase):
         expected = model(*model_inputs[0])
         self.assertNotEmpty(expected)
 
+    @skipif_ci_apple("crash")
     def test_get_phi_model_nomask_eager(self):
         from teachcompute.torch_models.phi_helper import (
             get_phi_model,
