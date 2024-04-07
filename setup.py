@@ -409,6 +409,15 @@ class cmake_build_class_extension(Command):
             self.manylinux or os.environ.get("AUDITWHEEL_PLAT", None) in manylinux_tags
         )
 
+        try:
+            import torch
+
+            torch_include = os.path.join(os.path.dirname(torch.__file__), "include")
+            torch_prefix = torch.utils.cmake_prefix_path
+        except ImportError:
+            torch_include = None
+            torch_prefix = None
+
         cmake_args = [
             f"-DPYTHON_EXECUTABLE={path}",
             f"-DCMAKE_BUILD_TYPE={cfg}",
@@ -418,6 +427,14 @@ class cmake_build_class_extension(Command):
             f"-DTEACHCOMPUTE_VERSION={get_version_str(here, None)}",
             f"-DPYTHON_MANYLINUX={1 if is_manylinux else 0}",
         ]
+        if torch_include:
+            cmake_args.extend(
+                [
+                    f"-DTORCH_INCLUDE={torch_include}",
+                    f"-DCMAKE_PREFIX_PATH={torch_prefix}",
+                ]
+            )
+
         if self.noverbose:
             cmake_args.append("-DCMAKE_VERBOSE_MAKEFILE=OFF")
         elif self.verbose:
@@ -714,6 +731,10 @@ def get_ext_modules():
             "teachcompute.validation.cython.td_mul_cython",
             f"teachcompute/validation/cython/td_mul_cython.{ext}",
         ),
+        CMakeExtension(
+            "teachcompute.torch_extensions.piecewise_linear_c",
+            f"teachcompute/torch_extensions/piecewise_linear_c.{ext}",
+        ),
         *cuda_extensions,
     ]
     return ext_modules
@@ -750,11 +771,8 @@ def get_package_data():
         "teachcompute.include.common": known_extensions,
         "teachcompute.include.cpu": known_extensions,
         "teachcompute.include.cuda": known_extensions,
-        "teachcompute.ortops.optim.cpu": known_extensions,
-        "teachcompute.ortops.tutorial.cpu": known_extensions,
-        "teachcompute.ortops.tutorial.cuda": known_extensions,
-        "teachcompute.ortcy.wrap": known_extensions,
         "teachcompute.reference.c_ops.cpu": known_extensions,
+        "teachcompute.torch_extensions": known_extensions,
         "teachcompute.validation.cpu": known_extensions,
         "teachcompute.validation.cython": known_extensions,
         "teachcompute.validation.cuda": known_extensions,
