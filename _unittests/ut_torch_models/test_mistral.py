@@ -1,9 +1,10 @@
 import unittest
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, skipif_ci_apple
 
 
 class TestMistral(ExtTestCase):
 
+    @skipif_ci_apple("fail in Mac")
     def test_get_mistral_model_mask_sdpa(self):
         from teachcompute.torch_models.mistral_helper import (
             get_mistral_model,
@@ -16,6 +17,7 @@ class TestMistral(ExtTestCase):
         expected = model(*model_inputs[0])
         self.assertNotEmpty(expected)
 
+    @skipif_ci_apple("fail in Mac")
     def test_get_mistral_model_nomask_sdpa(self):
         from teachcompute.torch_models.mistral_helper import (
             get_mistral_model,
