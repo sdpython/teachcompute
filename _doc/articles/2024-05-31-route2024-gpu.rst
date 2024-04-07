@@ -1,0 +1,156 @@
+.. _l-feuille-de-route-2024-3A:
+
+2024-05-31: Feuille de route 2023-2024 (3A)
+===========================================
+
+Plan
+++++
+
+Les cours et séances se déroulent sur 6 séances de 3h au second semeste.
+
+Intervenants
+++++++++++++
+
+Xavier Dupré, Matthieu Durut.
+
+Notes
++++++
+
+Liens, notebooks prévus pour les séances pratiques.
+
+Séance 1 - 10/04
+^^^^^^^^^^^^^^^^
+
+Séance pratique sur CPU.
+
+1.
+
+* Setup SSP Cloud, présentation d'un package, C++
+* Outils de développement : :epkg:`cmake`, :epkg:`git`, :epkg:`pull request`
+* Python : :epkg:`setup.py`, :epkg:`sphinx`, :epkg:`pybind11`, :epkg:`cython`
+* style : :epkg:`black`, :epkg:`ruff`
+
+2.
+
+* Somme des éléments d'une matrice
+* en ligne, en colonne, notion de cache, :epkg:`std::vector`, numpy array, benchmark
+* éléments de C++, :epkg:`pybind11`, :epkg:`cython`
+* :epkg:`AVX`
+* parallélisation avec des :epkg:`threads`, :epkg:`processus`
+
+3.
+
+* Exercice : somme de deux vecteurs
+* parallélisation d'une multiplication de matrices
+* applications aux random forest
+
+4.
+
+* :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`blis`
+
+**Instructions pour démarrer**
+
+* Aller sur la plate-forme `SSPCloud de l'ENSAE <https://datalab.sspcloud.fr/home>`_.
+* Se connecter avec son adresse ENSAE
+* Ouvrir une instance :epkg:`vscode-python`
+
+Il ensuite exécuter les instuctions suivantes en ligne de commande.
+
+:: 
+
+    git clone https://github.com/sdpython/teachcompute.git
+    cd teachcompute
+    python setup.py build_ext --inplace
+
+Si ça ne marche, installer cmake: ``conda install cmake``.
+Puis :
+
+::
+
+    export PYTHONPATH=<this folder>
+    python _doc/examples/plot_bench_cpu_vector_sum.py
+
+Séance 2 - 12/04
+^^^^^^^^^^^^^^^^
+
+... en préparation ...
+
+1.
+
+* hardware
+* ordinateur
+* mémoire partagée
+* ordre de grandeur vitesse CPU, communication
+
+2.
+
+* algorithmes répartis
+* multithread
+* `race condition <https://en.wikipedia.org/wiki/Race_condition>`_
+* verrou
+
+
+Séance 3 - 17/04
+^^^^^^^^^^^^^^^^
+
+... en préparation ...
+
+CUDA
+
+Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
+
+::
+
+    git clone https://github.com/sdpython/teachcompute.git
+    cd teachcompute
+    python setup.py build_ext --inplace
+
+1.
+
+* CUDA, threads, blocks, parallélisation
+* gestion de la mémoire
+* addition de deux vecteurs
+* code C++, template, macro
+* gcc, nvcc
+
+2.
+
+* pointeurs
+* somme des éléments d'un vecteur, réduction
+* synthreads
+* GPU / CPU, __inline__, __globals__, `<<< >>>`
+
+3.
+
+* Profiling
+* :epkg:`DLPack`
+* device
+* A100, H100
+* float32, float16, float8
+* multiple nvidia on the same machine
+
+4.
+
+* torch
+* `td3a_cpp_deep <https://github.com/sdpython/td3a_cpp_deep>`_
+
+
+Séance 4 - 19/04
+^^^^^^^^^^^^^^^^
+
+... en préparation ...
+
+Séance 5 - 26/04
+^^^^^^^^^^^^^^^^
+
+... en préparation ...
+
+Séance 6 - 03/05
+^^^^^^^^^^^^^^^^
+
+... en préparation ...
+
+deeplearning, llm, torch, cuda, triton...
+
+* :epkg:`Triton`, :epkg:`TVM`, :epkg:`AITemplate`,
+  `treelite <https://treelite.readthedocs.io/en/latest/>`_
