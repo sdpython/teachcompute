@@ -4,9 +4,10 @@
 #
 if(CUDA_AVAILABLE)
 
+  message(STATUS "+ teachcompute.torch_extension.piecewise_linear_c (CUDA)")
+
   find_package(Torch REQUIRED)
 
-  message(STATUS "+ teachcompute.torch_extension.piecewise_linear_c (CUDA)")
   message(STATUS "TORCH_INCLUDE_DIRS=${TORCH_INCLUDE_DIRS}")
 
   set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS})
@@ -26,10 +27,11 @@ if(CUDA_AVAILABLE)
 
 else()
 
-  find_package(Torch REQUIRED)
-
   message(STATUS "+ teachcompute.torch_extension.piecewise_linear_c (CPU)")
-  message(STATUS "TORCH_INCLUDE_DIRS=${TORCH_INCLUDE_DIRS}")
+
+  # find_package(Torch REQUIRED)
+
+  message(STATUS "TORCH_INCLUDE=${TORCH_INCLUDE}")
 
   set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS})
 
@@ -41,6 +43,6 @@ else()
     piecewise_linear_c
     PRIVATE
     ${TORCH_INCLUDE_DIRS})
-  target_link_libraries(piecewise_linear_c PRIVATE ${TORCH_LIBRARIES})
+  target_link_libraries(piecewise_linear_c PRIVATE ${TORCH_INCLUDE})
 
 endif()
