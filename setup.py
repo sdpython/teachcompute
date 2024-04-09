@@ -412,7 +412,7 @@ class cmake_build_class_extension(Command):
         try:
             import torch.utils
             from torch.utils.cpp_extension import include_paths
-            
+
             torch_include = ";".join(include_paths())
             torch_prefix = torch.utils.cmake_prefix_path
         except ImportError:
