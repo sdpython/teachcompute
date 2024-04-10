@@ -3,8 +3,8 @@
 2024-05-31: Feuille de route 2023-2024 (3A)
 ===========================================
 
-Main Web Site : `https://sdpython.github.io/ <https://sdpython.github.io/>`_
-Material : `https://sdpython.github.io/doc/teachcompute/dev/ <https://sdpython.github.io/doc/teachcompute/dev/>`_
+* Main Web Site : `https://sdpython.github.io/ <https://sdpython.github.io/>`_
+* Material : `https://sdpython.github.io/doc/teachcompute/dev/ <https://sdpython.github.io/doc/teachcompute/dev/>`_
 
 Plan
 ++++
@@ -16,13 +16,8 @@ Intervenants
 
 Xavier Dupré, Matthieu Durut.
 
-Notes
-+++++
-
-Liens, notebooks prévus pour les séances pratiques.
-
 Evaluation
-^^^^^^^^^^
+++++++++++
 
 Optimize a machine learning model by fusing operations.
 
@@ -39,15 +34,20 @@ Or:
 
     python -m experimental_experiment.torch_bench.export_model --model llama --mixed 1 --exporter script --config small --num_hidden_layer 2
 
-.. images:: images/netron.png
+.. image:: images/netron.png
 
 One part of the llama model:
 
-.. images:: images/llama.png
+.. image:: images/llama.png
 
 The goal is not to optimize the whole model
 but to optimize locally one execution path,
 in CUDA or CPU.
+
+Notes
++++++
+
+Liens, notebooks prévus pour les séances pratiques.
 
 Séance 1 - 10/04
 ^^^^^^^^^^^^^^^^
