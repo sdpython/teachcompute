@@ -76,12 +76,12 @@ class TestTorchExtensionPiecewiseLinear(ExtTestCase):
 
     def test_piecewise_linear_c_cpu_better(self):
         self.piecewise_linear(
-            PiecewiseLinearFunction, torch.device("cpu"), verbose=True, max_iter=3
+            PiecewiseLinearFunction, torch.device("cpu"), verbose=False, max_iter=3
         )
         self.piecewise_linear(
             PiecewiseLinearFunctionCBetter,
             torch.device("cpu"),
-            verbose=True,
+            verbose=False,
             max_iter=3,
         )
         self.piecewise_linear(PiecewiseLinearFunctionCBetter, torch.device("cpu"))
@@ -92,4 +92,4 @@ class TestTorchExtensionPiecewiseLinear(ExtTestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)

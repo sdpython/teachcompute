@@ -437,7 +437,7 @@ class cmake_build_class_extension(Command):
                     "-DPYBIND11_BUILD_ABI=_cxxabi1011",
                     "-DTORCH_API_INCLUDE_EXTENSION_H=1",
                     f"-DTORCH_INCLUDE={torch_include}",
-                    f"-DTORCH_LIBRARIES={torch_libraries}",
+                    f"-DTORCH_LIBRARIES_DIR={torch_libraries}",
                     f"-DCMAKE_PREFIX_PATH={torch_prefix}",
                 ]
             )
