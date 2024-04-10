@@ -6,7 +6,7 @@ Compares implementations for a Piecewise Linear
 ===============================================
 
 A piecewise linear function is implemented and trained
-following the tutorial :epkg:`Custom C++ and Cuda Extensions`.
+following the tutorial :epkg:`Custom C++ and CUDA Extensions`.
 
 Piecewise linear regression
 +++++++++++++++++++++++++++

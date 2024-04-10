@@ -38,10 +38,10 @@ class PiecewiseLinearFunctionC(Function):
     <teachcompute.torch_extensions.piecewise_linear.PiecewiseLinearFunction>`
     but the implementation of forward and backward functions
     are done in C. See :func:`piecewise_linear_forward
-    <teachcompute.torch_extensions.fcts.piecewise_linear_c.piecewise_linear_forward>` and
+    <teachcompute.torch_extensions.piecewise_linear_c.piecewise_linear_forward>` and
     :func:`piecewise_linear_backward
     <teachcompute.torch_extensions.piecewise_linear_c.piecewise_linear_backward>`.
-    It follows the tutorial :epkg:`Custom C++ and Cuda Extensions`.
+    It follows the tutorial :epkg:`Custom C++ and CUDA Extensions`.
     """
 
     @staticmethod
