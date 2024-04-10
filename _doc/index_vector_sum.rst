@@ -1,3 +1,5 @@
+.. _l-parallelization-vector-sum:
+
 Parallelization of a vector sum with C++
 ========================================
 

@@ -40,6 +40,7 @@ can be specified:
     build_cython
     build_pybind11
     build_cuda
+    build_torch_extensions
 
 Spark
 =====

@@ -27,6 +27,8 @@ This copy (and allocation) is bigger than the compution itself.
 :param values: all values in an array
 :param by_rows: by rows or by columns
 :return: sum of all elements
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
   m.def("vector_sum_array", &vector_sum_array, py::arg("n_columns"), py::arg("values"),
@@ -38,6 +40,8 @@ by rows or by columns.
 :param values: all values in an array
 :param by_rows: by rows or by columns
 :return: sum of all elements
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
   m.def("vector_sum_array_parallel", &vector_sum_array_parallel, py::arg("n_columns"),
@@ -49,6 +53,8 @@ by rows or by columns. The computation is parallelized.
 :param values: all values in an array
 :param by_rows: by rows or by columns
 :return: sum of all elements
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
   m.def("vector_sum_array_avx", &vector_sum_array_avx, py::arg("n_columns"), py::arg("values"),
@@ -60,6 +66,8 @@ by rows or by columns. The computation uses AVX instructions
 :param n_columns: number of columns
 :param values: all values in an array
 :return: sum of all elements
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
   m.def("vector_sum_array_avx_parallel", &vector_sum_array_avx_parallel, py::arg("n_columns"),
@@ -72,6 +80,8 @@ and parallelization (see `AVX API
 :param n_columns: number of columns
 :param values: all values in an array
 :return: sum of all elements
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
   m.def("vector_add", &vector_add, py::arg("v1"), py::arg("v2"),
@@ -81,6 +91,8 @@ It assumes both vectors have the same dimensions (no broadcast).).
 :param v1: first vector
 :param v2: second vector
 :return: new vector
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
 }

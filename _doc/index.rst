@@ -36,6 +36,7 @@ introduit ces deux voies.
     index_dot
     index_filter
     index_process
+    index_torch
 
 .. toctree::
     :maxdepth: 1

@@ -13,3 +13,4 @@ Code inclus dans cette librairie
     memory_peak
     validation
     models
+    torch_extensions

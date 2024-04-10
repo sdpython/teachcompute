@@ -35,12 +35,12 @@ class PiecewiseLinearFunction(Function):
 class PiecewiseLinearFunctionC(Function):
     """
     Same function as :class:`PiecewiseLinearFunction
-    <td3a_cpp_deep.fcts.piecewise_linear.PiecewiseLinearFunction>`
+    <teachcompute.torch_extensions.piecewise_linear.PiecewiseLinearFunction>`
     but the implementation of forward and backward functions
     are done in C. See :func:`piecewise_linear_forward
-    <td3a_cpp_deep.fcts.piecewise_linear_c.piecewise_linear_forward>` and
+    <teachcompute.torch_extensions.fcts.piecewise_linear_c.piecewise_linear_forward>` and
     :func:`piecewise_linear_backward
-    <td3a_cpp_deep.fcts.piecewise_linear_c.piecewise_linear_backward>`.
+    <teachcompute.torch_extensions.piecewise_linear_c.piecewise_linear_backward>`.
     It follows the tutorial :epkg:`Custom C++ and Cuda Extensions`.
     """
 
@@ -62,7 +62,7 @@ class PiecewiseLinearFunctionC(Function):
 class PiecewiseLinearFunctionCBetter(Function):
     """
     Same function as :class:`PiecewiseLinearFunctionC
-    <td3a_cpp_deep.fcts.piecewise_linear.PiecewiseLinearFunctionC>`,
+    <teachcompute.torch_extensions.piecewise_linear.PiecewiseLinearFunctionC>`,
     the implementation of forward and backward are is reducing the
     memory allocations.
     """

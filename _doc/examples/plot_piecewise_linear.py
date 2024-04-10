@@ -5,11 +5,8 @@
 Compares implementations for a Piecewise Linear
 ===============================================
 
-A pieceise linear function is implemented and trained
+A piecewise linear function is implemented and trained
 following the tutorial :epkg:`Custom C++ and Cuda Extensions`.
-
-.. contents::
-    :local:
 
 Piecewise linear regression
 +++++++++++++++++++++++++++
@@ -19,7 +16,7 @@ import time
 import pandas
 import matplotlib.pyplot as plt
 import torch
-from td3a_cpp_deep.fcts.piecewise_linear import (
+from teachcompute.torch_extensions.piecewise_linear import (
     PiecewiseLinearFunction,
     PiecewiseLinearFunctionC,
     PiecewiseLinearFunctionCBetter,

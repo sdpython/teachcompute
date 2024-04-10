@@ -1,7 +1,11 @@
 #!/bin/bash
+# Checks the existence of avx function, example of use:
+#
+# ::
+#
+#       bash _cmake/intrin.sh <avx function name>
 
-get_instruction ()
-{
+get_instruction () {
     [ -z "$1" ] && exit
     func_name="$1 "
 

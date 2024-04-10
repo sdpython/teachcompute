@@ -3,6 +3,9 @@
 2024-05-31: Feuille de route 2023-2024 (3A)
 ===========================================
 
+Main Web Site : `https://sdpython.github.io/ <https://sdpython.github.io/>`_
+Material : `https://sdpython.github.io/doc/teachcompute/dev/ <https://sdpython.github.io/doc/teachcompute/dev/>`_
+
 Plan
 ++++
 
@@ -18,34 +21,45 @@ Notes
 
 Liens, notebooks prévus pour les séances pratiques.
 
+Evaluation
+^^^^^^^^^^
+
+
+
 Séance 1 - 10/04
 ^^^^^^^^^^^^^^^^
 
 Séance pratique sur CPU.
 
-1.
+1. Environnement
 
 * Setup SSP Cloud, présentation d'un package, C++
 * Outils de développement : :epkg:`cmake`, :epkg:`git`, :epkg:`pull request`
 * Python : :epkg:`setup.py`, :epkg:`sphinx`, :epkg:`pybind11`, :epkg:`cython`
 * style : :epkg:`black`, :epkg:`ruff`
+* :epkg:`github` et intégration continue
+* Copy/Pasting is your friend.
 
-2.
+2. Examples
 
-* Somme des éléments d'une matrice
-* en ligne, en colonne, notion de cache, :epkg:`std::vector`, numpy array, benchmark
-* éléments de C++, :epkg:`pybind11`, :epkg:`cython`
+* :ref:`l-parallelization-vector-sum`
+* :ref:`l-parallelization-dot-product`
+* :ref:`l-compare-filtering-implementation`
+* :ref:`l-parallelization-processes`
+
+3. Concepts
+
+* parallelization, conflicts
+* thread / process
 * :epkg:`AVX`
-* parallélisation avec des :epkg:`threads`, :epkg:`processus`
+* branching, cache L1, L2, L3
+* C++ syntax
 
-3.
+4. Technics
 
-* Exercice : somme de deux vecteurs
-* parallélisation d'une multiplication de matrices
-* applications aux random forest
-
-4.
-
+* :epkg:`C++`
+* :epkg:`Python C API`
+* :epkg:`pybind11`, :epkg:`cython`
 * :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`blis`
 
 **Instructions pour démarrer**

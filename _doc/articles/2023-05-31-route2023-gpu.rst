@@ -173,7 +173,6 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 4.
 
 * torch
-* `td3a_cpp_deep <https://github.com/sdpython/td3a_cpp_deep>`_
 
 Séance 6
 ^^^^^^^^

@@ -54,6 +54,9 @@ cdef int _dmul_cython_omp(const double* va, const double* vb, double* res,
     :param algo: algorithm (see below)
     :param parallel: kind of parallelization (see below)
     :return: matrix multiplication
+
+    See
+    `mul_cython_omp.pyx <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cython/mul_cython_omp.pyx>`_.
     """
     cdef double s
     cdef Py_ssize_t p, i, j, k
@@ -120,6 +123,10 @@ cdef int _dmul_cython_omp_t(const double* va, const double* vb, double* res,
     :param algo: algorithm (see below)
     :param parallel: kind of parallelization (see below)
     :return: matrix multiplication
+
+    See function ``vector_ddot_product_pointer16_sse`` in
+    `mul_cython_omp_.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cython/mul_cython_omp_.cpp>`_,
+    `mul_cython_omp.pyx <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cython/mul_cython_omp.pyx>`_.
     """
     cdef Py_ssize_t p, i, j, k
     if parallel == 0:
@@ -186,6 +193,9 @@ def dmul_cython_omp(const double[:, :] va, const double[:, :] vb,
     :param algo: algorithm (see below)
     :param parallel: kind of parallelization (see below)
     :return: matrix multiplication
+
+    See
+    `mul_cython_omp.pyx <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cython/mul_cython_omp.pyx>`_.
     """
     cdef double[:, :] pres
     cdef cython.int r
