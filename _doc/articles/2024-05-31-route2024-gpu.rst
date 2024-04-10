@@ -24,7 +24,30 @@ Liens, notebooks prévus pour les séances pratiques.
 Evaluation
 ^^^^^^^^^^
 
+Optimize a machine learning model by fusing operations.
 
+* `alpindale/Llama-2-7b-ONNX <https://huggingface.co/alpindale/Llama-2-7b-ONNX>`_
+
+::
+
+    pip install -U huggingface_hub
+    huggingface-cli download alpindale/Llama-2-7b-ONNX --repo-type model --cache-dir cache --local-dir . --local-dir-use-symlinks False
+
+Or:
+
+::
+
+    python -m experimental_experiment.torch_bench.export_model --model llama --mixed 1 --exporter script --config small --num_hidden_layer 2
+
+.. images:: images/netron.png
+
+One part of the llama model:
+
+.. images:: images/llama.png
+
+The goal is not to optimize the whole model
+but to optimize locally one execution path,
+in CUDA or CPU.
 
 Séance 1 - 10/04
 ^^^^^^^^^^^^^^^^
