@@ -411,12 +411,14 @@ class cmake_build_class_extension(Command):
 
         try:
             import torch.utils
-            from torch.utils.cpp_extension import include_paths
+            from torch.utils.cpp_extension import include_paths, library_paths
 
             torch_include = ";".join(include_paths())
+            torch_libraries = ";".join(library_paths())
             torch_prefix = torch.utils.cmake_prefix_path
         except ImportError:
             torch_include = None
+            torch_libraries = None
             torch_prefix = None
 
         cmake_args = [
@@ -431,7 +433,11 @@ class cmake_build_class_extension(Command):
         if torch_include:
             cmake_args.extend(
                 [
+                    "-D_GLIBCXX_USE_CXX11_ABI=0",
+                    "-DPYBIND11_BUILD_ABI=_cxxabi1011",
+                    "-DTORCH_API_INCLUDE_EXTENSION_H=1",
                     f"-DTORCH_INCLUDE={torch_include}",
+                    f"-DTORCH_LIBRARIES={torch_libraries}",
                     f"-DCMAKE_PREFIX_PATH={torch_prefix}",
                 ]
             )

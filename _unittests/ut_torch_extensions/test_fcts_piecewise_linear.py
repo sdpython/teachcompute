@@ -1,7 +1,7 @@
 import unittest
 import torch
 from teachcompute.ext_test_case import ExtTestCase
-from teachcompute.torch_extension.piecewise_linear import (
+from teachcompute.torch_extensions.piecewise_linear import (
     PiecewiseLinearFunction,
     PiecewiseLinearFunctionC,
     PiecewiseLinearFunctionCBetter,
