@@ -110,14 +110,13 @@ Puis :
 Séance 2 - 12/04
 ^^^^^^^^^^^^^^^^
 
-... en préparation ...
-
 1.
 
 * hardware
 * ordinateur
 * mémoire partagée
 * ordre de grandeur vitesse CPU, communication
+* caches
 
 2.
 
@@ -126,11 +125,8 @@ Séance 2 - 12/04
 * `race condition <https://en.wikipedia.org/wiki/Race_condition>`_
 * verrou
 
-
 Séance 3 - 17/04
 ^^^^^^^^^^^^^^^^
-
-... en préparation ...
 
 CUDA
 
@@ -145,10 +141,17 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 1.
 
 * CUDA, threads, blocks, parallélisation
-* gestion de la mémoire
-* addition de deux vecteurs
+* gestion de la mémoire, CPU, CUDA
+
+2. addition de deux vecteurs
+
+* :ref:`l-example-cuda-vector-addition`
+* `cuda_example.cu <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cuda/cuda_example.cu#L19>`_
 * code C++, template, macro
 * gcc, nvcc
+* extension .c, extension .cu
+* ``__device__``, ``__globals__``, ``__inline__``, `<<< >>>`
+* notion de stream
 
 2.
 
@@ -156,6 +159,7 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 * somme des éléments d'un vecteur, réduction
 * synthreads
 * GPU / CPU, __inline__, __globals__, `<<< >>>`
+* profiling
 
 3.
 

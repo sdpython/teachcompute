@@ -224,6 +224,7 @@ epkg_dictionary = {
     "mllib": "https://spark.apache.org/mllib/",
     "nogil": "https://cython.readthedocs.io/en/stable/src/userguide/external_C_code.html?highlight=nogil#declaring-a-function-as-callable-without-the-gil",
     "notebook": "https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html#notebook-document",
+    "Nsight": "https://developer.nvidia.com/nsight-systems",
     "numba": "https://numba.pydata.org/",
     "numpy": (
         "https://www.numpy.org/",

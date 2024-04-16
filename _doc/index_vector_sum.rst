@@ -9,9 +9,15 @@ It may be simple as a computation examples but it is not simple to
 parallelize.
 
 .. toctree::
-    :caption: Vector Sum
+    :caption: Vector Sum on CPU
     :maxdepth: 1
     
     auto_examples/plot_bench_cpu_vector_sum
     auto_examples/plot_bench_cpu_vector_sum_parallel
     auto_examples/plot_bench_cpu_vector_sum_avx_parallel
+
+.. toctree::
+    :caption: Vector Sum on CUDA
+    :maxdepth: 1
+    
+    auto_examples/plot_bench_cuda_vector_sum
