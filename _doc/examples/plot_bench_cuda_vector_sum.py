@@ -24,7 +24,11 @@ import torch
 has_cuda = torch.cuda.is_available()
 
 try:
-    from teachcompute.validation.cuda.cuda_example_py import vector_sum0, vector_sum_atomic, vector_sum6
+    from teachcompute.validation.cuda.cuda_example_py import (
+        vector_sum0,
+        vector_sum_atomic,
+        vector_sum6,
+    )
 except ImportError:
     has_cuda = False
 
@@ -56,7 +60,7 @@ for dim in tqdm(dims):
                     size=values.size,
                     time=res["average"],
                     fct=f"CUDA-{f.__name__}",
-                    time_per_element=res["average"] / dim**2,
+                    time_per_element=res["average"] / dim,
                     diff=diff,
                 )
             )
@@ -70,7 +74,7 @@ for dim in tqdm(dims):
             size=values.size,
             time=res["average"],
             fct="numpy",
-            time_per_element=res["average"] / dim**2,
+            time_per_element=res["average"] / dim,
             diff=0,
         )
     )

@@ -8,6 +8,7 @@ Tensor manipulations with CUDA
     :maxdepth: 1
     
     auto_examples/plot_bench_cuda_vector_add
+    auto_examples/plot_bench_cuda_vector_add_stream
 
 .. toctree::
     :caption: Vector Sum on CUDA

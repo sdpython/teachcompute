@@ -1,16 +1,15 @@
 """
-.. _l-example-cuda-vector-addition:
+.. _l-example-cuda-vector-addition-stream:
 
-Measuring CUDA performance with a vector addition
-=================================================
+Measuring CUDA performance with a vector addition with streams
+==============================================================
 
-Measure the time between two additions, one with CUDA, one with
-:epkg:`numpy`. The script can be profiled with
-:epkg:`Nsight`.
+Measure the time between two additions, with or without streams.
+The script can be profiled with :epkg:`Nsight`.
 
 ::
 
-    nsys profile python _doc/examples/plot_bench_cuda_vector_add.py
+    nsys profile python _doc/examples/plot_bench_cuda_vector_add_stream.py
 
 Vector Add
 ++++++++++
@@ -26,20 +25,30 @@ import torch
 has_cuda = torch.cuda.is_available()
 
 try:
-    from teachcompute.validation.cuda.cuda_example_py import vector_add
+    from teachcompute.validation.cuda.cuda_example_py import (
+        vector_add,
+        vector_add_stream,
+    )
 except ImportError:
     has_cuda = False
 
 
 def cuda_vector_add(values):
     torch.cuda.nvtx.range_push(f"CUDA dim={values.size}")
-    res = vector_add(values, values, 0)
+    res = vector_add(values, values, 0, repeat=10)
+    torch.cuda.nvtx.range_pop()
+    return res
+
+
+def cuda_vector_add_stream(values):
+    torch.cuda.nvtx.range_push(f"CUDA stream dim={values.size}")
+    res = vector_add_stream(values, values, 0, repeat=10)
     torch.cuda.nvtx.range_pop()
     return res
 
 
 obs = []
-dims = [2**10, 2**15, 2**20, 2**25]
+dims = [2**10, 2**15, 2**20]
 if unit_test_going():
     dims = [10, 20, 30]
 for dim in tqdm(dims):
@@ -60,19 +69,19 @@ for dim in tqdm(dims):
             )
         )
 
-    diff = 0
-    res = measure_time(lambda: values + values, max_time=0.5)
+        diff = numpy.abs(vector_add_stream(values, values, 0) - (values + values)).max()
+        res = measure_time(lambda: cuda_vector_add_stream(values), max_time=0.5)
 
-    obs.append(
-        dict(
-            dim=dim,
-            size=values.size,
-            time=res["average"],
-            fct="numpy",
-            time_per_element=res["average"] / dim,
-            diff=0,
+        obs.append(
+            dict(
+                dim=dim,
+                size=values.size,
+                time=res["average"],
+                fct="CUDA-stream",
+                time_per_element=res["average"] / dim,
+                diff=diff,
+            )
         )
-    )
 
 
 df = DataFrame(obs)
@@ -92,11 +101,9 @@ piv.plot(ax=ax[0], logx=True, title="Comparison between two summation")
 piv_diff.plot(ax=ax[1], logx=True, logy=True, title="Summation errors")
 piv_time.plot(ax=ax[2], logx=True, logy=True, title="Total time")
 fig.tight_layout()
-fig.savefig("plot_bench_cuda_vector_add.png")
+fig.savefig("plot_bench_cuda_vector_add_stream.png")
 
 ##############################################
-# CUDA seems very slow but in fact, all the time is spent
-# in moving the data from the CPU memory (Host) to the GPU memory (device).
-#
-# .. image:: ../images/nsight_vector_add.png
+# In practice, one stream is usually enough.
+# CUDA parallelizes everything and takes all the computing power.
 #
