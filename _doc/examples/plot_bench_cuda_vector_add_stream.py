@@ -84,24 +84,26 @@ for dim in tqdm(dims):
         )
 
 
-df = DataFrame(obs)
-piv = df.pivot(index="dim", columns="fct", values="time_per_element")
-print(piv)
+if has_cuda:
+    df = DataFrame(obs)
+    piv = df.pivot(index="dim", columns="fct", values="time_per_element")
+    print(piv)
 
 
 ##############################################
 # Plots
 # +++++
 
-piv_diff = df.pivot(index="dim", columns="fct", values="diff")
-piv_time = df.pivot(index="dim", columns="fct", values="time")
+if has_cuda:
+    piv_diff = df.pivot(index="dim", columns="fct", values="diff")
+    piv_time = df.pivot(index="dim", columns="fct", values="time")
 
-fig, ax = plt.subplots(1, 3, figsize=(12, 6))
-piv.plot(ax=ax[0], logx=True, title="Comparison between two summation")
-piv_diff.plot(ax=ax[1], logx=True, logy=True, title="Summation errors")
-piv_time.plot(ax=ax[2], logx=True, logy=True, title="Total time")
-fig.tight_layout()
-fig.savefig("plot_bench_cuda_vector_add_stream.png")
+    fig, ax = plt.subplots(1, 3, figsize=(12, 6))
+    piv.plot(ax=ax[0], logx=True, title="Comparison between two summation")
+    piv_diff.plot(ax=ax[1], logx=True, logy=True, title="Summation errors")
+    piv_time.plot(ax=ax[2], logx=True, logy=True, title="Total time")
+    fig.tight_layout()
+    fig.savefig("plot_bench_cuda_vector_add_stream.png")
 
 ##############################################
 # In practice, one stream is usually enough.
