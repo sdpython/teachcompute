@@ -74,6 +74,7 @@ requires = [
     "pybind11",
     "scipy",
     "setuptools",
+    "torch",
     "wheel",
 ]
 
