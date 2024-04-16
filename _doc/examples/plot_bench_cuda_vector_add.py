@@ -26,6 +26,11 @@ import torch
 
 has_cuda = torch.cuda.is_available()
 
+try:
+    from teachcompute.validation.cuda.cuda_example_py import vector_add
+except ImportError:
+    has_cuda = False
+
 
 def cuda_vector_add(values):
     torch.cuda.nvtx.range_push(f"CUDA dim={values.size}")
