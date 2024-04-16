@@ -164,12 +164,13 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 
 3. ScatterND
 
-* :ref:``
+* :ref:`l-example-cuda-vector-addition-stream`
+* `cuda_example.cu <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cuda/cuda_example.cu>`_
 * notion de Stream
 
 4. extension torch
 
-* torch
+* :epkg:`pytorch`
 * `torch_extensions <https://github.com/sdpython/teachcompute/blob/main/teachcompute/torch_extensions>`_
 
 5.
