@@ -6,6 +6,7 @@
 *.so
 *.bin
 *.log
+.build_path.txt
 plot*.png
 plot*.csv
 plot*.xlsx
@@ -39,6 +40,7 @@ _doc/practice/spark/data_adult*
 _doc/practice/spark/out*
 _doc/practice/spark/target*
 _doc/c_data/*.csv
+_unittests/test_constants.h
 _unittests/ut_datasets/*.gz
 _unittests/ut_datasets/*.db3
 _unittests/ut_datasets/*.txt

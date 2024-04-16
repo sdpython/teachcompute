@@ -54,9 +54,12 @@ def c_multiply_matrix_parallel(double[:, :] m1, double[:, :] m2):
     return m3
 
 
-cdef void _c_multiply_matrix(double[:, :] m1, double[:, :] m2,
+cdef void _c_multiply_matrix(double[:, :] m1,
+                             double[:, :] m2,
                              double[:, :] m3,
-                             cython.int ni, cython.int nj, cython.int nk) nogil noexcept:
+                             cython.int ni,
+                             cython.int nj,
+                             cython.int nk) nogil noexcept:
     cdef cython.int i, j, k
     for i in range(0, ni):
         for j in range(0, nj):
