@@ -1,1 +1,1 @@
-#define TEST_FOLDER "/home/xadupre/github/teachcompute/_cmake/../_unittests"
+#define TEST_FOLDER "/src/github/teachcompute/_cmake/../_unittests"
