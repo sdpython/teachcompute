@@ -24,7 +24,7 @@ from teachcompute.ext_test_case import measure_time, unit_test_going
 from teachcompute.validation.cuda.cuda_example_py import vector_add
 import torch
 
-has_cuda = torch.cuda_is_available()
+has_cuda = torch.cuda.is_available()
 
 
 def cuda_vector_add(values):
