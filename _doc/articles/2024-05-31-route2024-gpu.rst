@@ -146,35 +146,39 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 2. addition de deux vecteurs
 
 * :ref:`l-example-cuda-vector-addition`
-* `cuda_example.cu <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cuda/cuda_example.cu#L19>`_
+* `cuda_example.cu L19 <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cuda/cuda_example.cu#L19>`_
 * code C++, template, macro
 * gcc, nvcc
 * extension .c, extension .cu
 * ``__device__``, ``__globals__``, ``__inline__``, `<<< >>>`
-* notion de stream
-
-2.
-
-* pointeurs
-* somme des éléments d'un vecteur, réduction
-* synthreads
-* GPU / CPU, __inline__, __globals__, `<<< >>>`
 * profiling
 
-3.
+2. somme d'un vecteur
 
-* Profiling
+* :ref:`l-example-cuda-vector-sum`
+* `cuda_example.cu L61 <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cuda/cuda_example.cu#L61>`_
+* `cuda_example_reduce.cu <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cuda/cuda_example_reduce.cu>`_
+* somme des éléments d'un vecteur, réduction
+* synthreads
+* mémoire partagée, notion de cache
+
+3. ScatterND
+
+* :ref:``
+* notion de Stream
+
+4. extension torch
+
+* torch
+* `torch_extensions <https://github.com/sdpython/teachcompute/blob/main/teachcompute/torch_extensions>`_
+
+5.
+
 * :epkg:`DLPack`
 * device
 * A100, H100
 * float32, float16, float8
 * multiple nvidia on the same machine
-
-4.
-
-* torch
-* `td3a_cpp_deep <https://github.com/sdpython/td3a_cpp_deep>`_
-
 
 Séance 4 - 19/04
 ^^^^^^^^^^^^^^^^
