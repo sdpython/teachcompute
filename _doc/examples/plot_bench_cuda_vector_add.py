@@ -24,7 +24,7 @@ from teachcompute.ext_test_case import measure_time, unit_test_going
 from teachcompute.validation.cuda.cuda_example_py import vector_add
 import torch
 
-has_cuda = torch.cuda_is_available()
+has_cuda = torch.cuda.is_available()
 
 
 def cuda_vector_add(values):
@@ -32,6 +32,7 @@ def cuda_vector_add(values):
     res = vector_add(values, values, 0)
     torch.cuda.nvtx.range_pop()
     return res
+
 
 obs = []
 dims = [2**10, 2**15, 2**20, 2**25]
@@ -51,7 +52,7 @@ for dim in tqdm(dims):
                 time=res["average"],
                 fct="CUDA",
                 time_per_element=res["average"] / dim**2,
-                diff = diff,
+                diff=diff,
             )
         )
 
@@ -65,7 +66,7 @@ for dim in tqdm(dims):
             time=res["average"],
             fct="numpy",
             time_per_element=res["average"] / dim**2,
-            diff = 0,
+            diff=0,
         )
     )
 
@@ -93,5 +94,5 @@ fig.savefig("plot_bench_cuda_vector_add.png")
 # CUDA seems very slow but in fact, all the time is spent
 # in moving the data from the CPU memory (Host) to the GPU memory (device).
 #
-# .. image:: images/nsight_vector_add.png
+# .. image:: ../images/nsight_vector_add.png
 #
