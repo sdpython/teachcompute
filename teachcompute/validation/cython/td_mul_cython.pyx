@@ -21,7 +21,7 @@ def multiply_matrix(m1, m2):
 
 cdef void _c_multiply_matrix_parallel_inner_loop(
         double[:, :] m1, double[:, :] m2, double[:, :] m3,
-        cython.int i, cython.int ni, cython.int nj, cython.int nk) nogil:
+        cython.int i, cython.int ni, cython.int nj, cython.int nk) nogil noexcept:
     "Matrix multiplication wuth cython"
     cdef cython.int j, k
     for j in range(0, nj):
@@ -31,7 +31,7 @@ cdef void _c_multiply_matrix_parallel_inner_loop(
 
 cdef void _c_multiply_matrix_parallel(
         double[:, :] m1, double[:, :] m2, double[:, :] m3,
-        cython.int ni, cython.int nj, cython.int nk) nogil:
+        cython.int ni, cython.int nj, cython.int nk) nogil noexcept:
     "Matrix multiplication wuth cython"
     cdef cython.int i
     for i in prange(0, ni):
@@ -54,9 +54,12 @@ def c_multiply_matrix_parallel(double[:, :] m1, double[:, :] m2):
     return m3
 
 
-cdef void _c_multiply_matrix(double[:, :] m1, double[:, :] m2,
+cdef void _c_multiply_matrix(double[:, :] m1,
+                             double[:, :] m2,
                              double[:, :] m3,
-                             cython.int ni, cython.int nj, cython.int nk) nogil:
+                             cython.int ni,
+                             cython.int nj,
+                             cython.int nk) nogil noexcept:
     cdef cython.int i, j, k
     for i in range(0, ni):
         for j in range(0, nj):
@@ -86,7 +89,7 @@ cdef extern from "td_mul_cython_.h":
 
 cdef void _c_multiply_matrix_parallel_transposed_inner_loop(
         double[:, :] m1, double[:, :] m2, double[:, :] m3,
-        cython.int i, cython.int ni, cython.int nj, cython.int nk) nogil:
+        cython.int i, cython.int ni, cython.int nj, cython.int nk) nogil noexcept:
     cdef cython.int j
     for j in range(0, nj):
         m3[i, j] += vector_ddot_product_pointer16_sse(&m1[i, 0], &m2[j, 0], nk)
@@ -94,7 +97,7 @@ cdef void _c_multiply_matrix_parallel_transposed_inner_loop(
 
 cdef void _c_multiply_matrix_parallel_transposed(
         double[:, :] m1, double[:, :] m2, double[:, :] m3,
-        cython.int ni, cython.int nj, cython.int nk) nogil:
+        cython.int ni, cython.int nj, cython.int nk) nogil noexcept:
     cdef cython.int i
     for i in prange(0, ni):
         _c_multiply_matrix_parallel_transposed_inner_loop(

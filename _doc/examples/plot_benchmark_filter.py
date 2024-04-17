@@ -1,11 +1,13 @@
 """
+.. _l-compare-filtering-implementation:
+
 Compares filtering implementations (numpy, cython)
 ==================================================
 
 The benchmark looks into different ways to implement
 thresholding: every value of a vector superior to *mx*
-is replaced by *mx*. It compares several implementation
-to :epkg:`numpy`.
+is replaced by *mx* (:func:`numpy.clip`).
+It compares several implementation to :epkg:`numpy`.
 
 * :func:`cfilter_dmax <teachcompute.validation.cython.experiment_cython.cfilter_dmax>`
   `cfilter_dmax <https://github.com/sdpython/teachcompute/blob/main/

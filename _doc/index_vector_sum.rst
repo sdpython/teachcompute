@@ -1,3 +1,5 @@
+.. _l-parallelization-vector-sum:
+
 Parallelization of a vector sum with C++
 ========================================
 
@@ -7,7 +9,7 @@ It may be simple as a computation examples but it is not simple to
 parallelize.
 
 .. toctree::
-    :caption: Vector Sum
+    :caption: Vector Sum on CPU
     :maxdepth: 1
     
     auto_examples/plot_bench_cpu_vector_sum

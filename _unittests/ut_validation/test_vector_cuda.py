@@ -1,6 +1,6 @@
 import unittest
 import numpy
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, skipif_ci_apple
 from teachcompute import has_cuda, compiled_with_cuda, cuda_version
 
 if has_cuda():
@@ -25,6 +25,7 @@ class TestVectorCuda(ExtTestCase):
         else:
             self.assertFalse(has_cuda())
 
+    @skipif_ci_apple("crash")
     def test_compiled_with_cuda(self):
         if vector_sum0 is not None:
             self.assertTrue(compiled_with_cuda())

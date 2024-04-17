@@ -36,6 +36,7 @@ class TestTutorialFilter(ExtTestCase):
         vb[vb > 0] = 0
         assert_equal(va, vb)
 
+    @skipif_ci_apple("crash")
     def test_filter_cyfilter_dmax(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = va.copy()

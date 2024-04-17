@@ -5,6 +5,13 @@ Collections d'articles périssables
 
 Ou *blog*.
 
+
+.. toctree::
+    :caption: 2024
+    :maxdepth: 1
+
+    2024-05-31-route2024-gpu
+
 .. toctree::
     :caption: 2023
     :maxdepth: 1

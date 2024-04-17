@@ -15,6 +15,7 @@ matplotlib
 mypy
 nbsphinx
 numba
+onnx
 openpyxl
 pandas
 pillow
@@ -23,6 +24,10 @@ pybind11
 pyspark
 pytest
 pytest-cov
+torch>=2.2
+torchaudio
+torchvision
+transformers>=4.37.2
 ruff
 sphinx
 sphinx-gallery

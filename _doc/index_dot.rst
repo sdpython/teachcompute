@@ -1,3 +1,5 @@
+.. _l-parallelization-dot-product:
+
 Parallelization of a dot product
 ================================
 

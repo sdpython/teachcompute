@@ -12,3 +12,5 @@ Code inclus dans cette librairie
     fctmr
     memory_peak
     validation
+    models
+    torch_extensions

@@ -1,3 +1,5 @@
+.. _l-parallelization-processes:
+
 Parallelization with processes
 ==============================
 
