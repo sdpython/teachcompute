@@ -10,6 +10,7 @@ from teachcompute.validation.cython.dot_cython_omp import (
 
 
 class TestTutorialDotOmp(ExtTestCase):
+    @skipif_ci_apple("crash")
     def test_ddot_cython_array_omp(self):
         va = numpy.random.randn(100).astype(numpy.float64)
         vb = numpy.random.randn(100).astype(numpy.float64)
