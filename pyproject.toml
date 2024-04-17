@@ -59,6 +59,7 @@ dev = [
     "sphinx",
     "sphinx-gallery",
     "sphinx-issues",
+    "torch",
     "tqdm",
     "wheel",
     "xgboost",
