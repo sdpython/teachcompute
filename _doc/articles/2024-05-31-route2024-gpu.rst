@@ -152,7 +152,7 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 * gcc, nvcc
 * extension .c, extension .cu
 * ``__device__``, ``__globals__``, ``__inline__``, `<<< >>>`
-* profiling
+* profiling with ``nsys profile python <script.py>`` or ``nvprof python <script.py>``
 
 2. somme d'un vecteur
 
