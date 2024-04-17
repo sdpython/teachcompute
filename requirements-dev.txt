@@ -15,6 +15,7 @@ matplotlib
 mypy
 nbsphinx
 numba
+onnx
 openpyxl
 pandas
 pillow

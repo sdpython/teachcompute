@@ -7,6 +7,7 @@
 *.bin
 *.log
 .build_path.txt
+*.onnx
 plot*.png
 plot*.csv
 plot*.xlsx

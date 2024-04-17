@@ -222,6 +222,7 @@ epkg_dictionary = {
     "kubernetes": "https://kubernetes.io/fr/",
     "lapack": "https://www.netlib.org/lapack/",
     "mllib": "https://spark.apache.org/mllib/",
+    "Netron": "https://github.com/lutzroeder/netron",
     "nogil": "https://cython.readthedocs.io/en/stable/src/userguide/external_C_code.html?highlight=nogil#declaring-a-function-as-callable-without-the-gil",
     "notebook": "https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html#notebook-document",
     "Nsight": "https://developer.nvidia.com/nsight-systems",

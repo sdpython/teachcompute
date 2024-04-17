@@ -1,16 +1,14 @@
 """
-.. _l-example-cuda-vector-addition:
+.. _l-example-cuda-vector-sum:
 
-Measuring CUDA performance with a vector addition
-=================================================
+Measuring CUDA performance with a vector sum
+============================================
 
-Measure the time between two additions, one with CUDA, one with
-:epkg:`numpy`. The script can be profiled with
-:epkg:`Nsight`.
+The objective is to measure the summation of all elements from a tensor.
 
 ::
 
-    nsys profile python _doc/examples/plot_bench_cuda_vector_add.py
+    nsys profile python _doc/examples/plot_bench_cuda_vector_sum.py
 
 Vector Add
 ++++++++++
@@ -26,42 +24,49 @@ import torch
 has_cuda = torch.cuda.is_available()
 
 try:
-    from teachcompute.validation.cuda.cuda_example_py import vector_add
+    from teachcompute.validation.cuda.cuda_example_py import (
+        vector_sum0,
+        vector_sum_atomic,
+        vector_sum6,
+    )
 except ImportError:
     has_cuda = False
 
 
-def cuda_vector_add(values):
-    torch.cuda.nvtx.range_push(f"CUDA dim={values.size}")
-    res = vector_add(values, values, 0)
+def wrap_cuda_call(f, values):
+    torch.cuda.nvtx.range_push(f"CUDA f={f.__name__} dim={values.size}")
+    res = f(values)
     torch.cuda.nvtx.range_pop()
     return res
 
 
 obs = []
-dims = [2**10, 2**15, 2**20, 2**25]
+dims = [2**10, 2**15, 2**20, 2**25, 2**28]
 if unit_test_going():
     dims = [10, 20, 30]
 for dim in tqdm(dims):
     values = numpy.ones((dim,), dtype=numpy.float32).ravel()
 
     if has_cuda:
-        diff = numpy.abs(vector_add(values, values, 0) - (values + values)).max()
-        res = measure_time(lambda: cuda_vector_add(values), max_time=0.5)
+        for f in [vector_sum0, vector_sum_atomic, vector_sum6]:
+            if f == vector_sum_atomic and dim > 2**20:
+                continue
+            diff = numpy.abs(wrap_cuda_call(f, values) - (values.sum()))
+            res = measure_time(lambda: wrap_cuda_call(f, values), max_time=0.5)
 
-        obs.append(
-            dict(
-                dim=dim,
-                size=values.size,
-                time=res["average"],
-                fct="CUDA",
-                time_per_element=res["average"] / dim,
-                diff=diff,
+            obs.append(
+                dict(
+                    dim=dim,
+                    size=values.size,
+                    time=res["average"],
+                    fct=f"CUDA-{f.__name__}",
+                    time_per_element=res["average"] / dim,
+                    diff=diff,
+                )
             )
-        )
 
     diff = 0
-    res = measure_time(lambda: values + values, max_time=0.5)
+    res = measure_time(lambda: values.sum(), max_time=0.5)
 
     obs.append(
         dict(
@@ -92,11 +97,11 @@ piv.plot(ax=ax[0], logx=True, title="Comparison between two summation")
 piv_diff.plot(ax=ax[1], logx=True, logy=True, title="Summation errors")
 piv_time.plot(ax=ax[2], logx=True, logy=True, title="Total time")
 fig.tight_layout()
-fig.savefig("plot_bench_cuda_vector_add.png")
+fig.savefig("plot_bench_cuda_vector_sum.png")
 
 ##############################################
 # CUDA seems very slow but in fact, all the time is spent
 # in moving the data from the CPU memory (Host) to the GPU memory (device).
 #
-# .. image:: ../images/nsight_vector_add.png
+# .. image:: ../images/nsight_vector_sum.png
 #

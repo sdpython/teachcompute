@@ -9,40 +9,113 @@
 
 namespace cuda_example {
 
-__global__ void block_vector_add(const float *a, const float *b, float *c, int n) {
+__global__ void block_vector_add(const float *a, const float *b, float *c,
+                                 int n) {
   int i = blockIdx.x * blockDim.x + threadIdx.x;
   if (i < n) {
     c[i] = a[i] + b[i];
   }
 }
 
-void kernel_vector_add(unsigned int size, const float *gpu_ptr1, const float *gpu_ptr2,
-                       float *gpu_res) {
+void kernel_vector_add(unsigned int size, const float *gpu_ptr1,
+                       const float *gpu_ptr2, float *gpu_res) {
   constexpr int blockSize = 256;
   int numBlocks = (size + blockSize - 1) / blockSize;
   block_vector_add<<<numBlocks, blockSize>>>(gpu_ptr1, gpu_ptr2, gpu_res, size);
 }
 
-void vector_add(unsigned int size, const float *ptr1, const float *ptr2, float *br,
-                int cudaDevice) {
+void vector_add(unsigned int size, const float *ptr1, const float *ptr2,
+                float *br, int cudaDevice, int repeat) {
   // copy memory from CPU memory to CUDA memory
   NVTX_SCOPE("vector_add")
   checkCudaErrors(cudaSetDevice(cudaDevice));
   float *gpu_ptr1, *gpu_ptr2, *gpu_res;
   checkCudaErrors(cudaMalloc(&gpu_ptr1, size * sizeof(float)));
-  checkCudaErrors(cudaMemcpy(gpu_ptr1, ptr1, size * sizeof(float), cudaMemcpyHostToDevice));
-
-  checkCudaErrors(cudaMalloc(&gpu_ptr2, size * sizeof(float)));
-  checkCudaErrors(cudaMemcpy(gpu_ptr2, ptr2, size * sizeof(float), cudaMemcpyHostToDevice));
+  checkCudaErrors(
+      cudaMemcpy(gpu_ptr1, ptr1, size * sizeof(float), cudaMemcpyHostToDevice));
 
   checkCudaErrors(cudaMalloc(&gpu_res, size * sizeof(float)));
 
-  // execute the code
-  kernel_vector_add(size, gpu_ptr1, gpu_ptr2, gpu_res);
+  checkCudaErrors(cudaMalloc(&gpu_ptr2, size * sizeof(float)));
+  checkCudaErrors(
+      cudaMemcpy(gpu_ptr2, ptr2, size * sizeof(float), cudaMemcpyHostToDevice));
 
-  checkCudaErrors(cudaMemcpy(br, gpu_res, size * sizeof(float), cudaMemcpyDeviceToHost));
+  // execute the code
+  for (int r = 0; r < repeat; ++r) {
+    kernel_vector_add(size, gpu_ptr1, gpu_ptr2, gpu_res);
+  }
+
+  checkCudaErrors(
+      cudaMemcpy(br, gpu_res, size * sizeof(float), cudaMemcpyDeviceToHost));
 
   // free the allocated vectors
+  checkCudaErrors(cudaFree(gpu_ptr1));
+  checkCudaErrors(cudaFree(gpu_ptr2));
+  checkCudaErrors(cudaFree(gpu_res));
+}
+
+__global__ void block_vector_add_stream(const float *a, const float *b,
+                                        float *c, int n) {
+  int i = blockIdx.x * blockDim.x + threadIdx.x;
+  if (i < n) {
+    c[i] = a[i] + b[i];
+  }
+}
+
+void kernel_vector_add_stream(unsigned int size, const float *gpu_ptr1,
+                              const float *gpu_ptr2, float *gpu_res,
+                              cudaStream_t stream) {
+  constexpr int blockSize = 64;
+  int numBlocks = (size + blockSize - 1) / blockSize;
+  block_vector_add_stream<<<numBlocks, blockSize, 0, stream>>>(
+      gpu_ptr1, gpu_ptr2, gpu_res, size);
+}
+
+#define NSTREAMS 4
+
+void vector_add_stream(unsigned int size, const float *ptr1, const float *ptr2,
+                       float *br, int cudaDevice, int repeat) {
+  NVTX_SCOPE("vector_add_stream")
+  checkCudaErrors(cudaSetDevice(cudaDevice));
+  float *gpu_ptr1, *gpu_ptr2, *gpu_res;
+
+  checkCudaErrors(cudaMalloc(&gpu_ptr1, size * sizeof(float)));
+  checkCudaErrors(cudaMalloc(&gpu_ptr2, size * sizeof(float)));
+  checkCudaErrors(cudaMalloc(&gpu_res, size * sizeof(float)));
+
+  cudaStream_t streams[NSTREAMS];
+  for (int i = 0; i < NSTREAMS; ++i) {
+    checkCudaErrors(cudaStreamCreate(&streams[i]));
+  }
+
+  unsigned int div_size = size / NSTREAMS;
+
+  for (int i = 0; i < NSTREAMS; ++i) {
+    checkCudaErrors(cudaMemcpyAsync(
+        gpu_ptr1 + i * div_size, ptr1 + i * div_size, div_size * sizeof(float),
+        cudaMemcpyHostToDevice, streams[i]));
+    checkCudaErrors(cudaMemcpyAsync(
+        gpu_ptr2 + i * div_size, ptr2 + i * div_size, div_size * sizeof(float),
+        cudaMemcpyHostToDevice, streams[i]));
+
+    for (int r = 0; r < repeat; ++r) {
+      kernel_vector_add_stream(div_size, gpu_ptr1 + i * div_size,
+                               gpu_ptr2 + i * div_size, gpu_res + i * div_size,
+                               streams[i]);
+    }
+
+    checkCudaErrors(cudaMemcpyAsync(br + i * div_size, gpu_res + i * div_size,
+                                    div_size * sizeof(float),
+                                    cudaMemcpyDeviceToHost, streams[i]));
+  }
+
+  for (int i = 0; i < NSTREAMS; ++i) {
+    checkCudaErrors(cudaStreamSynchronize(streams[i]));
+  }
+
+  for (int i = 0; i < NSTREAMS; ++i) {
+    checkCudaErrors(cudaStreamDestroy(streams[i]));
+  }
   checkCudaErrors(cudaFree(gpu_ptr1));
   checkCudaErrors(cudaFree(gpu_ptr2));
   checkCudaErrors(cudaFree(gpu_res));
@@ -58,7 +131,8 @@ unsigned int nextPow2(unsigned int x) {
   return ++x;
 }
 
-__global__ void kernel_sum_reduce0(float *g_idata, float *g_odata, unsigned int n) {
+__global__ void kernel_sum_reduce0(float *g_idata, float *g_odata,
+                                   unsigned int n) {
   extern __shared__ float sdata[];
 
   // load shared mem
@@ -82,21 +156,24 @@ __global__ void kernel_sum_reduce0(float *g_idata, float *g_odata, unsigned int 
   }
 }
 
-float kernel_vector_sum_reduce0(float *gpu_ptr, unsigned int size, int maxThreads) {
+float kernel_vector_sum_reduce0(float *gpu_ptr, unsigned int size,
+                                int maxThreads) {
   int threads = (size < maxThreads) ? nextPow2(size) : maxThreads;
   int blocks = (size + threads - 1) / threads;
   dim3 dimBlock(threads, 1, 1);
   dim3 dimGrid(blocks, 1, 1);
   float *gpu_block_ptr;
   checkCudaErrors(cudaMalloc(&gpu_block_ptr, blocks * sizeof(float)));
-  int smemSize = (threads <= 32) ? 2 * threads * sizeof(float) : threads * sizeof(float);
-  kernel_sum_reduce0<<<dimGrid, dimBlock, smemSize>>>(gpu_ptr, gpu_block_ptr, size);
+  int smemSize =
+      (threads <= 32) ? 2 * threads * sizeof(float) : threads * sizeof(float);
+  kernel_sum_reduce0<<<dimGrid, dimBlock, smemSize>>>(gpu_ptr, gpu_block_ptr,
+                                                      size);
 
   // the last reduction happens on CPU, the first step is to move
   // the data from GPU to CPU.
   float *cpu_ptr = new float[blocks];
-  checkCudaErrors(
-      cudaMemcpy(cpu_ptr, gpu_block_ptr, blocks * sizeof(float), cudaMemcpyDeviceToHost));
+  checkCudaErrors(cudaMemcpy(cpu_ptr, gpu_block_ptr, blocks * sizeof(float),
+                             cudaMemcpyDeviceToHost));
   float gpu_result = 0;
   for (int i = 0; i < blocks; ++i) {
     gpu_result += cpu_ptr[i];
@@ -106,13 +183,15 @@ float kernel_vector_sum_reduce0(float *gpu_ptr, unsigned int size, int maxThread
   return gpu_result;
 }
 
-float vector_sum0(unsigned int size, const float *ptr, int maxThreads, int cudaDevice) {
+float vector_sum0(unsigned int size, const float *ptr, int maxThreads,
+                  int cudaDevice) {
   // copy memory from CPU memory to CUDA memory
   NVTX_SCOPE("vector_sum0")
   float *gpu_ptr;
   checkCudaErrors(cudaSetDevice(cudaDevice));
   checkCudaErrors(cudaMalloc(&gpu_ptr, size * sizeof(float)));
-  checkCudaErrors(cudaMemcpy(gpu_ptr, ptr, size * sizeof(float), cudaMemcpyHostToDevice));
+  checkCudaErrors(
+      cudaMemcpy(gpu_ptr, ptr, size * sizeof(float), cudaMemcpyHostToDevice));
 
   // execute the code
   float result = kernel_vector_sum_reduce0(gpu_ptr, size, maxThreads);
@@ -132,12 +211,14 @@ __global__ void vector_sum(float *input, float *output, unsigned int size) {
   atomicAdd(output, sum);
 }
 
-float vector_sum_atomic(unsigned int size, const float *ptr, int maxThreads, int cudaDevice) {
+float vector_sum_atomic(unsigned int size, const float *ptr, int maxThreads,
+                        int cudaDevice) {
   NVTX_SCOPE("vector_sum_atomic")
   float *input, *output;
   float sum = 0.0f;
   cudaMalloc(&input, size * sizeof(float));
-  checkCudaErrors(cudaMemcpy(input, ptr, size * sizeof(float), cudaMemcpyHostToDevice));
+  checkCudaErrors(
+      cudaMemcpy(input, ptr, size * sizeof(float), cudaMemcpyHostToDevice));
   cudaMalloc(&output, sizeof(float));
   cudaMemcpy(output, &sum, sizeof(float), cudaMemcpyHostToDevice);
   vector_sum<<<size, maxThreads>>>(input, output, size);
