@@ -192,6 +192,7 @@ epkg_dictionary = {
     "Anaconda": "https://www.anaconda.com/",
     "API REST": "https://fr.wikipedia.org/wiki/Representational_state_transfer",
     "AVX": "https://en.wikipedia.org/wiki/Advanced_Vector_Extensions",
+    "BJKST": "https://sdpython.github.io/doc/teachpyx/dev/practice/algo-base/BJKST.html",
     "black": "https://github.com/psf/black",
     "BLAS": "https://www.netlib.org/blas/",
     "blas": "https://www.netlib.org/blas/",
