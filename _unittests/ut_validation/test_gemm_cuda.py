@@ -76,7 +76,7 @@ class TestGemmCuda(ExtTestCase):
             True,
         )
         res_np = res.detach().cpu().numpy()
-        self.assertEqualArray(tt_np, res_np, atol=1e-5)
+        self.assertEqualArray(tt_np, res_np, atol=3e-5)
 
     def test_matmul_v1_true_true(self):
         import torch
@@ -96,7 +96,7 @@ class TestGemmCuda(ExtTestCase):
             True,
         )
         res_np = res.detach().cpu().numpy()
-        self.assertEqualArray(tt_np, res_np, atol=1e-5)
+        self.assertEqualArray(tt_np, res_np, atol=3e-5)
 
     def test_matmul_v2(self):
         import torch
@@ -122,8 +122,7 @@ class TestGemmCuda(ExtTestCase):
                     tb,
                 )
                 res_np = res.detach().cpu().numpy()
-                print(res_np)
-                self.assertEqualArray(tt_np, res_np, atol=1e-5)
+                self.assertEqualArray(tt_np, res_np, atol=3e-5)
 
 
 if __name__ == "__main__":

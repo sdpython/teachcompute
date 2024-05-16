@@ -118,28 +118,31 @@ __global__ void kernel_matmul_v2(int M, int N, int K, int nc1, int nc2,
   __shared__ float tile_A[TILE_ROW][TILE_COL];
   __shared__ float tile_B[TILE_ROW][TILE_COL];
 
-  int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.x + threadIdx.x;
+  int x = blockIdx.x * blockDim.x + threadIdx.x;
+  int y = blockIdx.y * blockDim.y + threadIdx.y;
 
   T Cvalue = 0;
+  T1 t1;
+  T2 t2;
 
   for (int t = 0; t < K; t += TILE_ROW) {
-    auto ind_a = T1().get(row, t + threadIdx.x, nc1);
-    tile_A[threadIdx.y][threadIdx.x] = A[ind_a];
-    auto ind_b = T2().get(t + threadIdx.y, col, nc2);
-    tile_B[threadIdx.y][threadIdx.x] = B[ind_b];
+    auto ind_a = t1.get(x, t + threadIdx.y, nc1);
+    tile_A[threadIdx.x][threadIdx.y] = A[ind_a];
+    auto ind_b = t2.get(t + threadIdx.x, y, nc2);
+    tile_B[threadIdx.x][threadIdx.y] = B[ind_b];
     __syncthreads();
 
     for (int i = 0; i < TILE_ROW; ++i) {
-      Cvalue += tile_A[threadIdx.y][i] * tile_B[i][threadIdx.x];
+      Cvalue += tile_A[threadIdx.x][i] * tile_B[i][threadIdx.y];
     }
     __syncthreads();
   }
 
-  C[row * N + col] += Cvalue;
+  C[x * N + y] += Cvalue;
 }
 
 #define BLOCK_SIZE2 32
+#define BLOCK_SIZE2_1 33
 
 template <typename T>
 int _matmul_v2(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
@@ -155,19 +158,19 @@ int _matmul_v2(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
   dim3 blockDim(BLOCK_SIZE2, BLOCK_SIZE2);
   switch (tt) {
   case TransType::FalseFalse:
-    kernel_matmul_v2<T, Access, Access, BLOCK_SIZE2, BLOCK_SIZE2>
+    kernel_matmul_v2<T, Access, Access, BLOCK_SIZE2, BLOCK_SIZE2_1>
         <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
     break;
   case TransType::TrueFalse:
-    kernel_matmul_v2<T, AccessT, Access, BLOCK_SIZE2, BLOCK_SIZE2>
+    kernel_matmul_v2<T, AccessT, Access, BLOCK_SIZE2, BLOCK_SIZE2_1>
         <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
     break;
   case TransType::FalseTrue:
-    kernel_matmul_v2<T, Access, AccessT, BLOCK_SIZE2, BLOCK_SIZE2>
+    kernel_matmul_v2<T, Access, AccessT, BLOCK_SIZE2, BLOCK_SIZE2_1>
         <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
     break;
   case TransType::TrueTrue:
-    kernel_matmul_v2<T, AccessT, AccessT, BLOCK_SIZE2, BLOCK_SIZE2>
+    kernel_matmul_v2<T, AccessT, AccessT, BLOCK_SIZE2, BLOCK_SIZE2_1>
         <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
     break;
   default:
