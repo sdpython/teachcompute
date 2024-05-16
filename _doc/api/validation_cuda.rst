@@ -52,6 +52,35 @@ cuda_example_py
         print(tpl % name)
         print()
 
+cuda_gemm
++++++++++
+
+.. runpython::
+    :rst:
+
+    from teachcompute import has_cuda
+
+    if not has_cuda():
+        print(
+            "The documentation was not compiled with CUDA enabled "
+            "and cannot expose the CUDA functions."
+        )
+
+    names = [
+        "matmul_c1",
+    ]
+    names.sort()
+
+    prefix = "teachcompute.validation.cuda.cuda_gemm."
+    if has_cuda():
+        fct_template = f".. autofunction:: {prefix}%s"
+    else:
+        fct_template = f"Unable to document function `{prefix}%s`"
+
+    for name in names:
+        print(fct_template % name)
+        print()
+
 cuda_monitor
 ++++++++++++
 
