@@ -50,8 +50,8 @@ Notes
 
 Liens, notebooks prévus pour les séances pratiques.
 
-Séance 1 - 10/04
-^^^^^^^^^^^^^^^^
+Séance Pratique 1 - 10/04
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Séance pratique sur CPU.
 
@@ -108,26 +108,8 @@ Puis :
     export PYTHONPATH=<this folder>
     python _doc/examples/plot_bench_cpu_vector_sum.py
 
-Séance 2 - 12/04
-^^^^^^^^^^^^^^^^
-
-1.
-
-* hardware
-* ordinateur
-* mémoire partagée
-* ordre de grandeur vitesse CPU, communication
-* caches
-
-2.
-
-* algorithmes répartis
-* multithread
-* `race condition <https://en.wikipedia.org/wiki/Race_condition>`_
-* verrou
-
-Séance 3 - 17/04
-^^^^^^^^^^^^^^^^
+Séance Pratique 2 - 17/04
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 CUDA
 
@@ -182,22 +164,54 @@ Les séances pratiques s'appuient sur le package :epkg:`teachcompute`.
 * float32, float16, float8
 * multiple nvidia on the same machine
 
-Séance 4 - 19/04
-^^^^^^^^^^^^^^^^
+Séance Pratique 3 - 03/05
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-... en préparation ...
-
-Séance 5 - 26/04
-^^^^^^^^^^^^^^^^
-
-... en préparation ...
-
-Séance 6 - 03/05
-^^^^^^^^^^^^^^^^
-
-... en préparation ...
-
-deeplearning, llm, torch, cuda, triton...
+Partie I : ML
 
 * :epkg:`Triton`, :epkg:`TVM`, :epkg:`AITemplate`,
-  `treelite <https://treelite.readthedocs.io/en/latest/>`_
+* notion de déploiement de modèle de machine learning,
+  :epkg:`docker`, :epkg:`ONNX`, autres..., que veut dire
+  optimiser son code pour l'apprentissage puis déployer
+  ensuite sur une autre machine.
+
+Partie II : cas concret
+
+Comment paralléliser...
+
+* Un tri ?
+* Le calcul de la médiane ? (:epkg:`BJKST`) Propriétés statistiques ?
+* Pourquoi est-ce si difficile de paralléliser un tri ?
+* `scatter_nd <https://www.tensorflow.org/api_docs/python/tf/scatter_nd>`_,
+  Que faire quand les indices sont dupliqués ?
+* Paralléliser une forêt aléatoire sur CPU, sur GPU ?
+* La recherche de doublons dans une liste de
+  coordonnées géographiques (longitude, latitude) ?
+* `An Efficient Matrix Transpose in CUDA C/C++
+  <https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>`_,
+  notion de Bank Conflicts (voir 
+  `CUDA C++ Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html>`_)
+  `CUDA, Cartes graphiques, Warp... <https://leria-info.univ-angers.fr/~jeanmichel.richer/cuda_crs4.php>`_
+
+Partie III : modifier un package
+
+Copier/coller, recherche, quelques astuces pour insérer son code dans un package.
+
+Séance Théorique 1 - 12/04
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.
+
+* hardware
+* ordinateur
+* mémoire partagée
+* ordre de grandeur vitesse CPU, communication
+* caches
+
+2.
+
+* algorithmes répartis
+* multithread
+* `race condition <https://en.wikipedia.org/wiki/Race_condition>`_
+* verrou
+
