@@ -10,12 +10,21 @@ else:
 
 
 class TestGemmCuda(ExtTestCase):
-    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
-    def test_matmul_v1(self):
+
+    @classmethod
+    def _get_cuda_tensor(cls, *shape, dtype=None):
         import torch
 
-        t1 = torch.rand(32, 64, dtype=torch.float32).to("cuda:0")
-        t2 = torch.rand(64, 128, dtype=torch.float32).to("cuda:0")
+        n = np.prod(shape)
+        val = np.arange(n) / n
+        return torch.Tensor(val.reshape(shape)).to(dtype).to("cuda:0")
+
+    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
+    def test_matmul_v1_false_false(self):
+        import torch
+
+        t1 = self._get_cuda_tensor(32, 64, dtype=torch.float32)
+        t2 = self._get_cuda_tensor(64, 128, dtype=torch.float32)
         tt = t1 @ t2
         tt_np = tt.detach().cpu().numpy()
         self.assertEqual((32, 128), tuple(tt_np.shape))
@@ -25,6 +34,26 @@ class TestGemmCuda(ExtTestCase):
         self.assertEqualArray(expected, res_np)
         matmul_v1_cuda(
             *t1.shape, t1.data_ptr(), *t2.shape, t2.data_ptr(), res.data_ptr()
+        )
+        res_np = res.detach().cpu().numpy()
+        self.assertEqualArray(tt_np, res_np, atol=1e-5)
+
+    def test_matmul_v1_true_false(self):
+        import torch
+
+        t1 = self._get_cuda_tensor(64, 32, dtype=torch.float32)
+        t2 = self._get_cuda_tensor(64, 128, dtype=torch.float32)
+        tt = (t1.T) @ t2
+        tt_np = tt.detach().cpu().numpy()
+        res = torch.zeros(*tt.shape, dtype=t1.dtype).to("cuda:0")
+        matmul_v1_cuda(
+            *t1.shape,
+            t1.data_ptr(),
+            *t2.shape,
+            t2.data_ptr(),
+            res.data_ptr(),
+            True,
+            False,
         )
         res_np = res.detach().cpu().numpy()
         self.assertEqualArray(tt_np, res_np, atol=1e-5)

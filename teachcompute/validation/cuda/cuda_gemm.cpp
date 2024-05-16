@@ -20,8 +20,6 @@ PYBIND11_MODULE(cuda_gemm, m) {
       "matmul_v1_cuda",
       [](int n_rows1, int n_cols1, int64_t A, int n_rows2, int n_cols2,
          int64_t B, int64_t C, bool transA, bool transB) -> int {
-        printf("n_rows1=%d n_cols1=%d n_rows2=%d n_cols2=%d\n", n_rows1,
-               n_cols1, n_rows2, n_cols2);
         return matmul_v1(n_rows1, n_cols1, (const float *)A, n_rows2, n_cols2,
                          (const float *)B, (float *)C, transA, transB);
       },

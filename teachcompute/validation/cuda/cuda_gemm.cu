@@ -27,6 +27,15 @@ __global__ void kernel_matmul_v1(int M, int N, int K, const T *A, const T *B,
       C[x * N + y] += tmp;
     }
   }
+  else if (trans_type == TransType::TrueFalse) {
+    if (x < M && y < N) {
+      T tmp = 0.0;
+      for (int i = 0; i < K; ++i) {
+        tmp += A[x * M + i] * B[i * N + y];
+      }
+      C[x * N + y] += tmp;
+    }
+  }
 }
 
 template <typename T>
@@ -38,11 +47,15 @@ int _matmul_v1(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
     if (transB) {
       tt = TransType::TrueTrue;
     } else {
-      tt = TransType::FalseTrue;
+      tt = TransType::TrueFalse;
+      EXT_ENFORCE(n_rows1 == n_rows2, "Dimensions do not match.");
+      M = n_cols1;
+      N = n_cols2;
+      K = n_rows1;
     }
   } else {
     if (transB) {
-      tt = TransType::TrueFalse;
+      tt = TransType::FalseTrue;
     } else {
       tt = TransType::FalseFalse;
       EXT_ENFORCE(n_cols1 == n_rows2, "Dimensions do not match.");
@@ -58,8 +71,12 @@ int _matmul_v1(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
     kernel_matmul_v1<T, TransType::FalseFalse>
         <<<gridDim, blockDim>>>(M, N, K, A, B, C);
     break;
+  case TransType::TrueFalse:
+    kernel_matmul_v1<T, TransType::TrueFalse>
+        <<<gridDim, blockDim>>>(M, N, K, A, B, C);
+    break;
   default:
-    throw std::runtime_error("Not implemented yet.");
+    EXT_THROW("Not implemented yet for trans*=", (int)tt, ".");
   }
   cudaDeviceSynchronize();
   return K;
