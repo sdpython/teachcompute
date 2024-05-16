@@ -12,7 +12,8 @@ enum TransType { FalseFalse = 0, FalseTrue = 1, TrueFalse = 2, TrueTrue = 3 };
 #define CEIL_DIV(N, DEN) ((N + (DEN - 1)) / DEN)
 
 template <typename T, TransType trans_type>
-__global__ void matmul_v1(int M, int N, int K, T *A, T *B, T *C) {
+__global__ void kernel_matmul_v1(int M, int N, int K, const T *A, const T *B,
+                                 T *C) {
 
   const uint x = blockIdx.x * blockDim.x + threadIdx.x;
   const uint y = blockIdx.y * blockDim.y + threadIdx.y;
@@ -29,8 +30,8 @@ __global__ void matmul_v1(int M, int N, int K, T *A, T *B, T *C) {
 }
 
 template <typename T>
-void _matmul_v1(int n_rows1, int n_cols1, T *A, int n_rows2, int n_cols2, T *B,
-                T *C, bool transA, bool transB) {
+int _matmul_v1(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
+               const T *B, T *C, bool transA, bool transB) {
   int M, N, K;
   TransType tt;
   if (transA) {
@@ -43,6 +44,7 @@ void _matmul_v1(int n_rows1, int n_cols1, T *A, int n_rows2, int n_cols2, T *B,
     if (transB) {
       tt = TransType::TrueFalse;
     } else {
+      tt = TransType::FalseFalse;
       EXT_ENFORCE(n_cols1 == n_rows2, "Dimensions do not match.");
       M = n_rows1;
       N = n_cols2;
@@ -53,17 +55,20 @@ void _matmul_v1(int n_rows1, int n_cols1, T *A, int n_rows2, int n_cols2, T *B,
   dim3 blockDim(BLOCK_SIZE, BLOCK_SIZE, 1);
   switch (tt) {
   case TransType::FalseFalse:
-    matmul_v1<T, TransType::FalseFalse>
+    kernel_matmul_v1<T, TransType::FalseFalse>
         <<<gridDim, blockDim>>>(M, N, K, A, B, C);
     break;
   default:
     throw std::runtime_error("Not implemented yet.");
   }
+  cudaDeviceSynchronize();
+  return K;
 }
 
-void matmul_v1(int n_rows1, int n_cols1, float *A, int n_rows2, int n_cols2,
-               float *B, float *C, bool transA, bool transB) {
-  _matmul_v1(n_rows1, n_cols1, A, n_rows2, n_cols2, B, C, transA, transB);
+int matmul_v1(int n_rows1, int n_cols1, const float *A, int n_rows2,
+              int n_cols2, const float *B, float *C, bool transA, bool transB) {
+  return _matmul_v1(n_rows1, n_cols1, A, n_rows2, n_cols2, B, C, transA,
+                    transB);
 }
 
 } // namespace cuda_example
