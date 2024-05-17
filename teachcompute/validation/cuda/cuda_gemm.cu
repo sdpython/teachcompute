@@ -132,6 +132,7 @@ __global__ void kernel_matmul_v2(int M, int N, int K, int nc1, int nc2,
     tile_B[threadIdx.x][threadIdx.y] = B[ind_b];
     __syncthreads();
 
+#pragma unroll
     for (int i = 0; i < TILE_ROW; ++i) {
       Cvalue += tile_A[threadIdx.x][i] * tile_B[i][threadIdx.y];
     }
