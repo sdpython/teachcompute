@@ -25,7 +25,11 @@ import torch
 has_cuda = torch.cuda.is_available()
 
 try:
-    from teachcompute.validation.cuda.cuda_gemm import matmul_v1_cuda, matmul_v2_cuda
+    from teachcompute.validation.cuda.cuda_gemm import (
+        matmul_v1_cuda,
+        matmul_v2_cuda,
+        matmul_v3_cuda,
+    )
 except ImportError:
     has_cuda = False
 
@@ -66,10 +70,20 @@ def matmul_v2(t1, t2, r, trans_a, trans_b):
     torch.cuda.nvtx.range_pop()
 
 
-fcts = [torch_matmul, matmul_v1, matmul_v2]
+def matmul_v3(t1, t2, r, trans_a, trans_b):
+    torch.cuda.nvtx.range_push(
+        f"matmul_v3, tA={1 if trans_a else 0}, tB={1 if trans_b else 0}"
+    )
+    matmul_v3_cuda(
+        *t1.shape, t1.data_ptr(), *t2.shape, t2.data_ptr(), r.data_ptr(), True, True
+    )
+    torch.cuda.nvtx.range_pop()
+
+
+fcts = [torch_matmul, matmul_v1, matmul_v2, matmul_v3]
 
 obs = []
-dims = [2**9, 2**10]#, 2**11]
+dims = [2**9, 2**10]  # , 2**11]
 if unit_test_going():
     dims = [16, 32, 64]
 for trans_a, trans_b, dim, fct in tqdm(

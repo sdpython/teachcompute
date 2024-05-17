@@ -53,7 +53,7 @@ struct AccessT {
   __inline__ __device__ int get(int i, int j, int nc) { return j * nc + i; }
 };
 
-template <typename T, typename T1, typename T2>
+template <typename T, typename A1, typename A2>
 __global__ void kernel_matmul_v1(int M, int N, int K, int nc1, int nc2,
                                  const T *A, const T *B, T *C) {
 
@@ -63,7 +63,7 @@ __global__ void kernel_matmul_v1(int M, int N, int K, int nc1, int nc2,
   if (x < M && y < N) {
     T tmp = 0.0;
     for (int i = 0; i < K; ++i) {
-      tmp += A[T1().get(x, i, nc1)] * B[T2().get(i, y, nc2)];
+      tmp += A[A1().get(x, i, nc1)] * B[A2().get(i, y, nc2)];
     }
     C[x * N + y] += tmp;
   }
@@ -111,7 +111,8 @@ int matmul_v1(int n_rows1, int n_cols1, const float *A, int n_rows2,
 // TILE
 ///////
 
-template <typename T, typename T1, typename T2, int TILE_ROW, int TILE_COL>
+template <typename T, typename A1, typename A2, const int TILE_ROW,
+          const int TILE_COL>
 __global__ void kernel_matmul_v2(int M, int N, int K, int nc1, int nc2,
                                  const T *A, const T *B, T *C) {
 
@@ -122,13 +123,13 @@ __global__ void kernel_matmul_v2(int M, int N, int K, int nc1, int nc2,
   int y = blockIdx.y * blockDim.y + threadIdx.y;
 
   T Cvalue = 0;
-  T1 t1;
-  T2 t2;
+  A1 a1;
+  A2 a2;
 
   for (int t = 0; t < K; t += TILE_ROW) {
-    auto ind_a = t1.get(x, t + threadIdx.y, nc1);
+    auto ind_a = a1.get(x, t + threadIdx.y, nc1);
     tile_A[threadIdx.x][threadIdx.y] = A[ind_a];
-    auto ind_b = t2.get(t + threadIdx.x, y, nc2);
+    auto ind_b = a2.get(t + threadIdx.x, y, nc2);
     tile_B[threadIdx.x][threadIdx.y] = B[ind_b];
     __syncthreads();
 
@@ -184,6 +185,87 @@ int _matmul_v2(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
 int matmul_v2(int n_rows1, int n_cols1, const float *A, int n_rows2,
               int n_cols2, const float *B, float *C, bool transA, bool transB) {
   return _matmul_v2(n_rows1, n_cols1, A, n_rows2, n_cols2, B, C, transA,
+                    transB);
+}
+
+////////
+// TILE2
+////////
+
+template <typename T, typename A1, typename A2, const int TILE_ROW,
+          const int TILE_COL>
+__global__ void kernel_matmul_v3(int M, int N, int K, int nc1, int nc2,
+                                 const T *A, const T *B, T *C) {
+
+  __shared__ float tile_A[TILE_ROW][TILE_COL];
+  __shared__ float tile_B[TILE_ROW][TILE_COL];
+
+  int x = blockIdx.x * blockDim.x + threadIdx.x;
+  int y = blockIdx.y * blockDim.y + threadIdx.y;
+
+  T Cvalue = 0;
+  A1 a1;
+  A2 a2;
+
+  for (int t = 0; t < K; t += TILE_ROW) {
+    auto ind_a = a1.get(x, t + threadIdx.y, nc1);
+    tile_A[threadIdx.x][threadIdx.y] = A[ind_a];
+    auto ind_b = a2.get(t + threadIdx.x, y, nc2);
+    tile_B[threadIdx.x][threadIdx.y] = B[ind_b];
+    __syncthreads();
+
+#pragma unroll
+    for (int i = 0; i < TILE_ROW; ++i) {
+      Cvalue += tile_A[threadIdx.x][i] * tile_B[i][threadIdx.y];
+    }
+    __syncthreads();
+  }
+
+  C[x * N + y] += Cvalue;
+}
+
+#define BLOCK_SIZE3 16
+#define BLOCK_SIZE3_1 17
+
+template <typename T>
+int _matmul_v3(int n_rows1, int n_cols1, const T *A, int n_rows2, int n_cols2,
+               const T *B, T *C, bool transA, bool transB) {
+  int M, N, K;
+  TransType tt;
+  _set_mnk(n_rows1, n_cols1, n_rows2, n_cols2, transA, transB, M, N, K, tt);
+  EXT_ENFORCE(n_rows1 % BLOCK_SIZE3 == 0 && n_cols1 % BLOCK_SIZE3 == 0 &&
+                  n_rows2 % BLOCK_SIZE3 == 0 && n_cols2 % BLOCK_SIZE3 == 0,
+              "_matmul_v3 only work with dimensions multiple 32.");
+
+  dim3 gridDim(CEIL_DIV(M, BLOCK_SIZE3), CEIL_DIV(N, BLOCK_SIZE3));
+  dim3 blockDim(BLOCK_SIZE3, BLOCK_SIZE3);
+  switch (tt) {
+  case TransType::FalseFalse:
+    kernel_matmul_v3<T, Access, Access, BLOCK_SIZE3, BLOCK_SIZE3_1>
+        <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
+    break;
+  case TransType::TrueFalse:
+    kernel_matmul_v3<T, AccessT, Access, BLOCK_SIZE3, BLOCK_SIZE3_1>
+        <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
+    break;
+  case TransType::FalseTrue:
+    kernel_matmul_v3<T, Access, AccessT, BLOCK_SIZE3, BLOCK_SIZE3_1>
+        <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
+    break;
+  case TransType::TrueTrue:
+    kernel_matmul_v3<T, AccessT, AccessT, BLOCK_SIZE3, BLOCK_SIZE3_1>
+        <<<gridDim, blockDim>>>(M, N, K, n_cols1, n_cols2, A, B, C);
+    break;
+  default:
+    EXT_THROW("Not implemented yet for trans*=", (int)tt, ".");
+  }
+  cudaDeviceSynchronize();
+  return K;
+}
+
+int matmul_v3(int n_rows1, int n_cols1, const float *A, int n_rows2,
+              int n_cols2, const float *B, float *C, bool transA, bool transB) {
+  return _matmul_v3(n_rows1, n_cols1, A, n_rows2, n_cols2, B, C, transA,
                     transB);
 }
 
