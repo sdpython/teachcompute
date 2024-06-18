@@ -7,10 +7,10 @@ See :epkg:`cython`.
 # from libc.stdio cimport printf
 # from libc.math cimport NAN
 
-import numpy
-cimport numpy
+import numpy as np
+# cimport numpy
 cimport cython
-numpy.import_array()
+# numpy.import_array()
 
 
 def dot_product(va, vb):
