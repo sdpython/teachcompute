@@ -4,7 +4,7 @@ clang-format
 cloudpickle
 cmakelang
 coverage
-cython
+cython>=3.0.10
 cython-lint
 cytoolz
 furo
@@ -19,8 +19,8 @@ onnx
 openpyxl
 pandas
 pillow
-protobuf<4
-pybind11
+protobuf
+pybind11>=2.12
 pyspark
 pytest
 pytest-cov
