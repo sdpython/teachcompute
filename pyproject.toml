@@ -36,12 +36,11 @@ Issues = "https://github.com/sdpython/teachcompute/issues"
 
 [project.optional-dependencies]
 dev = [
-    "autopep8",
     "black",
     "clang-format",
     "cmakelang",
     "coverage",
-    "cython",
+    "cython>=3.0.10",
     "cython-lint",
     "flake8",
     "furo",
@@ -69,11 +68,11 @@ dev = [
 requires = [
     "abi3audit; sys_platform == 'linux'",
     "auditwheel-symbols; sys_platform == 'linux'",
-    "Cython",
+    "Cython>=3.0.10",
     "cmake",
-    "numpy",
-    "pybind11",
-    "scipy",
+    "numpy>=2.0",
+    "pybind11>=2.12",
+    "scipy>=1.13.1",
     "setuptools",
     "torch",
     "wheel",
