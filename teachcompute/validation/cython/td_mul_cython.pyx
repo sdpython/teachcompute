@@ -5,8 +5,6 @@ from cython.parallel import prange
 cimport cython
 
 import numpy as pynumpy
-# cimport numpy as cnumpy
-# cnumpy.import_array()
 
 
 def multiply_matrix(m1, m2):

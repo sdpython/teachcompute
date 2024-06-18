@@ -3,12 +3,8 @@ Many implementations of the dot product.
 See `Cython documentation <http://docs.cython.org/en/latest/>`_.
 """
 
-import numpy as np
 from cython.parallel import prange  # , parallel
-# cimport numpy
 cimport cython
-# cimport openmp
-# numpy.import_array()
 
 
 cdef double _ddot_cython_array_omp(const double[::1] va, const double[::1] vb,

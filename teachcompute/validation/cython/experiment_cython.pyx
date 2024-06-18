@@ -3,10 +3,7 @@ Many implementations of the dot product.
 See `Cython documentation <http://docs.cython.org/en/latest/>`_.
 """
 
-import numpy as np
-# cimport numpy
 cimport cython
-# numpy.import_array()
 
 
 def pyfilter_dmax(va, mx):
