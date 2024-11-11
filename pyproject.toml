@@ -69,6 +69,7 @@ dev = [
 requires = [
     "abi3audit; sys_platform == 'linux'",
     "auditwheel-symbols; sys_platform == 'linux'",
+    "build",
     "Cython",
     "cmake",
     "numpy",
