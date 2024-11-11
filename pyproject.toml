@@ -75,7 +75,7 @@ requires = [
     "numpy",
     "pybind11",
     "scipy",
-    "setuptools",
+    "setuptools; python_version < 3.13",
     "torch",
     "wheel",
 ]
