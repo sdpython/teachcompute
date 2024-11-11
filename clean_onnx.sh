@@ -14,7 +14,14 @@ rm *.svg
 rm dump_models -rf
 rm neural_coder_workspace -rf
 
-rm validation/cython/vector_function_cy.cpp
+rm teachcompute/validation/cython/*_cy.cpp
+rm teachcompute/validation/cython/vector_function_cy.cpp
+rm teachcompute/validation/cython/dot_cython.cpp
+rm teachcompute/validation/cython/dot_cython_omp.cpp
+rm teachcompute/validation/cython/experiment_cython.cpp
+rm teachcompute/validation/cython/mul_cython_omp.cpp
+rm teachcompute/validation/cython/td_mul_cython.cpp
+rm teachcompute/validation/cython/dot_blas_lapack.cpp
 
 rm _doc/examples/plot*.onnx
 rm _doc/examples/plot*.txt
