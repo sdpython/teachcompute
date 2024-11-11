@@ -28,7 +28,7 @@ class TestTutorialMul(ExtTestCase):
                 res2 = dmul_cython_omp(va, vb, algo=algo)
                 assert_almost_equal(res1, res2)
 
-    @unittest.skipif_ci_apple("crash")
+    @skipif_ci_apple("crash")
     def test_matrix_mul_algo_para(self):
         va = numpy.random.randn(3, 4).astype(numpy.float64)
         vb = numpy.random.randn(4, 5).astype(numpy.float64)
@@ -65,7 +65,7 @@ class TestTutorialMul(ExtTestCase):
                 res2 = dmul_cython_omp(va, vb, algo=algo, b_trans=1)
                 assert_almost_equal(res1, res2)
 
-    @unittest.skipif_ci_apple("crash")
+    @skipif_ci_apple("crash")
     def test_matrix_mul_algo_para_t(self):
         va = numpy.random.randn(3, 4).astype(numpy.float64)
         vb = numpy.random.randn(5, 4).astype(numpy.float64)
@@ -75,7 +75,7 @@ class TestTutorialMul(ExtTestCase):
                 res2 = dmul_cython_omp(va, vb, algo=algo, parallel=1, b_trans=1)
                 assert_almost_equal(res1, res2)
 
-    @unittest.skipif_ci_apple("crash")
+    @skipif_ci_apple("crash")
     def test_matrix_mul_algo_para_t_big(self):
         va = numpy.random.randn(300, 400).astype(numpy.float64)
         vb = numpy.random.randn(500, 400).astype(numpy.float64)
