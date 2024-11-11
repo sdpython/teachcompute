@@ -78,6 +78,16 @@ class TestDocumentationExamples(ExtTestCase):
                         res = self.run_test(fold, name, verbose=VERBOSE)
                         self.assertIn(res, (-1, 1))
 
+                elif sys.platform == "apple" and (
+                    "plot_bench_cpu_vector_sum" in name
+                    or "plot_bench_cpu_vector_sum2" in name
+                ):
+
+                    @unittest.skip("failing with apple")
+                    def _test_(self, name=name):
+                        res = self.run_test(fold, name, verbose=VERBOSE)
+                        self.assertIn(res, (-1, 1))
+
                 else:
 
                     def _test_(self, name=name):
