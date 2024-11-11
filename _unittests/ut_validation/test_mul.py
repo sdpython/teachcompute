@@ -23,7 +23,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(3, 4).astype(numpy.float64)
         vb = numpy.random.randn(4, 5).astype(numpy.float64)
         res1 = va @ vb
-        for algo in range(0, 3):
+        for algo in range(3):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo)
                 assert_almost_equal(res1, res2)
@@ -32,7 +32,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(3, 4).astype(numpy.float64)
         vb = numpy.random.randn(4, 5).astype(numpy.float64)
         res1 = va @ vb
-        for algo in range(0, 2):
+        for algo in range(2):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo, parallel=1)
                 assert_almost_equal(res1, res2)
@@ -41,7 +41,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(3, 4).astype(numpy.float64)
         vb = numpy.random.randn(5, 4).astype(numpy.float64)
         res1 = va @ vb.T
-        for algo in range(0, 3):
+        for algo in range(3):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo, b_trans=1)
                 assert_almost_equal(res1, res2)
@@ -50,7 +50,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(300, 400).astype(numpy.float64)
         vb = numpy.random.randn(500, 400).astype(numpy.float64)
         res1 = va @ vb.T
-        for algo in range(0, 3):
+        for algo in range(3):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo, b_trans=1)
                 assert_almost_equal(res1, res2)
@@ -59,7 +59,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(30, 41).astype(numpy.float64)
         vb = numpy.random.randn(50, 41).astype(numpy.float64)
         res1 = va @ vb.T
-        for algo in range(0, 3):
+        for algo in range(3):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo, b_trans=1)
                 assert_almost_equal(res1, res2)
@@ -68,7 +68,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(3, 4).astype(numpy.float64)
         vb = numpy.random.randn(5, 4).astype(numpy.float64)
         res1 = va @ vb.T
-        for algo in range(0, 2):
+        for algo in range(2):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo, parallel=1, b_trans=1)
                 assert_almost_equal(res1, res2)
@@ -77,7 +77,7 @@ class TestTutorialMul(ExtTestCase):
         va = numpy.random.randn(300, 400).astype(numpy.float64)
         vb = numpy.random.randn(500, 400).astype(numpy.float64)
         res1 = va @ vb.T
-        for algo in range(0, 2):
+        for algo in range(2):
             with self.subTest(algo=algo):
                 res2 = dmul_cython_omp(va, vb, algo=algo, parallel=1, b_trans=1)
                 assert_almost_equal(res1, res2)

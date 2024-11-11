@@ -28,7 +28,9 @@ for dim in tqdm(dims):
     values = numpy.ones((dim, dim), dtype=numpy.float32).ravel()
     diff = abs(vector_sum(dim, values, True) - dim**2)
 
-    res = measure_time(lambda: vector_sum(dim, values, True), max_time=0.5)
+    res = measure_time(
+        lambda dim=dim, values=values: vector_sum(dim, values, True), max_time=0.5
+    )
 
     obs.append(
         dict(
@@ -41,7 +43,10 @@ for dim in tqdm(dims):
         )
     )
 
-    res = measure_time(lambda: vector_sum_parallel(dim, values, True), max_time=0.5)
+    res = measure_time(
+        lambda dim=dim, values=values: vector_sum_parallel(dim, values, True),
+        max_time=0.5,
+    )
 
     obs.append(
         dict(
@@ -55,7 +60,10 @@ for dim in tqdm(dims):
     )
 
     diff = abs(vector_sum(dim, values, False) - dim**2)
-    res = measure_time(lambda: vector_sum_parallel(dim, values, False), max_time=0.5)
+    res = measure_time(
+        lambda dim=dim, values=values: vector_sum_parallel(dim, values, False),
+        max_time=0.5,
+    )
 
     obs.append(
         dict(

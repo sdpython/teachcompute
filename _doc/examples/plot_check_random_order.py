@@ -45,7 +45,7 @@ def check_orders(values, n=200, bias=0):
     sums = []
     reduced_sums = []
     reduced_dsums = []
-    for i in tqdm(range(n)):
+    for _i in tqdm(range(n)):
         permuted_values = np.random.permutation(values)
         s = np.array(bias, dtype=np.float32)
         sd = np.array(bias, dtype=np.float64)

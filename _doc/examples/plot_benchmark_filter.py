@@ -18,7 +18,8 @@ It compares several implementation to :epkg:`numpy`.
 * :func:`cfilter_dmax4 <teachcompute.validation.cython.experiment_cython.cfilter_dmax4>`
   `cfilter_dmax4 <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L138>`_
-* :func:`cfilter_dmax16 <teachcompute.validation.cython.experiment_cython.cfilter_dmax16>`
+* :func:`cfilter_dmax16
+  <teachcompute.validation.cython.experiment_cython.cfilter_dmax16>`
   `cfilter_dmax16 <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/experiment_cython.pyx#L122>`_
 * :func:`cyfilter_dmax <teachcompute.validation.cython.experiment_cython.cyfilter_dmax>`
@@ -114,7 +115,7 @@ cc[(cc.fct.str.contains("cfilter") | cc.fct.str.contains("numpy"))].pivot(
     index="N", columns="fct", values="average"
 ).plot(logy=True, ax=ax[1, 0])
 ax[0, 0].set_title("Comparison of filter implementations")
-ax[0, 1].set_title("Comparison of filter implementations\n" "without pyfilter_dmax")
+ax[0, 1].set_title("Comparison of filter implementations\nwithout pyfilter_dmax")
 
 #################################
 # The results depends on the machine, its

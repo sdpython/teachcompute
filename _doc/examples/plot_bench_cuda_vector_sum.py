@@ -52,7 +52,9 @@ for dim in tqdm(dims):
             if f == vector_sum_atomic and dim > 2**20:
                 continue
             diff = numpy.abs(wrap_cuda_call(f, values) - (values.sum()))
-            res = measure_time(lambda: wrap_cuda_call(f, values), max_time=0.5)
+            res = measure_time(
+                lambda f=f, values=values: wrap_cuda_call(f, values), max_time=0.5
+            )
 
             obs.append(
                 dict(
@@ -66,7 +68,7 @@ for dim in tqdm(dims):
             )
 
     diff = 0
-    res = measure_time(lambda: values.sum(), max_time=0.5)
+    res = measure_time(lambda values=values: values.sum(), max_time=0.5)
 
     obs.append(
         dict(
