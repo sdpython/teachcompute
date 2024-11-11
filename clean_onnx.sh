@@ -14,6 +14,8 @@ rm *.svg
 rm dump_models -rf
 rm neural_coder_workspace -rf
 
+rm validation/cython/vector_function_cy.cpp
+
 rm _doc/examples/plot*.onnx
 rm _doc/examples/plot*.txt
 rm _doc/examples/ort*.onnx
