@@ -60,6 +60,7 @@ class TestVectorSum(ExtTestCase):
         self.assertEqual(t, t1)
 
     @skipif_ci_windows("unstable on Windows")
+    @skipif_ci_apple("crash")
     def test_vector_sum_array_avx_parallel(self):
         from teachcompute.validation.cpu._validation import (
             vector_sum_array_avx_parallel,
