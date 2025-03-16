@@ -38,7 +38,7 @@ class TestTorchExtensionPiecewiseLinear(ExtTestCase):
         learning_rate = 1e-4
         fct = cls.apply
 
-        for t in range(max_iter):
+        for _t in range(max_iter):
 
             y_pred = fct(x, alpha_neg, alpha_pos)
             loss = (y_pred - y).pow(2).sum()

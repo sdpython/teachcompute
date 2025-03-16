@@ -56,7 +56,7 @@ for dim in tqdm(dims):
 
     if has_cuda:
         diff = numpy.abs(vector_add(values, values, 0) - (values + values)).max()
-        res = measure_time(lambda: cuda_vector_add(values), max_time=0.5)
+        res = measure_time(lambda values=values: cuda_vector_add(values), max_time=0.5)
 
         obs.append(
             dict(
@@ -70,7 +70,9 @@ for dim in tqdm(dims):
         )
 
         diff = numpy.abs(vector_add_stream(values, values, 0) - (values + values)).max()
-        res = measure_time(lambda: cuda_vector_add_stream(values), max_time=0.5)
+        res = measure_time(
+            lambda values=values: cuda_vector_add_stream(values), max_time=0.5
+        )
 
         obs.append(
             dict(

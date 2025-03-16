@@ -52,5 +52,6 @@ teachcompute/validation/cython/dot_cython_omp.cpp
 teachcompute/validation/cython/experiment_cython.cpp
 teachcompute/validation/cython/mul_cython_omp.cpp
 teachcompute/validation/cython/td_mul_cython.cpp
+teachcompute/validation/cython/vector_function_cy.cpp
 demo_mlifetable.tsv.gz
 mortality.txt

@@ -42,7 +42,7 @@ def ids_tensor(shape, vocab_size, rng=None, name=None):
 
 
 def get_llama_model(
-    input_dims=[(2, 1024)],
+    input_dims=[(2, 1024)],  # noqa: B006
     hidden_size=1024,  # 4096,
     num_hidden_layers=1,
     vocab_size=32000,
@@ -101,12 +101,11 @@ print("done.")
 def export(model, args, filename):
     import torch
 
-    with contextlib.redirect_stdout(io.StringIO()):
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            torch.onnx.export(
-                model, args, filename, input_names=["input", "mask"], opset_version=17
-            )
+    with contextlib.redirect_stdout(io.StringIO()), warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        torch.onnx.export(
+            model, args, filename, input_names=["input", "mask"], opset_version=17
+        )
 
 
 filename = "dump_llama.onnx"

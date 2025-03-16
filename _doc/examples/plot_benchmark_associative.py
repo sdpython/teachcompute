@@ -48,11 +48,15 @@ for i in tqdm([50, 100, 125, 150, 175, 200]):
     m2 = numpy.random.rand(i, 10)
     m3 = numpy.random.rand(10, i)
 
-    t1 = measure_time(lambda: (m1 @ m2) @ m3, context={}, number=50, repeat=50)
+    t1 = measure_time(
+        lambda m1=m1, m2=m2, m3=m3: (m1 @ m2) @ m3, context={}, number=50, repeat=50
+    )
     t1["formula"] = "(m1 @ m2) @ m3"
     t1["size"] = i
     obs.append(t1)
-    t2 = measure_time(lambda: m1 @ (m2 @ m3), context={}, number=50, repeat=50)
+    t2 = measure_time(
+        lambda m1=m1, m2=m2, m3=m3: m1 @ (m2 @ m3), context={}, number=50, repeat=50
+    )
     t2["formula"] = "m1 @ (m2 @ m3)"
     t2["size"] = i
     obs.append(t2)
@@ -70,7 +74,7 @@ piv.plot(
     logx=True,
     logy=True,
     ax=ax[0],
-    title=f"{m1.shape!r} @ {m2.shape!r} @ " f"{m3.shape!r}".replace("200", "size"),
+    title=f"{m1.shape!r} @ {m2.shape!r} @ {m3.shape!r}".replace("200", "size"),
 )
 piv["ratio"] = piv["m1 @ (m2 @ m3)"] / piv["(m1 @ m2) @ m3"]
 piv[["ratio"]].plot(ax=ax[1])
