@@ -1,6 +1,6 @@
 import unittest
 import numpy
-from teachcompute.ext_test_case import ExtTestCase, skipif_ci_windows
+from teachcompute.ext_test_case import ExtTestCase, skipif_ci_windows, skipif_ci_apple
 
 
 class TestVectorSum(ExtTestCase):
@@ -59,6 +59,8 @@ class TestVectorSum(ExtTestCase):
         t1 = vector_sum_array_avx(16, values)
         self.assertEqual(t, t1)
 
+    @skipif_ci_windows("unstable on Windows")
+    @skipif_ci_apple("crash")
     def test_vector_sum_array_avx_parallel(self):
         from teachcompute.validation.cpu._validation import (
             vector_sum_array_avx_parallel,

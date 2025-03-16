@@ -137,7 +137,7 @@ def reducer(
             print(list(res))
     """
     if sort:
-        new_gen = map(lambda x: x[1], sorted(map(lambda el: (fctkey(el), el), gen)))
+        new_gen = [x[1] for x in sorted((fctkey(el), el) for el in gen)]
         gr = groupby(new_gen, fctkey)
     else:
         gr = groupby(gen, fctkey)
