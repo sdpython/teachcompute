@@ -32,7 +32,7 @@ can be specified:
 
 ::
 
-    python setup.py build_ext --inplace --cuda-version=11.8
+    python setup.py build_ext --inplace --cuda-version=12.6
 
 .. toctree::
     :maxdepth: 1    
