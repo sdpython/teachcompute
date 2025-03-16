@@ -92,9 +92,15 @@ latex_elements = {
 mathjax3_config = {"chtml": {"displayAlign": "left"}}
 
 intersphinx_mapping = {
+    "experimental_experiment": (
+        "https://sdpython.github.io/doc/experimental-experiment/dev/",
+        None,
+    ),
     "IPython": ("https://ipython.readthedocs.io/en/stable/", None),
     "matplotlib": ("https://matplotlib.org/", None),
     "numpy": ("https://numpy.org/doc/stable", None),
+    "onnx": ("https://onnx.ai/onnx/", None),
+    "onnx_extended": ("https://sdpython.github.io/doc/onnx_extended/dev/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
     "python": (f"https://docs.python.org/{sys.version_info.major}", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
