@@ -28,7 +28,7 @@ pytest-cov
 torch>=2.6
 torchaudio
 torchvision
-transformers>=4.37.2
+transformers>=4.39
 ruff
 sphinx
 sphinx-gallery
