@@ -134,6 +134,13 @@ sphinx_gallery_conf = {
     "gallery_dirs": "auto_examples",
 }
 
+if int(os.environ.get("UNITTEST_GOING", "0")):
+    pass
+elif pv.Version(transformers.__version__) < pv.Version("4.49.999"):
+    sphinx_gallery_conf["ignore_pattern"] = (
+        ".*((plot_plot_export_model_onnx)).*"
+    )
+
 # next
 
 preamble = """

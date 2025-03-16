@@ -25,7 +25,7 @@ pybind11>=2.12
 pyspark
 pytest
 pytest-cov
-torch>=2.2
+torch>=2.6
 torchaudio
 torchvision
 transformers>=4.37.2
