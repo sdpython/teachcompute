@@ -394,7 +394,7 @@ class ExtTestCase(unittest.TestCase):
             raise AssertionError(msg) from e
 
 
-def has_transformers(version: str) -> Callable:
+def has_transformers(version: str) -> bool:
     """Is transformers more recent than version?"""
     import packaging.version as pv
 
