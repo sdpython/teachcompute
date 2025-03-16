@@ -108,10 +108,10 @@ float vector_sum_array_parallel(int nc, const py_array_float &values_array, bool
 }
 
 float vector_sum_array_avx(int nc, const py_array_float &values_array) {
-  #if !(defined(__x86_64__) || defined(_M_X64))
-  #pragma message("_mm256_set1_ps not available on ARM.")
+#if !(defined(__x86_64__) || defined(_M_X64))
+#pragma message("_mm256_set1_ps not available on ARM.")
   return vector_sum_array(nc, values_array, true);
-  #endif
+#else
 
   // https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html
   const float *values = values_array.data(0);
@@ -136,13 +136,14 @@ float vector_sum_array_avx(int nc, const py_array_float &values_array) {
     }
   }
   return total;
+#endif
 }
 
 float vector_sum_array_avx_parallel(int nc, const py_array_float &values_array) {
-  #if !(defined(__x86_64__) || defined(_M_X64))
-  #pragma message("_mm256_set1_ps not available on ARM.")
+#if !(defined(__x86_64__) || defined(_M_X64))
+#pragma message("_mm256_set1_ps not available on ARM.")
   return vector_sum_array_parallel(nc, values_array, true);
-  #endif
+#else
 
   // https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html
   int n_threads = omp_get_max_threads();
@@ -173,6 +174,7 @@ float vector_sum_array_avx_parallel(int nc, const py_array_float &values_array) 
     totals[0] += totals[i];
   }
   return totals[0];
+#endif
 }
 
 py_array_float vector_add(const py_array_float &v1, const py_array_float &v2) {
