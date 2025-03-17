@@ -7,7 +7,7 @@ coverage
 cython>=3.0.10
 cython-lint
 cytoolz
-git+https://github.com/sdpython/experimental-experiment.git; sys_platform != 'apple'
+git+https://github.com/sdpython/experimental-experiment.git; sys_platform != 'darwin'
 furo
 ipython
 joblib
@@ -25,10 +25,10 @@ pybind11>=2.12
 pyspark
 pytest
 pytest-cov
-torch>=2.6; sys_platform != 'apple'
+torch>=2.6; sys_platform != 'darwin'
 torchaudio
 torchvision
-transformers>=4.39; sys_platform != 'apple'
+transformers>=4.49; sys_platform != 'darwin'
 ruff
 sphinx
 sphinx-gallery
