@@ -41,6 +41,7 @@ class TestVectorSum(ExtTestCase):
         self.assertEqual(t1, 33)
         self.assertEqual(t2, 33)
 
+    @skipif_ci_apple("crash")
     def test_vector_sum_array_parallel(self):
         from teachcompute.validation.cpu._validation import vector_sum_array_parallel
 

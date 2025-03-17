@@ -2,3 +2,4 @@ matplotlib
 numpy>=2.0
 pandas
 scipy>=1.13.1
+torch

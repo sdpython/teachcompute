@@ -25,7 +25,6 @@ pybind11>=2.12
 pyspark
 pytest
 pytest-cov
-torch>=2.6; sys_platform != 'darwin'
 torchaudio
 torchvision
 transformers>=4.49; sys_platform != 'darwin'
