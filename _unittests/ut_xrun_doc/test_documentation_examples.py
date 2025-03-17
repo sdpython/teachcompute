@@ -5,7 +5,7 @@ import importlib
 import subprocess
 import time
 from teachcompute import __file__ as teachcompute_file
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, has_transformers
 
 VERBOSE = 0
 ROOT = os.path.realpath(os.path.abspath(os.path.join(teachcompute_file, "..", "..")))
@@ -65,25 +65,36 @@ class TestDocumentationExamples(ExtTestCase):
         this = os.path.abspath(os.path.dirname(__file__))
         fold = os.path.normpath(os.path.join(this, "..", "..", "_doc", "examples"))
         found = os.listdir(fold)
-        for name in found:
+        for name in sorted(found):
             if name.startswith("plot_") and name.endswith(".py"):
                 short_name = os.path.split(os.path.splitext(name)[0])[-1]
+                reason = None
 
                 if sys.platform == "win32" and (
                     "protobuf" in name or "td_note_2021" in name
                 ):
+                    reason = "protobuf and windows not tested"
 
-                    @unittest.skip("notebook with questions or issues with windows")
-                    def _test_(self, name=name):
-                        res = self.run_test(fold, name, verbose=VERBOSE)
-                        self.assertIn(res, (-1, 1))
-
-                elif sys.platform == "apple" and (
-                    "plot_bench_cpu_vector_sum" in name
-                    or "plot_bench_cpu_vector_sum2" in name
+                if (
+                    not reason
+                    and sys.platform == "apple"
+                    and (
+                        "plot_bench_cpu_vector_sum" in name
+                        or "plot_bench_cpu_vector_sum2" in name
+                    )
                 ):
+                    reason = "failing with apple"
 
-                    @unittest.skip("failing with apple")
+                if (
+                    not reason
+                    and "plot_export_model_onnx" in name
+                    and not has_transformers("4.49.999")
+                ):
+                    reason = "skipped as transformers <= 4.50"
+
+                if reason:
+
+                    @unittest.skip(reason)
                     def _test_(self, name=name):
                         res = self.run_test(fold, name, verbose=VERBOSE)
                         self.assertIn(res, (-1, 1))

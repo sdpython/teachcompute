@@ -392,3 +392,18 @@ class ExtTestCase(unittest.TestCase):
             if msg is None:
                 raise e
             raise AssertionError(msg) from e
+
+
+def has_transformers(version: str) -> bool:
+    """Is transformers more recent than version?"""
+    import packaging.version as pv
+
+    try:
+        import transformers
+    except ImportError:
+        return False
+
+    v = pv.Version(".".join(transformers.__version__.split(".")[:2]))
+    if v < pv.Version(version):
+        return False
+    return True

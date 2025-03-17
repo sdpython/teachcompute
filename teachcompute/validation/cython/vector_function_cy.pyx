@@ -1,7 +1,7 @@
-import numpy
-cimport numpy
+import numpy as np
+# cimport numpy
 cimport cython
-numpy.import_array()
+# numpy.import_array()
 
 
 @cython.boundscheck(False)
@@ -65,7 +65,7 @@ def vector_add_c(v1, v2):
 
     # out is declared as a python variable, therefore its destruction
     # is done by the garbage collector.
-    out = numpy.empty(v1.shape, dtype=v1.dtype)
+    out = np.empty(v1.shape, dtype=v1.dtype)
 
     cdef int i, j
     for i in range(0, v1.shape[0]):
