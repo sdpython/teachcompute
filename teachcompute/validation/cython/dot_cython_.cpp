@@ -274,7 +274,7 @@ float vector_sdot_product_pointer16_sse(const float *p1, const float *p2) {
 
 #else
 
-float vector_sdot_product_pointer16_neon(const float *p1, const float *p2) {
+float vector_sdot_product_pointer16_sse(const float *p1, const float *p2) {
   float32x4_t r1 =
       vmovq_n_f32(0.0f); // Initialise le registre accumulateur à zéro
 
