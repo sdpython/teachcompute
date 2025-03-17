@@ -147,7 +147,7 @@ environment = """
 """
 build = "cp*"
 before-build = "brew install llvm libomp"
-skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp10-* cp314-* cp315-*"
+skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp310-* cp314-* cp315-*"
 # environment="LDFLAGS='-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/libomp/lib' CPPFLAGS='-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/opt/libomp/include'"
 
 [tool.cibuildwheel.windows]
