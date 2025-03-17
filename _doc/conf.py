@@ -1,8 +1,6 @@
 # coding: utf-8
 import os
 import sys
-import packaging.version as pv
-import transformers
 from sphinx_runpython.conf_helper import has_dvipng, has_dvisvgm
 from sphinx_runpython.github_link import make_linkcode_resolve
 
@@ -135,10 +133,21 @@ sphinx_gallery_conf = {
     "gallery_dirs": "auto_examples",
 }
 
+skip_torch = False
 if int(os.environ.get("UNITTEST_GOING", "0")):
     pass
-elif pv.Version(transformers.__version__) < pv.Version("4.49.999"):
-    sphinx_gallery_conf["ignore_pattern"] = ".*((plot_plot_export_model_onnx)).*"
+else:
+    import packaging.version as pv
+
+    try:
+        import transformers
+    except ImportError:
+        skip_torch = True
+
+    skip_torch |= pv.Version(transformers.__version__) < pv.Version("4.49.999")
+
+if skip_torch:
+    sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)).*"
 
 # next
 
