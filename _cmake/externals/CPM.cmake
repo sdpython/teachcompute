@@ -481,8 +481,8 @@ function(cpm_override_fetchcontent contentName)
   define_property(
     GLOBAL
     PROPERTY ${propertyName}
-    BRIEF_DOCS "Internal implementation detail of FetchContent_Populate()"
-    FULL_DOCS "Details used by FetchContent_Populate() for ${contentName}"
+    BRIEF_DOCS "Internal implementation detail of FetchContent_MakeAvailable()"
+    FULL_DOCS "Details used by FetchContent_MakeAvailable() for ${contentName}"
   )
   set_property(GLOBAL PROPERTY ${propertyName} "${arg_SOURCE_DIR}")
 
@@ -490,8 +490,8 @@ function(cpm_override_fetchcontent contentName)
   define_property(
     GLOBAL
     PROPERTY ${propertyName}
-    BRIEF_DOCS "Internal implementation detail of FetchContent_Populate()"
-    FULL_DOCS "Details used by FetchContent_Populate() for ${contentName}"
+    BRIEF_DOCS "Internal implementation detail of FetchContent_MakeAvailable()"
+    FULL_DOCS "Details used by FetchContent_MakeAvailable() for ${contentName}"
   )
   set_property(GLOBAL PROPERTY ${propertyName} "${arg_BINARY_DIR}")
 
@@ -499,8 +499,8 @@ function(cpm_override_fetchcontent contentName)
   define_property(
     GLOBAL
     PROPERTY ${propertyName}
-    BRIEF_DOCS "Internal implementation detail of FetchContent_Populate()"
-    FULL_DOCS "Details used by FetchContent_Populate() for ${contentName}"
+    BRIEF_DOCS "Internal implementation detail of FetchContent_MakeAvailable()"
+    FULL_DOCS "Details used by FetchContent_MakeAvailable() for ${contentName}"
   )
   set_property(GLOBAL PROPERTY ${propertyName} TRUE)
 endfunction()
@@ -1002,7 +1002,7 @@ function(cpm_fetch_package PACKAGE populated)
   string(TOLOWER "${PACKAGE}" lower_case_name)
 
   if(NOT ${lower_case_name}_POPULATED)
-    FetchContent_Populate(${PACKAGE})
+    FetchContent_MakeAvailable(${PACKAGE})
     set(${populated}
         TRUE
         PARENT_SCOPE

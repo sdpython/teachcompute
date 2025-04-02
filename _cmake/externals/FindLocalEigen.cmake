@@ -20,7 +20,7 @@ FetchContent_Declare(eigen URL ${LOCAL_EIGEN_URL})
 # including unit tests.
 # FetchContent_makeAvailable(eigen)
 
-FetchContent_Populate(eigen)
+FetchContent_MakeAvailable(eigen)
 
 list(APPEND CMAKE_MODULE_PATH "${eigen_SOURCE_DIR}/cmake")
 # find_package(Eigen3)
