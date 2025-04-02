@@ -18,7 +18,7 @@ FetchContent_Declare(
 
 FetchContent_GetProperties(pybind11)
 if(NOT pybind11_POPULATED)
-  FetchContent_MakeAvailable(pybind11)
+  FetchContent_Populate(pybind11)
   add_subdirectory(${pybind11_SOURCE_DIR} ${pybind11_BINARY_DIR})
 else()
   message(FATAL_ERROR "Pybind11 was not found.")
