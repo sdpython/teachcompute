@@ -8,7 +8,7 @@
 # pybind11
 #
 
-set(pybind11_TAG "v2.10.4")
+set(pybind11_TAG "v2.13.6")
 
 include(FetchContent)
 FetchContent_Declare(
