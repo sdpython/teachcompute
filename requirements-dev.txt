@@ -17,6 +17,7 @@ mypy
 nbsphinx
 numba
 onnx
+onnx-diagnostic
 openpyxl
 pandas
 pillow

@@ -97,9 +97,7 @@ print("done.")
 
 def export(model, args, filename, dynamic_shapes):
     from experimental_experiment.torch_interpreter import to_onnx, ExportOptions
-    from experimental_experiment.torch_interpreter.onnx_export_errors import (
-        bypass_export_some_errors,
-    )
+    from onnx_diagnostic.torch_export_patches import bypass_export_some_errors
 
     with bypass_export_some_errors():
         to_onnx(
