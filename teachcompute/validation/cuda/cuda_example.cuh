@@ -1,3 +1,5 @@
+#pragma once
+
 namespace cuda_example {
 
 unsigned int nextPow2(unsigned int x);
