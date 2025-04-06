@@ -299,7 +299,7 @@ jobs:
       python -c "import sys;print(sys.version_info)"
       python -c "import sys;print(sys.version)"
       python -c "import sys;print(sys.implementation)"
-      python -c "import sys;print(sys.platlibdirs)"
+      python -c "import platform;print(platform.processor())"
     displayName: 'Print'
   - script: brew install libomp
     displayName: 'Install omp'
