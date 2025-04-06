@@ -16,11 +16,8 @@ The model
 =========
 """
 
-import contextlib
-import io
 import os
 import random
-import warnings
 
 
 def ids_tensor(shape, vocab_size, rng=None, name=None):
@@ -98,19 +95,29 @@ print("done.")
 # ======================
 
 
-def export(model, args, filename):
-    import torch
+def export(model, args, filename, dynamic_shapes):
+    from experimental_experiment.torch_interpreter import to_onnx, ExportOptions
+    from onnx_diagnostic.torch_export_patches import bypass_export_some_errors
 
-    with contextlib.redirect_stdout(io.StringIO()), warnings.catch_warnings():
-        warnings.simplefilter("ignore")
-        torch.onnx.export(
-            model, args, filename, input_names=["input", "mask"], opset_version=17
+    with bypass_export_some_errors(patch_transformers=True):
+        to_onnx(
+            model,
+            args,
+            filename=filename,
+            target_opset=18,
+            dynamic_shapes=dynamic_shapes,
+            export_options=ExportOptions(strict=False),
         )
 
 
 filename = "dump_llama.onnx"
-print("conversion to ONNX in file {filename!r}")
-export(model, example_args_collection[0], filename)
+print(f"conversion to ONNX in file {filename!r}")
+export(
+    model,
+    example_args_collection[0],
+    filename,
+    dynamic_shapes=({0: "batch", 1: "seq_length"}, {0: "batch", 1: "seq_length"}),
+)
 print("done.")
 print(f"model size {os.stat(filename).st_size / 2**20} Mb.")
 

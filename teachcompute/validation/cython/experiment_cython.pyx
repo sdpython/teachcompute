@@ -3,10 +3,7 @@ Many implementations of the dot product.
 See `Cython documentation <http://docs.cython.org/en/latest/>`_.
 """
 
-import numpy
-cimport numpy
 cimport cython
-numpy.import_array()
 
 
 def pyfilter_dmax(va, mx):
@@ -52,7 +49,7 @@ def filter_dmax_cython_optim(double[::1] va, double mx):
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef void _cyfilter_dmax(double[::1] va, double mx) nogil:
+cdef void _cyfilter_dmax(double[::1] va, double mx) noexcept nogil:
     """
     Replaces all value superior to *mx* by *mx*.
 
