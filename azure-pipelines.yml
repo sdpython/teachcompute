@@ -56,7 +56,7 @@ jobs:
     vmImage: 'ubuntu-latest'
   strategy:
     matrix:
-      Python311-Linux:
+      Python312-Linux:
         python.version: '3.12'
     maxParallel: 3
 
@@ -127,7 +127,7 @@ jobs:
     vmImage: 'ubuntu-latest'
   strategy:
     matrix:
-      Python311-Linux:
+      Python312-Linux:
         python.version: '3.12'
     maxParallel: 3
 
@@ -276,7 +276,7 @@ jobs:
     vmImage: 'macOS-latest'
   strategy:
     matrix:
-      Python311-Mac:
+      Python312-Mac:
         python.version: '3.12'
     maxParallel: 3
 
@@ -297,6 +297,9 @@ jobs:
   - script: |
       python -c "import sys;print(sys.executable)"
       python -c "import sys;print(sys.version_info)"
+      python -c "import sys;print(sys.version)"
+      python -c "import sys;print(sys.implementation)"
+      python -c "import sys;print(sys.platlibdirs)"
     displayName: 'Print'
   - script: brew install libomp
     displayName: 'Install omp'
