@@ -1,0 +1,113 @@
+.. _l-feuille-de-route-2025-3A:
+
+2025-05-31: Feuille de route 2024-2025 (3A)
+===========================================
+
+* Main Web Site : `https://sdpython.github.io/ <https://sdpython.github.io/>`_
+* Material : `https://sdpython.github.io/doc/teachcompute/dev/ <https://sdpython.github.io/doc/teachcompute/dev/>`_
+
+Plan
+++++
+
+Les cours et séances se déroulent sur 4 séances de 3h au second semeste.
+
+Evaluation
+++++++++++
+
+
+Séance 1 - 9/04: pararalléliser comment?
+++++++++++++++++++++++++++++++++++++++++
+
+**Part 1**
+
+* stratégies de parallélisation (big data, deep learning, calcul matriciel...)
+* coût, calcul, communication
+* CPU vs GPU
+* synchronisation
+
+* parallelization, conflicts
+* thread / process
+* :epkg:`AVX`
+* branching, cache L1, L2, L3
+* C++ syntax
+
+**Part 2**
+
+1. Environnement
+
+* Setup SSP Cloud, présentation d'un package, C++
+* Outils de développement : :epkg:`cmake`, :epkg:`git`, :epkg:`pull request`
+* Python : :epkg:`setup.py`, :epkg:`sphinx`, :epkg:`pybind11`, :epkg:`cython`
+* style : :epkg:`black`, :epkg:`ruff`
+* :epkg:`github` et intégration continue
+* Copy/Pasting is your friend.
+
+2. Examples
+
+* :ref:`l-parallelization-vector-sum`
+* :ref:`l-parallelization-dot-product`
+* :ref:`l-compare-filtering-implementation`
+* :ref:`l-parallelization-processes`
+
+4. Technics
+
+* :epkg:`C++`
+* :epkg:`Python C API`
+* :epkg:`pybind11`, :epkg:`cython`
+* :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`blis`
+
+**Instructions pour démarrer**
+
+* Aller sur la plate-forme `SSPCloud de l'ENSAE <https://datalab.sspcloud.fr/home>`_.
+* Se connecter avec son adresse ENSAE
+* Ouvrir une instance :epkg:`vscode-python`
+
+Il ensuite exécuter les instuctions suivantes en ligne de commande.
+
+:: 
+
+    git clone https://github.com/sdpython/teachcompute.git
+    cd teachcompute
+    python setup.py build_ext --inplace
+
+Si ça ne marche, installer cmake: ``conda install cmake``.
+Puis :
+
+::
+
+    export PYTHONPATH=<this folder>
+    python _doc/examples/plot_bench_cpu_vector_sum.py
+
+
+Séance Pratique 3 - 03/05
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Partie I : ML
+
+* :epkg:`Triton`
+* notion de déploiement de modèle de machine learning,
+  :epkg:`docker`, :epkg:`ONNX`, autres..., que veut dire
+  optimiser son code pour l'apprentissage puis déployer
+  ensuite sur une autre machine.
+
+Partie II : cas concret
+
+Comment paralléliser...
+
+* Un tri ?
+* Le calcul de la médiane ? (:epkg:`BJKST`) Propriétés statistiques ?
+* Pourquoi est-ce si difficile de paralléliser un tri ?
+* `scatter_nd <https://www.tensorflow.org/api_docs/python/tf/scatter_nd>`_,
+  Que faire quand les indices sont dupliqués ?
+* Paralléliser une forêt aléatoire sur CPU, sur GPU ?
+* La recherche de doublons dans une liste de
+  coordonnées géographiques (longitude, latitude) ?
+* `An Efficient Matrix Transpose in CUDA C/C++
+  <https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>`_,
+  notion de Bank Conflicts (voir 
+  `CUDA C++ Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html>`_)
+  `CUDA, Cartes graphiques, Warp... <https://leria-info.univ-angers.fr/~jeanmichel.richer/cuda_crs4.php>`_
+
+Partie III : modifier un package
+
+Copier/coller, recherche, quelques astuces pour insérer son code dans un package.
