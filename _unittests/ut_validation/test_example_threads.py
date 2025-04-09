@@ -6,7 +6,8 @@ class TestExampleThreads(ExtTestCase):
     def test_test_sum_no_mutex(self):
         from teachcompute.validation.cpu._validation import test_sum_no_mutex
 
-        self.assertEqualLess(test_sum_no_mutex(10), 10)
+        self.assertLess(test_sum_no_mutex(10), 11)
+        # self.assertLess(test_sum_no_mutex(1000000), 1000000)
 
 
 if __name__ == "__main__":
