@@ -1,6 +1,5 @@
 import unittest
-import numpy
-from teachcompute.ext_test_case import ExtTestCase, skipif_ci_windows, skipif_ci_apple
+from teachcompute.ext_test_case import ExtTestCase
 
 
 class TestExampleThreads(ExtTestCase):
@@ -8,6 +7,7 @@ class TestExampleThreads(ExtTestCase):
         from teachcompute.validation.cpu._validation import test_sum_no_mutex
 
         self.assertEqualLess(test_sum_no_mutex(10), 10)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
