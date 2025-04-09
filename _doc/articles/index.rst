@@ -7,6 +7,12 @@ Ou *blog*.
 
 
 .. toctree::
+    :caption: 2025
+    :maxdepth: 1
+
+    2025-05-31-route2025
+
+.. toctree::
     :caption: 2024
     :maxdepth: 1
 

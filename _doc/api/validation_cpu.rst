@@ -20,3 +20,8 @@ vector sum
 .. autofunction:: teachcompute.validation.cpu._validation.vector_sum_array_avx
 
 .. autofunction:: teachcompute.validation.cpu._validation.vector_sum_array_avx_parallel
+
+threads
++++++++
+
+.. autofunction:: teachcompute.validation.cpu._validation.test_sum_no_mutex
