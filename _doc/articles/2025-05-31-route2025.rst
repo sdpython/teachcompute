@@ -9,11 +9,14 @@
 Plan
 ++++
 
-Les cours et séances se déroulent sur 4 séances de 3h au second semeste.
+Les cours et séances se déroulent sur 4 séances de 3h au second semestre.
 
 Evaluation
 ++++++++++
 
+Utilisation de vos compétences statistiques pour fabriquer un benchmark
+adaptatif où l'on trouve la meilleure option de parallélisation
+pour un algorithme parallélisé avec moins d'essais qu'une grille.
 
 Séance 1 - 9/04: pararalléliser comment?
 ++++++++++++++++++++++++++++++++++++++++
@@ -21,78 +24,66 @@ Séance 1 - 9/04: pararalléliser comment?
 **Part 1**
 
 * stratégies de parallélisation (big data, deep learning, calcul matriciel...)
-* coût, calcul, communication
+* coût, calcul, communication, caches
 * CPU vs GPU
-* synchronisation
+* conflits, synchronisation, mutex
 
-* parallelization, conflicts
+* L1: 32 Ko, 3/4 Go/s, 1/2 cycles d'horloge, L2: 1Mo, 20 Go/s, 3/5 cycles d'horloge, L3: 8Mo, 40 Go/s, 10/20 cycles d'horloge
 * thread / process
 * :epkg:`AVX`
-* branching, cache L1, L2, L3
-* C++ syntax
+* branching
+* cas du produit vectoriel
+* produit matriciel
 
 **Part 2**
 
 1. Environnement
 
-* Setup SSP Cloud, présentation d'un package, C++
+* C++ syntax
+* Python
+* présentation d'un package, C++
 * Outils de développement : :epkg:`cmake`, :epkg:`git`, :epkg:`pull request`
 * Python : :epkg:`setup.py`, :epkg:`sphinx`, :epkg:`pybind11`, :epkg:`cython`
 * style : :epkg:`black`, :epkg:`ruff`
 * :epkg:`github` et intégration continue
 * Copy/Pasting is your friend.
+* LLMs
+* `VSCode <https://code.visualstudio.com/>`_
 
-2. Examples
+Séance 2 - 16/04: python, pybind11, cython
+++++++++++++++++++++++++++++++++++++++++++
+
+**Part 1**
+
+* :epkg:`scikit-learn`, :epkg:`pytorch`, :epkg:`numpy`...
+* :epkg:`cython`, :epkg:`pybind11`
+* écrire un programme pour plusieurs processeurs
+* CI, intégration continue
+* :epkg:`cmake`
+* :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, xtensor, simd
+
+**Part 2*
 
 * :ref:`l-parallelization-vector-sum`
 * :ref:`l-parallelization-dot-product`
 * :ref:`l-compare-filtering-implementation`
 * :ref:`l-parallelization-processes`
 
-4. Technics
+Séance 3 - 23/04: alorithmes parallélisés
++++++++++++++++++++++++++++++++++++++++++
 
-* :epkg:`C++`
-* :epkg:`Python C API`
-* :epkg:`pybind11`, :epkg:`cython`
-* :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`blis`
+* parallélisation mémoire contrainte ou presque
+* quantization
+* réseau de neurones
+* problème de convergence
+* utilisation de plusieurs processeurs, CPUs, GPUs..., NPU, `intel-npu <https://github.com/intel/intel-npu-acceleration-library>`_
+* qui fait quoi ? data scientist, développeur
+* hacking (attaque), Spectre, Meltdown
+* https://fr.wikipedia.org/wiki/DO-178, PowerPC, RISC
+* `MAIA <https://azure.microsoft.com/en-us/blog/azure-maia-for-the-era-of-ai-from-silicon-to-software-to-systems/>`_
+* `TPU <https://cloud.google.com/tpu>`_
 
-**Instructions pour démarrer**
-
-* Aller sur la plate-forme `SSPCloud de l'ENSAE <https://datalab.sspcloud.fr/home>`_.
-* Se connecter avec son adresse ENSAE
-* Ouvrir une instance :epkg:`vscode-python`
-
-Il ensuite exécuter les instuctions suivantes en ligne de commande.
-
-:: 
-
-    git clone https://github.com/sdpython/teachcompute.git
-    cd teachcompute
-    python setup.py build_ext --inplace
-
-Si ça ne marche, installer cmake: ``conda install cmake``.
-Puis :
-
-::
-
-    export PYTHONPATH=<this folder>
-    python _doc/examples/plot_bench_cpu_vector_sum.py
-
-
-Séance Pratique 3 - 03/05
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Partie I : ML
-
-* :epkg:`Triton`
-* notion de déploiement de modèle de machine learning,
-  :epkg:`docker`, :epkg:`ONNX`, autres..., que veut dire
-  optimiser son code pour l'apprentissage puis déployer
-  ensuite sur une autre machine.
-
-Partie II : cas concret
-
-Comment paralléliser...
+**Sujets connexes**
 
 * Un tri ?
 * Le calcul de la médiane ? (:epkg:`BJKST`) Propriétés statistiques ?
@@ -108,6 +99,97 @@ Comment paralléliser...
   `CUDA C++ Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html>`_)
   `CUDA, Cartes graphiques, Warp... <https://leria-info.univ-angers.fr/~jeanmichel.richer/cuda_crs4.php>`_
 
-Partie III : modifier un package
 
-Copier/coller, recherche, quelques astuces pour insérer son code dans un package.
+Séance 4 - 30/04: fusion d'opérations et projets
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+* réalisation d'un benchmark
+* fusion d'opérations : cas de l'`attention <https://en.wikipedia.org/wiki/Attention_(machine_learning)>`_:
+
+.. math::
+    
+    Attention(Q,K,V)=softmax\left(\frac{QK'}{\sqrt{d_k}}\right)V
+
+avec 
+
+:math:`Q \in \mathbb{R}^{m \times d_q}`, :math:`K \in \mathbb{R}^{m \times d_k}`, :math:`V \in \mathbb{R}^{m \times d_V}`
+et :
+
+.. math::
+  
+    softmax(z_1,...z_n)_i = \frac{e_i}{\sum{i=1}{n} e_i}
+
+Utilisation de vos compétences statistiques pour fabriquer un benchmark
+adaptatif où l'on trouve la meilleure option de parallélisation
+pour un algorithme parallélisé avec moins d'essais qu'une grille.
+
+Installation de ce module
++++++++++++++++++++++++++
+
+Il ensuite exécuter les instuctions suivantes en ligne de commande.
+
+:: 
+
+    git clone https://github.com/sdpython/teachcompute.git
+    cd teachcompute
+    pip install -e . -v --no-build-isolation
+
+Si ça ne marche, installer `cmake <https://cmake.org/>`_.
+Puis :
+
+::
+
+    export PYTHONPATH=<this folder>
+    python _doc/examples/plot_bench_cpu_vector_sum.py
+
+Lectures
+++++++++
+
+Collège de France
+
+* `Une vision mathématique du "Deep Learning"
+  <https://www.college-de-france.fr/site/pierre-louis-lions/seminar-2018-11-09-11h15.htm>`_
+* `Stéphane Mallat, Représentation Parcimonieuse
+  <https://www.college-de-france.fr/site/stephane-mallat/course-2021-01-13-09h30.htm>`_
+* `Algorithmes quantiques : quand la physique quantique défie la thèse de Church-Turing
+  <https://www.college-de-france.fr/site/frederic-magniez/inaugural-lecture-2021-04-01-18h00.htm>`_
+* `Génération de données en IA par transport et débruitage (1)
+  <https://www.college-de-france.fr/fr/agenda/cours/generation-de-donnees-en-ia-par-transport-et-debruitage>`_
+  **pour comprendre ce que sont les LLMs**
+* `Enseigner les maths par des challenges d'IA
+  <https://www.college-de-france.fr/fr/agenda/grand-evenement/reenchanter-les-maths-ecole/enseigner-les-maths-par-des-challenges-ia>`_
+* `Introduction aux réseaux de neurones profonds
+  <https://www.college-de-france.fr/fr/agenda/cours/apprentissage-par-reseaux-de-neurones-profonds/introduction-aux-reseaux-de-neurones-profonds>`_
+
+Points particuliers
++++++++++++++++++++
+
+* `race condition <https://en.wikipedia.org/wiki/Race_condition>`
+* `AVX <https://fr.wikipedia.org/wiki/Advanced_Vector_Extensions>`_
+* `Cache <https://en.wikipedia.org/wiki/CPU_cache>`_
+
+Livres
+++++++
+
+* `Introduction to Algorithms <https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf>`_
+* `Latency Numbers Every Programmer Should Know
+  <https://people.eecs.berkeley.edu/~rcs/research/interactive_latency.html>`_
+* `What Every Computer Scientist Should Know About Floating-Point Arithmetic
+  <https://faculty.tarleton.edu/agapie/documents/cs_343_arch/papers/1991_Goldberg_FloatingPoint.pdf>`_
+* `What Every Programmer Should Know About Memory
+  <https://www.akkadia.org/drepper/cpumemory.pdf>`_
+* `Introduction to High Performance Scientific Computing
+  <https://www.amazon.fr/Introduction-High-Performance-Scientific-Computing/dp/1257992546/ref=sr_1_1?ie=UTF8&qid=1476379218&sr=8-1&keywords=introduction+to+high+performance+scientific+computing+Victor+eijkhout>`_
+
+Autres
+++++++
+
+* `AlphaFold <https://fr.wikipedia.org/wiki/AlphaFold>`_ (Prix Nodel)
+  `Prix Nobel de chimie 2024 : quand l'IA permet de comprendre la structure des protéines
+  <https://www.liberation.fr/sciences/prix-nobel-de-chimie-2024-david-baker-john-jumper-et-demis-hassabis-recompenses-pour-leurs-travaux-sur-les-proteines-20241009_SNIK66VRORBDJOSOJD4AGWHHJE/>`_
+* `A quantum-inspired classical algorithm for recommendation systems <https://arxiv.org/abs/1807.04271>`_
+* `CoqPilot, a plugin for LLM-based generation of proofs <https://arxiv.org/abs/2410.19605>`_
+* `The Fusion of Large Language Models and Formal Methods for Trustworthy AI Agents: A Roadmap <https://arxiv.org/html/2412.06512v1>`_
+* `GraphCast: AI model for faster and more accurate global weather forecasting
+  <https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/>`_
+
