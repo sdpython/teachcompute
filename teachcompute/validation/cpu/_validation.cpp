@@ -2,6 +2,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
+#include "example_threads.h"
 #include "vector_sum.h"
 
 namespace py = pybind11;
@@ -16,7 +17,8 @@ PYBIND11_MODULE(_validation, m) {
 #endif
       ;
 
-  m.def("vector_sum", &vector_sum, py::arg("n_columns"), py::arg("values"), py::arg("by_rows"),
+  m.def("vector_sum", &vector_sum, py::arg("n_columns"), py::arg("values"),
+        py::arg("by_rows"),
         R"pbdoc(Computes the sum of all elements in an array
 by rows or by columns. This function is slower than
 :func:`vector_sum_array <teachcompute.validation.cpu._validation.vector_sum_array>`
@@ -31,8 +33,8 @@ This copy (and allocation) is bigger than the compution itself.
 See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
-  m.def("vector_sum_array", &vector_sum_array, py::arg("n_columns"), py::arg("values"),
-        py::arg("by_rows"),
+  m.def("vector_sum_array", &vector_sum_array, py::arg("n_columns"),
+        py::arg("values"), py::arg("by_rows"),
         R"pbdoc(Computes the sum of all elements in an array
 by rows or by columns.
 
@@ -44,8 +46,8 @@ by rows or by columns.
 See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
-  m.def("vector_sum_array_parallel", &vector_sum_array_parallel, py::arg("n_columns"),
-        py::arg("values"), py::arg("by_rows"),
+  m.def("vector_sum_array_parallel", &vector_sum_array_parallel,
+        py::arg("n_columns"), py::arg("values"), py::arg("by_rows"),
         R"pbdoc(Computes the sum of all elements in an array
 by rows or by columns. The computation is parallelized.
 
@@ -57,7 +59,8 @@ by rows or by columns. The computation is parallelized.
 See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
-  m.def("vector_sum_array_avx", &vector_sum_array_avx, py::arg("n_columns"), py::arg("values"),
+  m.def("vector_sum_array_avx", &vector_sum_array_avx, py::arg("n_columns"),
+        py::arg("values"),
         R"pbdoc(Computes the sum of all elements in an array
 by rows or by columns. The computation uses AVX instructions
 (see `AVX API
@@ -70,8 +73,8 @@ by rows or by columns. The computation uses AVX instructions
 See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
-  m.def("vector_sum_array_avx_parallel", &vector_sum_array_avx_parallel, py::arg("n_columns"),
-        py::arg("values"),
+  m.def("vector_sum_array_avx_parallel", &vector_sum_array_avx_parallel,
+        py::arg("n_columns"), py::arg("values"),
         R"pbdoc(Computes the sum of all elements in an array
 by rows or by columns. The computation uses AVX instructions
 and parallelization (see `AVX API
@@ -86,7 +89,7 @@ See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcom
 
   m.def("vector_add", &vector_add, py::arg("v1"), py::arg("v2"),
         R"pbdoc(Computes the addition of 2 vectors of any dimensions.
-It assumes both vectors have the same dimensions (no broadcast).).
+It assumes both vectors have the same dimensions (no broadcast).
 
 :param v1: first vector
 :param v2: second vector
@@ -95,4 +98,12 @@ It assumes both vectors have the same dimensions (no broadcast).).
 See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/vector_sum.cpp>`_.
 )pbdoc");
 
+  m.def("test_sum_no_mutex", &test_sum_no_mutex, py::arg("N"),
+        R"pbdoc(Computes a parallelized sum with no mutex.
+
+:param N: number of 1 to sum
+:return: result
+
+See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/example_threads.cpp>`_.
+)pbdoc");
 }
