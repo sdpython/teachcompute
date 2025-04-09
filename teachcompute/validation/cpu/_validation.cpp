@@ -8,42 +8,39 @@ namespace py = pybind11;
 using namespace validation;
 
 void thread_sum(const std::vector<double> &values, int start, int end,
-      double &result) {
-for (auto i = start; i < end; ++i) {
-result += values[i];
-}
+                double &result) {
+  for (auto i = start; i < end; ++i) {
+    result += values[i];
+  }
 }
 
 double sum_no_mutex(const std::vector<double> &values) {
-int N = values.size();
+  int N = values.size();
 
-const int num_threads = 4;
-int chunk_size = N / num_threads;
+  const int num_threads = 4;
+  int chunk_size = N / num_threads;
 
-std::vector<std::thread> threads(num_threads);
+  std::vector<std::thread> threads(num_threads);
 
-double somme = 0;
-for (int i = 0; i < num_threads; ++i) {
-int start = i * chunk_size;
-int end = (i == num_threads - 1)
-       ? N
-       : (i + 1) * chunk_size;
-threads[i] = std::thread(thread_sum, std::cref(values), start, end,
-                  std::ref(somme));
-}
+  double somme = 0;
+  for (int i = 0; i < num_threads; ++i) {
+    int start = i * chunk_size;
+    int end = (i == num_threads - 1) ? N : (i + 1) * chunk_size;
+    threads[i] =
+        std::thread(thread_sum, std::cref(values), start, end, std::ref(somme));
+  }
 
-for (int i = 0; i < num_threads; ++i) {
-threads[i].join();
-}
+  for (int i = 0; i < num_threads; ++i) {
+    threads[i].join();
+  }
 
-return somme;
+  return somme;
 }
 
 double test_sum_no_mutex(int N) {
-std::vector<double> values(N, 1);
-return sum_no_mutex(values);
+  std::vector<double> values(N, 1);
+  return sum_no_mutex(values);
 }
-
 
 PYBIND11_MODULE(_validation, m) {
   m.doc() =
@@ -140,7 +137,5 @@ See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcom
 
 :param N: number of 1 to sum
 :return: result
-
-See `vector_sum.cpp <https://github.com/sdpython/teachcompute/blob/main/teachcompute/validation/cpu/example_threads.cpp>`_.
 )pbdoc");
 }

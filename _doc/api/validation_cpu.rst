@@ -24,4 +24,4 @@ vector sum
 threads
 +++++++
 
-.. autofunction:: teachcompute.validation.cpu._validation.sum_no_mutex
+.. autofunction:: teachcompute.validation.cpu._validation.test_sum_no_mutex
