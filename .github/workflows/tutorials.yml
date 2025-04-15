@@ -66,6 +66,13 @@ jobs:
           python -c "import dotcy;import numpy as np;print(dotcy.add_scaled(np.array([3.5]), np.array([4.5])))"
           cd ../..
 
+      - name: pybind11
+        run: |
+          cd _tutoriels/cython4
+          python setup.py build_ext --inplace
+          python -c "import dot11;import numpy as np;print(dot11.add_scaled(np.array([3.5]), np.array([4.5])))"
+          cd ../..
+
       - name: numba
         run: |
           cd _tutoriels/numba1
