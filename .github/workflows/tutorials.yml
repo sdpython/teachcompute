@@ -77,6 +77,5 @@ jobs:
         run: |
           cd _tutoriels/numba1
           python -m pip install numba --upgrade
-          python setup.py build_ext --inplace
           python dotnumba.py
           cd ../..
