@@ -63,7 +63,7 @@ Séance 2 - 16/04: python, pybind11, cython
 * :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, xtensor, simd
 * `OpenMP <https://www.openmp.org/wp-content/uploads/OpenMP3.1-CCard.pdf>`_
 
-**Part 2*
+**Part 2**
 
 * :ref:`l-parallelization-vector-sum`
 * :ref:`l-parallelization-dot-product`
