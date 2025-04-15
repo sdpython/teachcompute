@@ -1,11 +1,11 @@
 # cython: boundscheck=False, wraparound=False, nonecheck=False
 import numpy as np
 cimport numpy as np
-from cython cimport boundscheck, wraparound, nonecheck
-from libc.stdlib cimport malloc, free
-from cython.parallel cimport parallel, prange
+from cython cimport boundscheck, wraparound
+from cython.parallel cimport prange
 
 ctypedef np.float64_t DTYPE_t
+
 
 @boundscheck(False)
 @wraparound(False)

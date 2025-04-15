@@ -5,6 +5,7 @@ from cython cimport boundscheck, wraparound
 
 ctypedef np.float64_t DTYPE_t
 
+
 @boundscheck(False)
 @wraparound(False)
 def add_scaled(np.ndarray[DTYPE_t, ndim=1] a not None,
