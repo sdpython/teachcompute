@@ -44,6 +44,8 @@ _doc/practice/spark/target*
 _doc/c_data/*.csv
 _tutoriels/*/build/*
 _tutoriels/cython2/primes.cpp
+_tutoriels/cython3/*.cpp
+_tutoriels/cython4/*.cpp
 _unittests/test_constants.h
 _unittests/ut_datasets/*.gz
 _unittests/ut_datasets/*.db3

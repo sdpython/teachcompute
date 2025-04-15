@@ -1,5 +1,4 @@
 from libcpp.vector cimport vector
-cimport cython
 
 cdef extern from "c_primes.h":
     vector[int] c_primes(int n)

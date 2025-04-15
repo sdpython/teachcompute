@@ -1,7 +1,9 @@
 # cython: boundscheck=False, wraparound=False, nonecheck=False
 import numpy as np
 cimport numpy as np
-from cython cimport boundscheck, wraparound
+from cython cimport boundscheck, wraparound, nonecheck
+from libc.stdlib cimport malloc, free
+from cython.parallel cimport parallel, prange
 
 ctypedef np.float64_t DTYPE_t
 
@@ -18,7 +20,7 @@ def add_scaled(np.ndarray[DTYPE_t, ndim=1] a not None,
 
     cdef int i
     with nogil:
-        for i in range(n):
+        for i in prange(n):
             out[i] = a_view[i] + 2.0 * b_view[i]
 
     return np.asarray(out)
