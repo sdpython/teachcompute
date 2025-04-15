@@ -284,7 +284,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '$(python.version)'
-      architecture: 'amd64'
+      architecture: 'arm64'
 
   # use anaconda
   # - bash: echo "##vso[task.prependpath]$CONDA/bin"

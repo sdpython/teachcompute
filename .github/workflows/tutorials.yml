@@ -44,3 +44,10 @@ jobs:
           python setup.py build_ext --inplace
           python -c "import primes;print(primes.primes(5))"
           cd ../..
+
+      - name: cython 2
+        run: |
+          cd _tutoriels/cython2
+          python setup.py build_ext --inplace
+          python -c "import primes;print(primes.primes(5))"
+          cd ../..
