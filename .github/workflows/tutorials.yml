@@ -68,7 +68,7 @@ jobs:
 
       - name: pybind11
         run: |
-          cd _tutoriels/cython4
+          cd _tutoriels/pybind11
           python setup.py build_ext --inplace
           python -c "import dot11;import numpy as np;print(dot11.add_scaled(np.array([3.5]), np.array([4.5])))"
           cd ../..
