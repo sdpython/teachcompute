@@ -55,13 +55,9 @@ Séance 2 - 16/04: python, pybind11, cython
 
 **Part 1**
 
-* :epkg:`scikit-learn`, :epkg:`pytorch`, :epkg:`numpy`...
-* :epkg:`cython`, :epkg:`pybind11`
-* écrire un programme pour plusieurs processeurs
-* CI, intégration continue
-* :epkg:`cmake`
-* :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, xtensor, simd
-* `OpenMP <https://www.openmp.org/wp-content/uploads/OpenMP3.1-CCard.pdf>`_
+* introduction à :epkg:`cython`, :epkg:`numba`, :epkg:`pybind11`
+* voir `_tutoriels <https://github.com/sdpython/teachcompute/tree/main/_tutoriels>`_
+  et `tutorials.yml <https://github.com/sdpython/teachcompute/blob/main/.github/workflows/tutorials.yml>`_
 
 **Part 2**
 
@@ -69,6 +65,14 @@ Séance 2 - 16/04: python, pybind11, cython
 * :ref:`l-parallelization-dot-product`
 * :ref:`l-compare-filtering-implementation`
 * :ref:`l-parallelization-processes`
+
+et...
+
+* écrire un programme pour plusieurs processeurs
+* CI, intégration continue
+* :epkg:`cmake`
+* :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`xtensor`, :epkg:`simd`
+* `OpenMP <https://www.openmp.org/wp-content/uploads/OpenMP3.1-CCard.pdf>`_
 
 Séance 3 - 23/04: alorithmes parallélisés
 +++++++++++++++++++++++++++++++++++++++++

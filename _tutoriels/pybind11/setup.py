@@ -1,13 +1,10 @@
-from setuptools import setup, Extension
-import sys
-import os
-import pybind11
+from setuptools import setup
 
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 
 # Compiler flags for OpenMP
-extra_compile_args = ['-O3', '-fopenmp']
-extra_link_args = ['-fopenmp']
+extra_compile_args = ["-O3", "-fopenmp"]
+extra_link_args = ["-fopenmp"]
 
 ext_modules = [
     Pybind11Extension(
