@@ -1,0 +1,9 @@
+2024-06-01: GEMM
+================
+
+Articles:
+
+* `How to Optimize a CUDA Matmul Kernel for cuBLAS-like Performance: a Worklog <https://siboehm.com/articles/22/CUDA-MMM>`_
+* `NVIDIA_SGEMM_PRACTICE <https://github.com/wangzyon/NVIDIA_SGEMM_PRACTICE/blob/master/>`_
+* `CUTLASS: Fast Linear Algebra in CUDA C++ <https://developer.nvidia.com/blog/cutlass-linear-algebra-cuda/>`_
+* `Understanding Latency Hiding on GPUs <https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-143.pdf>`_
