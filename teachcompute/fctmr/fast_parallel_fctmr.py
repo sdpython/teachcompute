@@ -50,13 +50,13 @@ def fast_parallel_mapper(
     :param chunk_size: chunk size
     :param parallel: see
         `parallel
-        <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#parallel>`_
+        <https://numba.readthedocs.io/en/stable/user/jit.html?highlight=nopython#parallel>`_
     :param nopython: see
         `nopython
-        <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#nopython>`_
+        <https://numba.readthedocs.io/en/stable/user/jit.html?highlight=nopython#nopython>`_
     :param nogil: see
         `nogil
-        <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#nogil>`_
+        <https://numba.readthedocs.io/en/stable/user/jit.html?highlight=nopython#nogil>`_
     :param sigin: signature of input type
     :param sigout: signature of output type
     :return: generator

@@ -12,6 +12,7 @@ set_property(TARGET lib_validation_cpp PROPERTY POSITION_INDEPENDENT_CODE ON)
 local_pybind11_add_module(
   _validation OpenMP::OpenMP_CXX
   ../teachcompute/validation/cpu/_validation.cpp
+  ../teachcompute/validation/cpu/thread_sum.cpp
   ../teachcompute/validation/cpu/vector_sum.cpp)
 message(STATUS "    LINK _validation <- lib_validation_cpp")
 target_include_directories(_validation PRIVATE "${ROOT_INCLUDE_PATH}")

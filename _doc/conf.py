@@ -309,6 +309,7 @@ epkg_dictionary = {
     "Visual Studio Code": "https://code.visualstudio.com/",
     "viz.js": "https://github.com/mdaines/viz-js",
     "vscode-python": "https://code.visualstudio.com/docs/languages/python",
+    "xtensor": "https://xtensor.readthedocs.io/en/latest/",
     "X-tree": "https://en.wikipedia.org/wiki/X-tree",
     "XML": "https://fr.wikipedia.org/wiki/Extensible_Markup_Language",
     "wikipedia dumps": "https://dumps.wikimedia.org/frwiki/latest/",
