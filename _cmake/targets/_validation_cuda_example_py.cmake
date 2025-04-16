@@ -10,7 +10,8 @@ if(CUDA_AVAILABLE)
     ../teachcompute/validation/cuda/cuda_example_py.cpp
     ../teachcompute/validation/cuda/cuda_tensor.cu
     ../teachcompute/validation/cuda/cuda_example.cu
-    ../teachcompute/validation/cuda/cuda_example_reduce.cu)
+    ../teachcompute/validation/cuda/cuda_example_reduce.cu
+    ../teachcompute/validation/cuda/cuda_experiment.cu)
 
   target_include_directories(cuda_example_py PRIVATE ${ROOT_INCLUDE_PATH})
   target_link_libraries(cuda_example_py PRIVATE common)
