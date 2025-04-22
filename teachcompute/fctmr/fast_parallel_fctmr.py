@@ -12,7 +12,6 @@ generic.
 
 from typing import Callable, Iterable, Optional
 import numpy
-from numba import jit, njit, prange
 
 
 def create_array_numba(nb: int, sig: str) -> numpy.ndarray:
@@ -70,6 +69,8 @@ def fast_parallel_mapper(
     `test_parallel_fctmr.py
     <https://github.com/sdpython/teachcompute/blob/main/_unittests/ut_fctmr/test_fast_parallel_fctmr.py>`_.
     """
+    from numba import jit, njit, prange
+
     if sigin is not None and sigout is not None:
         sig1 = "{0}({1})".format(sigout, sigin)
         sig2 = "void(i8, {0}[:], {1}[:])".format(sigin, sigout)
