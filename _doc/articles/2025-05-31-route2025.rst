@@ -65,6 +65,8 @@ Séance 3 - 23/04: alorithmes parallélisés
 
 Ecriture d'un benchmark.
 
+Comparaison d'une multiplication de matrice sparse et dense.
+
 Lecture de benchmark.
 
 * :ref:`l-parallelization-vector-sum`
