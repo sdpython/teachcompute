@@ -79,6 +79,7 @@ Lecture de benchmark.
 
 **Partie 2**
 
+* `Algorithme de Strassen <https://fr.wikipedia.org/wiki/Algorithme_de_Strassen>`_
 * `HOGWILD !: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent
   <https://papers.nips.cc/paper_files/paper/2011/file/218a0aefd1d1a4be65601cc6ddc1520e-Paper.pdf>`_
 * problème de convergence
