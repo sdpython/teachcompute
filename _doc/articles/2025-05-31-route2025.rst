@@ -65,7 +65,10 @@ Séance 3 - 23/04: alorithmes parallélisés
 
 Ecriture d'un benchmark.
 
-Comparaison d'une multiplication de matrice sparse et dense.
+Comparaison d'une multiplication de matrice sparse et dense,
+évolution en fonction du nombre des dimensions, du taux de "sparsité".
+
+Profiling
 
 Lecture de benchmark.
 
@@ -76,6 +79,9 @@ Lecture de benchmark.
 * écrire un programme pour plusieurs processeurs
 * CI, intégration continue
 * :epkg:`cmake`
+
+**Pour aller plus loin**
+
 * :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`xtensor`, :epkg:`simd`
 * `OpenMP <https://www.openmp.org/wp-content/uploads/OpenMP3.1-CCard.pdf>`_
 
@@ -96,7 +102,6 @@ Lecture de benchmark.
 Séance 4 - 30/04: fusion d'opérations et projets
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-* réalisation d'un benchmark
 * fusion d'opérations : cas de l'`attention <https://en.wikipedia.org/wiki/Attention_(machine_learning)>`_:
 
 .. math::
