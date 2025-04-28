@@ -68,6 +68,11 @@ Ecriture d'un benchmark.
 Comparaison d'une multiplication de matrice sparse et dense,
 évolution en fonction du nombre des dimensions, du taux de "sparsité".
 
+Vaut-il mieux calculer *(XA, XB)* séparément ou *X(A,B)* où
+*(A,B)* désigne une matrice où A et B sont concaténées selon les colonnes.
+
+*AB* est-il plus ou moins rapide que *AB'* si les matrices sont carrées ?
+
 Profiling
 
 Lecture de benchmark.
