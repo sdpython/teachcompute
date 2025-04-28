@@ -79,3 +79,11 @@ jobs:
           python -m pip install numba --upgrade
           python dotnumba.py
           cd ../..
+
+      - name: cython mat
+        run: |
+          cd _tutoriels/cython_mat
+          python setup.py build_ext --inplace
+          # python -c "import primes;print(primes.primes(5))"
+          cd ../..
+
