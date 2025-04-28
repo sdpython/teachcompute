@@ -9,16 +9,12 @@ using namespace std;
 typedef vector<double> Matrix;
 
 // Accès à un élément (i, j)
-template <tynename DTYPE> inline DTYPE &at(DTYPE *p, int cols, int i, int j) {
-  return mat[i * cols + j];
-}
-
-inline const double &at(const Matrix &mat, int cols, int i, int j) {
-  return mat[i * cols + j];
+template <typename DTYPE> inline DTYPE &at(DTYPE *p, int cols, int i, int j) {
+  return p[i * cols + j];
 }
 
 // Multiplication de matrices plates par blocs
-template <tynename DTYPE>
+template <typename DTYPE>
 void BlockMatrixMultiply(const DTYPE *A, const DTYPE *B, DTYPE *C, int n, int m,
                          int p, int block_size) {
 #pragma omp parallel for collapse(2) schedule(dynamic)

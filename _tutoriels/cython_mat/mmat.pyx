@@ -1,23 +1,22 @@
 import numpy as np
 cimport numpy as np
-from cython cimport boundscheck, wraparound
-from libcpp.vector cimport vector
+
 
 cdef extern from "mmat_impl.h":
     void mmat_impl_cpp(int n_row, int n_col, int k, const float* p1, const float* p2, float* res, int block_size);
-    # void mmat_impl_cpp(int n_row, int n_col, int k, const double* p1, const double* p2, fdoubleloat* res, int block_size);
+    void mmat_impl_cpp(int n_row, int n_col, int k, const double* p1, const double* p2, double* res, int block_size);
 
 
 cdef mmat_c_float(const float[:, ::1] a, const float [:, ::1] b, float [:, ::1] res, int block_size):
-    mmat_impl_cpp(a.shape[0], b.shape[1], a.shape[0], &a[0, 0], &b[0, 0], &res[0, 0], block_size);
+    mmat_impl_cpp(a.shape[0], b.shape[1], a.shape[0], &a[0, 0], &b[0, 0], &res[0, 0], block_size)
 
 
 cdef mmat_c_double(const double[:, ::1] a, const double[:, ::1] b, double[:, ::1] res, int block_size):
-    mmat_impl_cpp(a.shape[0], b.shape[1], a.shape[0], &a[0, 0], &b[0, 0], &res[0, 0], block_size);
+    mmat_impl_cpp(a.shape[0], b.shape[1], a.shape[0], &a[0, 0], &b[0, 0], &res[0, 0], block_size)
 
 
 def _mmat(np.ndarray a, np.ndarray b, block_size=16):
-    res = np.empty((a.shape[0], b.shape[1]), dtype=a.dtype)
+    res = np.zeros((a.shape[0], b.shape[1]), dtype=a.dtype)
 
     if a.dtype == np.float32:
         mmat_c_float(a, b, res, block_size);
@@ -33,7 +32,7 @@ def mmat(a, b, block_size=16):
     assert len(a.shape) == 2 == len(b.shape), f"Only applies on matrices but a.shape={a.shape}, b.shape={b.shape}"
     assert a.shape[1] == b.shape[0], f"Shape mismatch: a.shape={a.shape}, b.shape={b.shape}"
     assert a.dtype == b.dtype, f"Type mismatch a.dtype={a.dtype}, b.dtype={b.dtype}"
-    assert a.flags["C_CONTIGUOUS"], f"Matrix a must be contiguous"
-    assert b.flags["C_CONTIGUOUS"], f"Matrix b must be contiguous"
+    assert a.flags["C_CONTIGUOUS"], "Matrix a must be contiguous"
+    assert b.flags["C_CONTIGUOUS"], "Matrix b must be contiguous"
 
     return _mmat(a, b, block_size)
