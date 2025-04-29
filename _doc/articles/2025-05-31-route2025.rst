@@ -107,6 +107,8 @@ Lecture de benchmark.
 Séance 4 - 30/04: fusion d'opérations et projets
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
+* Benchmark à partir de `cython_mat <https://github.com/sdpython/teachcompute/tree/main/_tutoriels/cython_mat>`_
+* Profiling
 * fusion d'opérations : cas de l'`attention <https://en.wikipedia.org/wiki/Attention_(machine_learning)>`_:
 
 .. math::
@@ -120,7 +122,7 @@ et :
 
 .. math::
   
-    softmax(z_1,...z_n)_i = \frac{e_i}{\sum{i=1}{n} e_i}
+    softmax(z_1,...z_n)_i = \frac{e_i}{\sum_{i=1}^{n} e_i}
 
 Utilisation de vos compétences statistiques pour fabriquer un benchmark
 adaptatif où l'on trouve la meilleure option de parallélisation
@@ -146,8 +148,6 @@ Sujets connexes
   notion de Bank Conflicts (voir 
   `CUDA C++ Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html>`_)
   `CUDA, Cartes graphiques, Warp... <https://leria-info.univ-angers.fr/~jeanmichel.richer/cuda_crs4.php>`_
-
-
 
 Installation de ce module
 +++++++++++++++++++++++++
