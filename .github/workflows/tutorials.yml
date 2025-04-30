@@ -79,3 +79,11 @@ jobs:
           python -m pip install numba --upgrade
           python dotnumba.py
           cd ../..
+
+      - name: cython mat
+        run: |
+          cd _tutoriels/cython_mat
+          python setup.py build_ext --inplace
+          PYTHONPATH=. python test_mmat.py
+          cd ../..
+

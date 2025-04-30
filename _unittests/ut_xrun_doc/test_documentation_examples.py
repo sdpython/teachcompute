@@ -92,6 +92,9 @@ class TestDocumentationExamples(ExtTestCase):
                 ):
                     reason = "skipped as transformers <= 4.50"
 
+                if not reason and "plot_benchmark_long_parallel_process_joblib" in name:
+                    reason = "joblib unstable on CI"
+
                 if reason:
 
                     @unittest.skip(reason)

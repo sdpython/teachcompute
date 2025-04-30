@@ -289,6 +289,7 @@ epkg_dictionary = {
     "scikit-learn": "https://scikit-learn.org",
     "sérialisation": "https://fr.wikipedia.org/wiki/S%C3%A9rialisation",
     "setup.py": "https://docs.python.org/fr/3.11/distutils/setupscript.html",
+    "simd": "https://en.wikipedia.org/wiki/Single_instruction,_multiple_data",
     "spark": "https://spark.apache.org/",
     "Spark": "https://spark.apache.org/",
     "sphinx": "https://www.sphinx-doc.org/en/master/",

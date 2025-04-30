@@ -53,62 +53,62 @@ Séance 1 - 9/04: pararalléliser comment?
 Séance 2 - 16/04: python, pybind11, cython
 ++++++++++++++++++++++++++++++++++++++++++
 
-**Part 1**
-
 * introduction à :epkg:`cython`, :epkg:`numba`, :epkg:`pybind11`
 * voir `_tutoriels <https://github.com/sdpython/teachcompute/tree/main/_tutoriels>`_
   et `tutorials.yml <https://github.com/sdpython/teachcompute/blob/main/.github/workflows/tutorials.yml>`_
 
-**Part 2**
+
+Séance 3 - 23/04: alorithmes parallélisés
++++++++++++++++++++++++++++++++++++++++++
+
+**Partie 1**
+
+Ecriture d'un benchmark.
+
+Comparaison d'une multiplication de matrice sparse et dense,
+évolution en fonction du nombre des dimensions, du taux de "sparsité".
+
+Vaut-il mieux calculer *(XA, XB)* séparément ou *X(A,B)* où
+*(A,B)* désigne une matrice où A et B sont concaténées selon les colonnes.
+
+*AB* est-il plus ou moins rapide que *AB'* si les matrices sont carrées ?
+
+Profiling
+
+Lecture de benchmark.
 
 * :ref:`l-parallelization-vector-sum`
 * :ref:`l-parallelization-dot-product`
 * :ref:`l-compare-filtering-implementation`
 * :ref:`l-parallelization-processes`
-
-et...
-
 * écrire un programme pour plusieurs processeurs
 * CI, intégration continue
 * :epkg:`cmake`
+
+**Pour aller plus loin**
+
 * :epkg:`blas`, :epkg:`lapack`, :epkg:`Eigen`, :epkg:`xtensor`, :epkg:`simd`
 * `OpenMP <https://www.openmp.org/wp-content/uploads/OpenMP3.1-CCard.pdf>`_
 
-Séance 3 - 23/04: alorithmes parallélisés
-+++++++++++++++++++++++++++++++++++++++++
+**Partie 2**
 
-* parallélisation mémoire contrainte ou presque
+* `Algorithme de Strassen <https://fr.wikipedia.org/wiki/Algorithme_de_Strassen>`_
+* `HOGWILD !: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent
+  <https://papers.nips.cc/paper_files/paper/2011/file/218a0aefd1d1a4be65601cc6ddc1520e-Paper.pdf>`_
+* problème de convergence
 * quantization
 * réseau de neurones
-* problème de convergence
+* parallélisation mémoire contrainte ou presque
+* `A quantum-inspired classical algorithm for recommendation systems
+  <https://arxiv.org/abs/1807.04271>`_
 * utilisation de plusieurs processeurs, CPUs, GPUs..., NPU, `intel-npu <https://github.com/intel/intel-npu-acceleration-library>`_
 * qui fait quoi ? data scientist, développeur
-* hacking (attaque), Spectre, Meltdown
-* https://fr.wikipedia.org/wiki/DO-178, PowerPC, RISC
-* `MAIA <https://azure.microsoft.com/en-us/blog/azure-maia-for-the-era-of-ai-from-silicon-to-software-to-systems/>`_
-* `TPU <https://cloud.google.com/tpu>`_
-
-**Sujets connexes**
-
-* Un tri ?
-* Le calcul de la médiane ? (:epkg:`BJKST`) Propriétés statistiques ?
-* Pourquoi est-ce si difficile de paralléliser un tri ?
-* `scatter_nd <https://www.tensorflow.org/api_docs/python/tf/scatter_nd>`_,
-  Que faire quand les indices sont dupliqués ?
-* Paralléliser une forêt aléatoire sur CPU, sur GPU ?
-* La recherche de doublons dans une liste de
-  coordonnées géographiques (longitude, latitude) ?
-* `An Efficient Matrix Transpose in CUDA C/C++
-  <https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>`_,
-  notion de Bank Conflicts (voir 
-  `CUDA C++ Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html>`_)
-  `CUDA, Cartes graphiques, Warp... <https://leria-info.univ-angers.fr/~jeanmichel.richer/cuda_crs4.php>`_
-
 
 Séance 4 - 30/04: fusion d'opérations et projets
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-* réalisation d'un benchmark
+* Benchmark à partir de `cython_mat <https://github.com/sdpython/teachcompute/tree/main/_tutoriels/cython_mat>`_
+* Profiling
 * fusion d'opérations : cas de l'`attention <https://en.wikipedia.org/wiki/Attention_(machine_learning)>`_:
 
 .. math::
@@ -122,11 +122,32 @@ et :
 
 .. math::
   
-    softmax(z_1,...z_n)_i = \frac{e_i}{\sum{i=1}{n} e_i}
+    softmax(z_1,...z_n)_i = \frac{e_i}{\sum_{i=1}^{n} e_i}
 
 Utilisation de vos compétences statistiques pour fabriquer un benchmark
 adaptatif où l'on trouve la meilleure option de parallélisation
 pour un algorithme parallélisé avec moins d'essais qu'une grille.
+
+Sujets connexes
++++++++++++++++
+
+* hacking (attaque), Spectre, Meltdown
+* https://fr.wikipedia.org/wiki/DO-178, PowerPC, RISC
+* `MAIA <https://azure.microsoft.com/en-us/blog/azure-maia-for-the-era-of-ai-from-silicon-to-software-to-systems/>`_
+* `TPU <https://cloud.google.com/tpu>`_
+* Un tri ?
+* Le calcul de la médiane ? (:epkg:`BJKST`) Propriétés statistiques ?
+* Pourquoi est-ce si difficile de paralléliser un tri ?
+* `scatter_nd <https://www.tensorflow.org/api_docs/python/tf/scatter_nd>`_,
+  Que faire quand les indices sont dupliqués ?
+* Paralléliser une forêt aléatoire sur CPU, sur GPU ?
+* La recherche de doublons dans une liste de
+  coordonnées géographiques (longitude, latitude) ?
+* `An Efficient Matrix Transpose in CUDA C/C++
+  <https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>`_,
+  notion de Bank Conflicts (voir 
+  `CUDA C++ Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html>`_)
+  `CUDA, Cartes graphiques, Warp... <https://leria-info.univ-angers.fr/~jeanmichel.richer/cuda_crs4.php>`_
 
 Installation de ce module
 +++++++++++++++++++++++++
