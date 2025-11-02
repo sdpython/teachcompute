@@ -31,14 +31,14 @@ To build with the current environment:
 
 ::
     
-    pip install -e . -v --no-clean --no-build-isolation --config-settings="--cuda-version=12.6"
+    CUDA_VERSION=13.0 pip install -e . -v --no-clean --no-build-isolation
 
 In case there are multiple versions of CUDA installed, option `cuda-version`
 can be specified:
 
 ::
 
-    python setup.py build_ext --inplace --cuda-version=12.6
+    python setup.py build_ext --inplace --cuda-version=13.0
 
 .. toctree::
     :maxdepth: 1    
