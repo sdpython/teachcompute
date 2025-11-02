@@ -39,7 +39,7 @@ jobs:
     displayName: 'cython-lint'
   - script: |
       export USE_CUDA=0
-      python -m pip install -e . -v
+      python -m pip install -e . -v --no-build-isolation
     displayName: 'pip install -e . -v'
   - script: |
       python -m pip install "numpy<2"
@@ -90,7 +90,7 @@ jobs:
     displayName: 'cython-lint'
   - script: |
       export USE_CUDA=0
-      python -m pip install -e . -v
+      python -m pip install -e . -v --no-build-isolation
     displayName: 'pip install -e . -v'
   - script: |
       python -m pip freeze
