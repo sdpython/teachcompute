@@ -18,6 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = ["numpy", "scipy"]
 description = "Teaching materials, python and C++"
@@ -128,7 +129,7 @@ test-command = "python -c \"import teachcompute;teachcompute.check_installation(
 [tool.cibuildwheel.linux]
 archs = ["x86_64"]
 build = "cp*"
-skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp315-* pypy* *musllinux*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* pypy* *musllinux*"
 manylinux-x86_64-image = "manylinux_2_28"
 before-build = "pip install auditwheel-symbols abi3audit;python -c 'import sysconfig;print(sysconfig.get_platform())'"
 build-verbosity = 1
