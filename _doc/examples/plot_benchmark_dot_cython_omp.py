@@ -8,7 +8,8 @@ to be slower. This example looks into a couple of slower
 implementations with cython. The tested functions are
 the following:
 
-* :func:`ddot_array_16_sse <teachcompute.validation.cython.dot_cython.ddot_array_16_sse>`
+* :func:`ddot_array_16_sse
+  <teachcompute.validation.cython.dot_cython.ddot_array_16_sse>`
   `ddot_array_16_sse <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/dot_cython.pyx#L230>`_
 * :func:`ddot_cython_array_omp
@@ -132,4 +133,4 @@ cc[
     )
 ].pivot(index="N", columns="fct", values="average").plot(logy=True, ax=ax[1, 0])
 ax[0, 0].set_title("Comparison of cython ddot implementations")
-ax[0, 1].set_title("Comparison of cython ddot implementations" "\nwithout dot_product")
+ax[0, 1].set_title("Comparison of cython ddot implementations\nwithout dot_product")

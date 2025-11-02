@@ -3,13 +3,13 @@ Many implementations of the dot product.
 See `Cython documentation <http://docs.cython.org/en/latest/>`_.
 """
 from cython.parallel import prange
-cimport numpy as cnumpy
+# cimport numpy as cnumpy
 import numpy as pynumpy
 cimport cython
 # from cpython cimport array
 # import array
 # cimport openmp
-cnumpy.import_array()
+# cnumpy.import_array()
 
 
 cdef int _dmul_cython_omp01(const double* va, const double* vb, double* res,

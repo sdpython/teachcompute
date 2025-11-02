@@ -33,7 +33,7 @@ def train_piecewise_linear(x, y, device, cls, max_iter=400, learning_rate=1e-4):
     losses = []
     fct = cls.apply
 
-    for t in range(max_iter):
+    for _t in range(max_iter):
 
         y_pred = fct(x, alpha_neg, alpha_pos)
         loss = (y_pred - y).pow(2).sum()
@@ -67,7 +67,7 @@ losses, alpha_neg, alpha_pos = train_piecewise_linear(
     x, y, device, PiecewiseLinearFunction
 )
 end = time.perf_counter()
-print(f"duration={end - begin}, alpha_neg={alpha_neg} " f"alpha_pos={alpha_pos}")
+print(f"duration={end - begin}, alpha_neg={alpha_neg} alpha_pos={alpha_pos}")
 
 ################################
 # C++ implementation
@@ -78,7 +78,7 @@ losses, alpha_neg, alpha_pos = train_piecewise_linear(
     x, y, device, PiecewiseLinearFunctionC
 )
 end = time.perf_counter()
-print(f"duration={end - begin}, alpha_neg={alpha_neg} " f"alpha_pos={alpha_pos}")
+print(f"duration={end - begin}, alpha_neg={alpha_neg} alpha_pos={alpha_pos}")
 
 ################################
 # C++ implementation, second try
@@ -89,7 +89,7 @@ losses, alpha_neg, alpha_pos = train_piecewise_linear(
     x, y, device, PiecewiseLinearFunctionCBetter
 )
 end = time.perf_counter()
-print(f"duration={end - begin}, alpha_neg={alpha_neg} " f"alpha_pos={alpha_pos}")
+print(f"duration={end - begin}, alpha_neg={alpha_neg} alpha_pos={alpha_pos}")
 
 #################################
 # The C++ implementation is very close to the python code.

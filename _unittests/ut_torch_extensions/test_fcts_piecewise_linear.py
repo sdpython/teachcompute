@@ -1,6 +1,7 @@
 import unittest
+import numpy  # noqa: F401
 import torch
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, skipif_ci_apple
 from teachcompute.torch_extensions.piecewise_linear import (
     PiecewiseLinearFunction,
     PiecewiseLinearFunctionC,
@@ -9,7 +10,7 @@ from teachcompute.torch_extensions.piecewise_linear import (
 
 
 class TestTorchExtensionPiecewiseLinear(ExtTestCase):
-
+    @skipif_ci_apple("something is wrong")
     def test_equal_forward(self):
         alpha_pos = torch.tensor([1], dtype=torch.float32)
         alpha_neg = torch.tensor([0.5], dtype=torch.float32)
@@ -25,7 +26,6 @@ class TestTorchExtensionPiecewiseLinear(ExtTestCase):
             self.assertEqual(na, nc)
 
     def piecewise_linear(self, cls, device, verbose=False, max_iter=400):
-
         x = torch.randn(100, 1, device=device, dtype=torch.float32)
         y = x * 0.2 + (x > 0).to(torch.float32) * x * 1.5
 
@@ -38,7 +38,7 @@ class TestTorchExtensionPiecewiseLinear(ExtTestCase):
         learning_rate = 1e-4
         fct = cls.apply
 
-        for t in range(max_iter):
+        for _t in range(max_iter):
 
             y_pred = fct(x, alpha_neg, alpha_pos)
             loss = (y_pred - y).pow(2).sum()

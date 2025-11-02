@@ -4,9 +4,10 @@ clang-format
 cloudpickle
 cmakelang
 coverage
-cython
+cython>=3.0.10
 cython-lint
 cytoolz
+git+https://github.com/sdpython/experimental-experiment.git; sys_platform != 'darwin'
 furo
 ipython
 joblib
@@ -16,18 +17,18 @@ mypy
 nbsphinx
 numba
 onnx
+onnx-diagnostic>=0.3.0
 openpyxl
 pandas
 pillow
-protobuf<4
-pybind11
+protobuf
+pybind11>=2.12
 pyspark
 pytest
 pytest-cov
-torch>=2.2
 torchaudio
 torchvision
-transformers>=4.37.2
+transformers>=4.49; sys_platform != 'darwin'
 ruff
 sphinx
 sphinx-gallery

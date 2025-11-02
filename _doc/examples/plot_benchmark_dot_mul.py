@@ -7,7 +7,8 @@ matrix multiplication. There are many ways to be slower.
 
 Compared implementations:
 
-* :func:`dmul_cython_omp <teachcompute.validation.cython.mul_cython_omp.dmul_cython_omp>`
+* :func:`dmul_cython_omp
+  <teachcompute.validation.cython.mul_cython_omp.dmul_cython_omp>`
   `code <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/mul_cython_omp.pyx#L171>`_
 
@@ -75,14 +76,16 @@ pprint.pprint(res[-1])
 # See :func:`dmul_cython_omp
 # <teachcompute.validation.cython.mul_cython_omp.dmul_cython_omp>`.
 
-for algo in range(0, 2):
+for algo in range(2):
     for parallel in (0, 1):
         print("algo=%d parallel=%d" % (algo, parallel))
         ctxs = [
             dict(
                 va=numpy.random.randn(n, n).astype(numpy.float64),
                 vb=numpy.random.randn(n, n).astype(numpy.float64),
-                mul=lambda x, y: dmul_cython_omp(x, y, algo=algo, parallel=parallel),
+                mul=lambda x, y, algo=algo, parallel=parallel: dmul_cython_omp(
+                    x, y, algo=algo, parallel=parallel
+                ),
                 x_name=n,
             )
             for n in sets
@@ -106,7 +109,7 @@ vb = numpy.random.randn(4, 5).astype(numpy.float64)
 numpy_mul = va @ vb
 
 try:
-    for a in range(0, 50):
+    for a in range(50):
         wrong_mul = dmul_cython_omp(va, vb, algo=2, parallel=1)
         assert_almost_equal(numpy_mul, wrong_mul)
         print("Iteration %d is Ok" % a)
@@ -123,14 +126,14 @@ except AssertionError as e:
 # is transposed first: ``b_trans=1``.
 
 
-for algo in range(0, 2):
+for algo in range(2):
     for parallel in (0, 1):
         print("algo=%d parallel=%d transposed" % (algo, parallel))
         ctxs = [
             dict(
                 va=numpy.random.randn(n, n).astype(numpy.float64),
                 vb=numpy.random.randn(n, n).astype(numpy.float64),
-                mul=lambda x, y: dmul_cython_omp(
+                mul=lambda x, y, parallel=parallel, algo=algo: dmul_cython_omp(
                     x, y, algo=algo, parallel=parallel, b_trans=1
                 ),
                 x_name=n,

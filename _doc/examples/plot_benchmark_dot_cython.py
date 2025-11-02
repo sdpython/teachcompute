@@ -11,7 +11,8 @@ the following:
 * :func:`dot_product <teachcompute.validation.cython.dot_cython.dot_product>`
   `dot_product <https://github.com/sdpython/teachcompute/blob/
   main/teachcompute/validation/cython/dot_cython.pyx#L15>`_
-* :func:`ddot_cython_array <teachcompute.validation.cython.dot_cython.ddot_cython_array>`
+* :func:`ddot_cython_array
+  <teachcompute.validation.cython.dot_cython.ddot_cython_array>`
   `ddot_cython_array <https://github.com/sdpython/teachcompute/blob/
   main/teachcompute/validation/cython/dot_cython.pyx#L29>`_
 * :func:`ddot_cython_array_optim
@@ -24,7 +25,8 @@ the following:
 * :func:`ddot_array_16 <teachcompute.validation.cython.dot_cython.ddot_array_16>`
   `ddot_array_16 <https://github.com/sdpython/teachcompute/blob/
   main/teachcompute/validation/cython/dot_cython.pyx#L188>`_
-* :func:`ddot_array_16_sse <teachcompute.validation.cython.dot_cython.ddot_array_16_sse>`
+* :func:`ddot_array_16_sse
+  <teachcompute.validation.cython.dot_cython.ddot_array_16_sse>`
   `ddot_array_16_sse <https://github.com/sdpython/teachcompute/blob/
   main/teachcompute/validation/cython/dot_cython.pyx#L230>`_
 """
@@ -113,7 +115,7 @@ cc[cc.fct != "dot_product"].pivot(index="N", columns="fct", values="average").pl
     logy=True, logx=True, ax=ax[1, 1]
 )
 ax[0, 0].set_title("Comparison of cython ddot implementations")
-ax[0, 1].set_title("Comparison of cython ddot implementations" "\nwithout dot_product")
+ax[0, 1].set_title("Comparison of cython ddot implementations\nwithout dot_product")
 
 ###################
 # :epkg:`numpy` is faster but we are able to catch up.

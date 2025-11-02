@@ -1,7 +1,6 @@
 # coding: utf-8
 import os
 import sys
-
 from sphinx_runpython.conf_helper import has_dvipng, has_dvisvgm
 from sphinx_runpython.github_link import make_linkcode_resolve
 
@@ -92,9 +91,17 @@ latex_elements = {
 mathjax3_config = {"chtml": {"displayAlign": "left"}}
 
 intersphinx_mapping = {
+    "experimental_experiment": (
+        "https://sdpython.github.io/doc/experimental-experiment/dev/",
+        None,
+    ),
     "IPython": ("https://ipython.readthedocs.io/en/stable/", None),
     "matplotlib": ("https://matplotlib.org/", None),
     "numpy": ("https://numpy.org/doc/stable", None),
+    "onnx": ("https://onnx.ai/onnx/", None),
+    "onnx_array_api": ("https://sdpython.github.io/doc/onnx-array-api/dev/", None),
+    "onnx_diagnostic": ("https://sdpython.github.io/doc/onnx-diagnostic/dev/", None),
+    "onnx_extended": ("https://sdpython.github.io/doc/onnx-extended/dev/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
     "python": (f"https://docs.python.org/{sys.version_info.major}", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
@@ -127,6 +134,22 @@ sphinx_gallery_conf = {
     # path where to save gallery generated examples
     "gallery_dirs": "auto_examples",
 }
+
+skip_torch = False
+if int(os.environ.get("UNITTEST_GOING", "0")):
+    pass
+else:
+    import packaging.version as pv
+
+    try:
+        import transformers
+    except ImportError:
+        skip_torch = True
+
+    skip_torch |= pv.Version(transformers.__version__) < pv.Version("4.49.999")
+
+if skip_torch:
+    sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)).*"
 
 # next
 
@@ -266,6 +289,7 @@ epkg_dictionary = {
     "scikit-learn": "https://scikit-learn.org",
     "sérialisation": "https://fr.wikipedia.org/wiki/S%C3%A9rialisation",
     "setup.py": "https://docs.python.org/fr/3.11/distutils/setupscript.html",
+    "simd": "https://en.wikipedia.org/wiki/Single_instruction,_multiple_data",
     "spark": "https://spark.apache.org/",
     "Spark": "https://spark.apache.org/",
     "sphinx": "https://www.sphinx-doc.org/en/master/",
@@ -286,6 +310,7 @@ epkg_dictionary = {
     "Visual Studio Code": "https://code.visualstudio.com/",
     "viz.js": "https://github.com/mdaines/viz-js",
     "vscode-python": "https://code.visualstudio.com/docs/languages/python",
+    "xtensor": "https://xtensor.readthedocs.io/en/latest/",
     "X-tree": "https://en.wikipedia.org/wiki/X-tree",
     "XML": "https://fr.wikipedia.org/wiki/Extensible_Markup_Language",
     "wikipedia dumps": "https://dumps.wikimedia.org/frwiki/latest/",

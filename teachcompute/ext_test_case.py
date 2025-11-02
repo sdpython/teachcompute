@@ -323,7 +323,7 @@ class ExtTestCase(unittest.TestCase):
             fct()
         except exc_type as e:
             if not isinstance(e, exc_type):
-                raise AssertionError(f"Unexpected exception {type(e)!r}.")
+                raise AssertionError(f"Unexpected exception {type(e)!r}.")  # noqa: B904
             return
         raise AssertionError("No exception was raised.")
 
@@ -352,7 +352,7 @@ class ExtTestCase(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         for name, line, w in cls._warns:
-            warnings.warn(f"\n{name}:{line}: {type(w)}\n  {str(w)}")
+            warnings.warn(f"\n{name}:{line}: {type(w)}\n  {str(w)}", stacklevel=0)
 
     def capture(self, fct: Callable):
         """
@@ -363,15 +363,14 @@ class ExtTestCase(unittest.TestCase):
         """
         sout = StringIO()
         serr = StringIO()
-        with redirect_stdout(sout):
-            with redirect_stderr(serr):
-                try:
-                    res = fct()
-                except Exception as e:
-                    raise AssertionError(
-                        f"function {fct} failed, stdout="
-                        f"\n{sout.getvalue()}\n---\nstderr=\n{serr.getvalue()}"
-                    ) from e
+        with redirect_stdout(sout), redirect_stderr(serr):
+            try:
+                res = fct()
+            except Exception as e:
+                raise AssertionError(
+                    f"function {fct} failed, stdout="
+                    f"\n{sout.getvalue()}\n---\nstderr=\n{serr.getvalue()}"
+                ) from e
         return res, sout.getvalue(), serr.getvalue()
 
     def tryCall(
@@ -393,3 +392,18 @@ class ExtTestCase(unittest.TestCase):
             if msg is None:
                 raise e
             raise AssertionError(msg) from e
+
+
+def has_transformers(version: str) -> bool:
+    """Is transformers more recent than version?"""
+    import packaging.version as pv
+
+    try:
+        import transformers
+    except ImportError:
+        return False
+
+    v = pv.Version(".".join(transformers.__version__.split(".")[:2]))
+    if v < pv.Version(version):
+        return False
+    return True

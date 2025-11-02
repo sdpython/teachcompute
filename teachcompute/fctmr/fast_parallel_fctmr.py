@@ -12,7 +12,6 @@ generic.
 
 from typing import Callable, Iterable, Optional
 import numpy
-from numba import jit, njit, prange
 
 
 def create_array_numba(nb: int, sig: str) -> numpy.ndarray:
@@ -50,13 +49,13 @@ def fast_parallel_mapper(
     :param chunk_size: chunk size
     :param parallel: see
         `parallel
-        <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#parallel>`_
+        <https://numba.readthedocs.io/en/stable/user/jit.html?highlight=nopython#parallel>`_
     :param nopython: see
         `nopython
-        <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#nopython>`_
+        <https://numba.readthedocs.io/en/stable/user/jit.html?highlight=nopython#nopython>`_
     :param nogil: see
         `nogil
-        <https://numba.pydata.org/numba-doc/latest/user/jit.html?highlight=nopython#nogil>`_
+        <https://numba.readthedocs.io/en/stable/user/jit.html?highlight=nopython#nogil>`_
     :param sigin: signature of input type
     :param sigout: signature of output type
     :return: generator
@@ -70,6 +69,8 @@ def fast_parallel_mapper(
     `test_parallel_fctmr.py
     <https://github.com/sdpython/teachcompute/blob/main/_unittests/ut_fctmr/test_fast_parallel_fctmr.py>`_.
     """
+    from numba import jit, njit, prange
+
     if sigin is not None and sigout is not None:
         sig1 = "{0}({1})".format(sigout, sigin)
         sig2 = "void(i8, {0}[:], {1}[:])".format(sigin, sigout)
