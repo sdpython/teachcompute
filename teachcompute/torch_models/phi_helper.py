@@ -115,11 +115,11 @@ def get_phi_model(
         def generate_example_inputs(batch: int, seq: int, vocab_size: int):
             (
                 input_ids,
-                token_type_ids,
+                _token_type_ids,
                 input_mask,
-                sequence_labels,
-                token_labels,
-                choice_labels,
+                _sequence_labels,
+                _token_labels,
+                _choice_labels,
             ) = _prepare_config_and_inputs(
                 batch_size=batch,
                 seq_length=seq,
@@ -148,11 +148,11 @@ def get_phi_model(
     def generate_example_inputs(batch: int, seq: int, vocab_size: int):
         (
             input_ids,
-            token_type_ids,
-            input_mask,
-            sequence_labels,
-            token_labels,
-            choice_labels,
+            _token_type_ids,
+            _input_mask,
+            _sequence_labels,
+            _token_labels,
+            _choice_labels,
         ) = _prepare_config_and_inputs(
             batch_size=batch,
             seq_length=seq,
