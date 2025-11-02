@@ -40,7 +40,7 @@ jobs:
   - script: |
       export USE_CUDA=0
       python -m pip install -e . -v --no-build-isolation
-    displayName: 'pip install -e . -v'
+    displayName: 'pip install -e . -v --no-build-isolation'
   - script: |
       python -m pip install "numpy<2"
     displayName: 'install numpy<2'
@@ -91,7 +91,7 @@ jobs:
   - script: |
       export USE_CUDA=0
       python -m pip install -e . -v --no-build-isolation
-    displayName: 'pip install -e . -v'
+    displayName: 'pip install -e . -v --no-build-isolation'
   - script: |
       python -m pip freeze
     displayName: 'pip freeze'
