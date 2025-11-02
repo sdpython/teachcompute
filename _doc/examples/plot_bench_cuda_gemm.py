@@ -98,11 +98,13 @@ for trans_a, trans_b, dim, fct in tqdm(
     if has_cuda:
 
         # warmup
-        for _ in range(0, 3):
+        for _ in range(3):
             fct(t1, t2, r, trans_a=trans_a, trans_b=trans_b)
         r = torch.zeros(t1.shape).to("cuda:0")
         res = measure_time(
-            lambda: fct(t1, t2, r, trans_a=trans_a, trans_b=trans_b),
+            lambda fct=fct, t1=t1, t2=t2, r=r, trans_a=trans_a, trans_b=trans_b: fct(
+                t1, t2, r, trans_a=trans_a, trans_b=trans_b
+            ),
             repeat=repeat,
             number=number,
             div_by_number=True,
