@@ -158,7 +158,7 @@ Il ensuite exécuter les instuctions suivantes en ligne de commande.
 
     git clone https://github.com/sdpython/teachcompute.git
     cd teachcompute
-    pip install -e . -v --no-build-isolation
+    pip install -e . -v --no-build-isolation -no-clean
 
 Si ça ne marche, installer `cmake <https://cmake.org/>`_.
 Puis :

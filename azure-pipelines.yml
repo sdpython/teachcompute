@@ -39,8 +39,8 @@ jobs:
     displayName: 'cython-lint'
   - script: |
       export USE_CUDA=0
-      python -m pip install -e . -v
-    displayName: 'pip install -e . -v'
+      python -m pip install -e . -v --no-build-isolation
+    displayName: 'pip install -e . -v --no-build-isolation'
   - script: |
       python -m pip install "numpy<2"
     displayName: 'install numpy<2'
@@ -90,8 +90,8 @@ jobs:
     displayName: 'cython-lint'
   - script: |
       export USE_CUDA=0
-      python -m pip install -e . -v
-    displayName: 'pip install -e . -v'
+      python -m pip install -e . -v --no-build-isolation
+    displayName: 'pip install -e . -v --no-build-isolation'
   - script: |
       python -m pip freeze
     displayName: 'pip freeze'
@@ -103,7 +103,7 @@ jobs:
       # python -m pip wheel . --config-settings="--use_cuda=0" -v
       # python -m pip wheel . --global-option "--use_cuda=0" -v
       export USE_CUDA=0
-      python -m pip wheel . -v
+      python -m pip wheel . -v --no-build-isolation
     displayName: 'build wheel'
   - script: |
       mkdir dist
@@ -215,7 +215,7 @@ jobs:
       cp CHANGELOGS* ./_doc
     displayName: 'Copy license, changelogs'
   - script: |
-      UNITTEST_GOING=0 python -m sphinx _doc dist/html -v
+      UNITTEST_GOING=1 python -m sphinx _doc dist/html -v
     displayName: 'Builds Documentation'
   - task: PublishPipelineArtifact@0
     inputs:

@@ -5,7 +5,7 @@ import importlib
 import subprocess
 import time
 from teachcompute import __file__ as teachcompute_file
-from teachcompute.ext_test_case import ExtTestCase, has_transformers
+from teachcompute.ext_test_case import ExtTestCase, has_transformers, is_apple
 
 VERBOSE = 0
 ROOT = os.path.realpath(os.path.abspath(os.path.join(teachcompute_file, "..", "..")))
@@ -40,7 +40,7 @@ class TestDocumentationExamples(ExtTestCase):
             cmds = [sys.executable, "-u", os.path.join(fold, name)]
             p = subprocess.Popen(cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             res = p.communicate()
-            out, err = res
+            _out, err = res
             st = err.decode("ascii", errors="ignore")
             if "No such file or directory" in st:
                 raise FileNotFoundError(st)  # noqa: B904
@@ -94,6 +94,19 @@ class TestDocumentationExamples(ExtTestCase):
 
                 if not reason and "plot_benchmark_long_parallel_process_joblib" in name:
                     reason = "joblib unstable on CI"
+
+                if (
+                    not reason
+                    and is_apple()
+                    and name
+                    in {
+                        "plot_bench_cuda_vector_add.py",
+                        "plot_bench_cuda_vector_add_stream.py",
+                        "plot_bench_cuda_vector_sum.py",
+                        "plot_piecewise_linear.py",
+                    }
+                ):
+                    reason = "not working on max"
 
                 if reason:
 
