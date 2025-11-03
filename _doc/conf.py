@@ -153,9 +153,9 @@ else:
 
 if skip_torch:
     if skip_cuda:
-        sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)).*"
-    else:
         sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)|(cuda)).*"
+    else:
+        sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)).*"
 elif skip_cuda:
     sphinx_gallery_conf["ignore_pattern"] = ".*((cuda)).*"
 
