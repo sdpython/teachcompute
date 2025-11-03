@@ -4,8 +4,9 @@ import sys
 import importlib
 import subprocess
 import time
-from teachcompute import __file__ as teachcompute_file
+from teachcompute import __file__ as teachcompute_file, has_cuda
 from teachcompute.ext_test_case import ExtTestCase, has_transformers, is_apple
+
 
 VERBOSE = 0
 ROOT = os.path.realpath(os.path.abspath(os.path.join(teachcompute_file, "..", "..")))
@@ -106,7 +107,10 @@ class TestDocumentationExamples(ExtTestCase):
                         "plot_piecewise_linear.py",
                     }
                 ):
-                    reason = "not working on max"
+                    reason = "not working on mac"
+
+                if not reason and "_cuda_" in name and not has_cuda():
+                    reason = "CUDA not available"
 
                 if reason:
 
