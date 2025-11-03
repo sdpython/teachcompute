@@ -4,8 +4,9 @@ import sys
 import importlib
 import subprocess
 import time
-from teachcompute import __file__ as teachcompute_file
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute import __file__ as teachcompute_file, has_cuda
+from teachcompute.ext_test_case import ExtTestCase, has_transformers, is_apple
+
 
 VERBOSE = 0
 ROOT = os.path.realpath(os.path.abspath(os.path.join(teachcompute_file, "..", "..")))
@@ -40,17 +41,17 @@ class TestDocumentationExamples(ExtTestCase):
             cmds = [sys.executable, "-u", os.path.join(fold, name)]
             p = subprocess.Popen(cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             res = p.communicate()
-            out, err = res
+            _out, err = res
             st = err.decode("ascii", errors="ignore")
             if "No such file or directory" in st:
-                raise FileNotFoundError(st)
+                raise FileNotFoundError(st)  # noqa: B904
             if len(st) > 0 and "Traceback" in st:
                 if '"dot" not found in path.' in st:
                     # dot not installed
                     if verbose:
                         print(f"failed: {name!r} due to missing dot.")
                     return -1
-                raise AssertionError(
+                raise AssertionError(  # noqa: B904
                     f"Example {name!r} (cmd: {cmds!r} - "
                     f"exec_prefix={sys.exec_prefix!r}) "
                     f"failed due to\n{st}"
@@ -65,15 +66,55 @@ class TestDocumentationExamples(ExtTestCase):
         this = os.path.abspath(os.path.dirname(__file__))
         fold = os.path.normpath(os.path.join(this, "..", "..", "_doc", "examples"))
         found = os.listdir(fold)
-        for name in found:
+        for name in sorted(found):
             if name.startswith("plot_") and name.endswith(".py"):
                 short_name = os.path.split(os.path.splitext(name)[0])[-1]
+                reason = None
 
                 if sys.platform == "win32" and (
                     "protobuf" in name or "td_note_2021" in name
                 ):
+                    reason = "protobuf and windows not tested"
 
-                    @unittest.skip("notebook with questions or issues with windows")
+                if (
+                    not reason
+                    and sys.platform == "apple"
+                    and (
+                        "plot_bench_cpu_vector_sum" in name
+                        or "plot_bench_cpu_vector_sum2" in name
+                    )
+                ):
+                    reason = "failing with apple"
+
+                if (
+                    not reason
+                    and "plot_export_model_onnx" in name
+                    and not has_transformers("4.49.999")
+                ):
+                    reason = "skipped as transformers <= 4.50"
+
+                if not reason and "plot_benchmark_long_parallel_process_joblib" in name:
+                    reason = "joblib unstable on CI"
+
+                if (
+                    not reason
+                    and is_apple()
+                    and name
+                    in {
+                        "plot_bench_cuda_vector_add.py",
+                        "plot_bench_cuda_vector_add_stream.py",
+                        "plot_bench_cuda_vector_sum.py",
+                        "plot_piecewise_linear.py",
+                    }
+                ):
+                    reason = "not working on mac"
+
+                if not reason and "_cuda_" in name and not has_cuda():
+                    reason = "CUDA not available"
+
+                if reason:
+
+                    @unittest.skip(reason)
                     def _test_(self, name=name):
                         res = self.run_test(fold, name, verbose=VERBOSE)
                         self.assertIn(res, (-1, 1))

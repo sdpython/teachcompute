@@ -58,11 +58,11 @@ def mortality_table(
             content = u.read()
         with open(dest, "wb") as f:
             f.write(content)
-        with gzip.open(dest, "rb") as f:
-            file_content = f.read()
+        with gzip.open(dest, "rb") as fg:
+            file_content = fg.read()
         content = str(file_content, encoding="utf8")
-        with open(final_name, "w", encoding="utf8") as f:
-            f.write(content)
+        with open(final_name, "w", encoding="utf8") as ft:
+            ft.write(content)
 
     def format_age(s):
         "local function"

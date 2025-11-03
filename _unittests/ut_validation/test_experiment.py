@@ -23,7 +23,7 @@ class TestExperiment(ExtTestCase):
 
         if __name__ == "__main__":
             repeat = 100
-            for _ in range(0, 3):
+            for _ in range(3):
                 for size in [1024, 2048, 4096, 8192, 65536, 2**20, 2**25]:
                     v1 = numpy.random.randint(0, 1024, size=(size,)).astype(
                         numpy.uint16

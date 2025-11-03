@@ -6,6 +6,7 @@
 *.so
 *.bin
 *.log
+*.c
 .build_path.txt
 *.onnx
 plot*.png
@@ -41,6 +42,11 @@ _doc/practice/spark/data_adult*
 _doc/practice/spark/out*
 _doc/practice/spark/target*
 _doc/c_data/*.csv
+_tutoriels/*/build/*
+_tutoriels/cython_mat/mmat.cpp
+_tutoriels/cython2/primes.cpp
+_tutoriels/cython3/*.cpp
+_tutoriels/cython4/*.cpp
 _unittests/test_constants.h
 _unittests/ut_datasets/*.gz
 _unittests/ut_datasets/*.db3
@@ -52,5 +58,6 @@ teachcompute/validation/cython/dot_cython_omp.cpp
 teachcompute/validation/cython/experiment_cython.cpp
 teachcompute/validation/cython/mul_cython_omp.cpp
 teachcompute/validation/cython/td_mul_cython.cpp
+teachcompute/validation/cython/vector_function_cy.cpp
 demo_mlifetable.tsv.gz
 mortality.txt

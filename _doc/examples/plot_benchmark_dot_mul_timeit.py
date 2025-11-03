@@ -11,7 +11,8 @@ Compared implementations:
 * :func:`multiply_matrix <teachcompute.validation.cython.td_mul_cython.multiply_matrix>`
   `multiply_matrix <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/td_mul_cython.pyx#L14>`_
-* :func:`c_multiply_matrix <teachcompute.validation.cython.td_mul_cython.c_multiply_matrix>`
+* :func:`c_multiply_matrix
+  <teachcompute.validation.cython.td_mul_cython.c_multiply_matrix>`
   `c_multiply_matrix <https://github.com/sdpython/teachcompute/blob/main/
   teachcompute/validation/cython/td_mul_cython.pyx#L69>`_
 * :func:`c_multiply_matrix_parallel

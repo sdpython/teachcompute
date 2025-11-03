@@ -11,6 +11,37 @@ import numpy
 from numpy.testing import assert_allclose
 
 
+def requires_cuda(msg: str = "", version: str = "", memory: int = 0):
+    """
+    Skips a test if cuda is not available.
+
+    :param msg: to overwrite the message
+    :param version: minimum version
+    :param memory: minimum number of Gb to run the test
+    """
+    import torch
+
+    if torch.cuda.device_count() == 0:
+        msg = msg or "only runs on CUDA but torch does not have it"
+        return unittest.skip(msg or "cuda not installed")
+    if version:
+        import packaging.versions as pv
+
+        if pv.Version(torch.version.cuda) < pv.Version(version):
+            msg = msg or f"CUDA older than {version}"
+        return unittest.skip(
+            msg or f"cuda not recent enough {torch.version.cuda} < {version}"
+        )
+
+    if memory:
+        m = torch.cuda.get_device_properties(0).total_memory / 2**30
+        if m < memory:
+            msg = msg or f"available memory is not enough {m} < {memory} (Gb)"
+            return unittest.skip(msg)
+
+    return lambda x: x
+
+
 def is_azure() -> bool:
     "Tells if the job is running on Azure DevOps."
     return os.environ.get("AZURE_HTTP_USER_AGENT", "undefined") != "undefined"
@@ -323,7 +354,7 @@ class ExtTestCase(unittest.TestCase):
             fct()
         except exc_type as e:
             if not isinstance(e, exc_type):
-                raise AssertionError(f"Unexpected exception {type(e)!r}.")
+                raise AssertionError(f"Unexpected exception {type(e)!r}.")  # noqa: B904
             return
         raise AssertionError("No exception was raised.")
 
@@ -352,7 +383,7 @@ class ExtTestCase(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         for name, line, w in cls._warns:
-            warnings.warn(f"\n{name}:{line}: {type(w)}\n  {str(w)}")
+            warnings.warn(f"\n{name}:{line}: {type(w)}\n  {str(w)}", stacklevel=0)
 
     def capture(self, fct: Callable):
         """
@@ -363,15 +394,14 @@ class ExtTestCase(unittest.TestCase):
         """
         sout = StringIO()
         serr = StringIO()
-        with redirect_stdout(sout):
-            with redirect_stderr(serr):
-                try:
-                    res = fct()
-                except Exception as e:
-                    raise AssertionError(
-                        f"function {fct} failed, stdout="
-                        f"\n{sout.getvalue()}\n---\nstderr=\n{serr.getvalue()}"
-                    ) from e
+        with redirect_stdout(sout), redirect_stderr(serr):
+            try:
+                res = fct()
+            except Exception as e:
+                raise AssertionError(
+                    f"function {fct} failed, stdout="
+                    f"\n{sout.getvalue()}\n---\nstderr=\n{serr.getvalue()}"
+                ) from e
         return res, sout.getvalue(), serr.getvalue()
 
     def tryCall(
@@ -393,3 +423,18 @@ class ExtTestCase(unittest.TestCase):
             if msg is None:
                 raise e
             raise AssertionError(msg) from e
+
+
+def has_transformers(version: str) -> bool:
+    """Is transformers more recent than version?"""
+    import packaging.version as pv
+
+    try:
+        import transformers
+    except ImportError:
+        return False
+
+    v = pv.Version(".".join(transformers.__version__.split(".")[:2]))
+    if v < pv.Version(version):
+        return False
+    return True
