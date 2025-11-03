@@ -148,13 +148,13 @@ environment = """
 """
 build = "cp*"
 before-build = "brew install llvm libomp"
-skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp310-* cp314-* cp315-*"
+skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp310-* cp314-* cp314t-* cp315-*"
 # environment="LDFLAGS='-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/libomp/lib' CPPFLAGS='-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/opt/libomp/include'"
 
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
 build = "cp*"
-skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp315-* pypy*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* pypy*"
 
 [tool.cython-lint]
 max-line-length = 88
