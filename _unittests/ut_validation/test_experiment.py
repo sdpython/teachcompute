@@ -6,10 +6,7 @@ from teachcompute import has_cuda
 if has_cuda():
     from teachcompute.validation.cuda.cuda_example_py import measure_vector_add_half
 else:
-    vector_sum0 = None
-    vector_add = None
-    vector_sum_atomic = None
-    vector_sum6 = None
+    measure_vector_add_half = None
 
 
 class TestExperiment(ExtTestCase):
