@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from teachcompute.ext_test_case import ExtTestCase
+from teachcompute.ext_test_case import ExtTestCase, requires_cuda
 from teachcompute import has_cuda
 
 if has_cuda():
@@ -27,6 +27,7 @@ class TestGemmCuda(ExtTestCase):
         return torch.Tensor(val.reshape(shape)).to(dtype).to("cuda:0")
 
     @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
+    @requires_cuda()
     def test_matmul_v1_false_false(self):
         import torch
 
@@ -45,6 +46,7 @@ class TestGemmCuda(ExtTestCase):
         res_np = res.detach().cpu().numpy()
         self.assertEqualArray(tt_np, res_np, atol=1e-4)
 
+    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
     def test_matmul_v1_true_false(self):
         import torch
 
@@ -65,6 +67,7 @@ class TestGemmCuda(ExtTestCase):
         res_np = res.detach().cpu().numpy()
         self.assertEqualArray(tt_np, res_np, atol=1e-5)
 
+    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
     def test_matmul_v1_false_true(self):
         import torch
 
@@ -85,6 +88,7 @@ class TestGemmCuda(ExtTestCase):
         res_np = res.detach().cpu().numpy()
         self.assertEqualArray(tt_np, res_np, atol=3e-5)
 
+    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
     def test_matmul_v1_true_true(self):
         import torch
 
@@ -105,6 +109,7 @@ class TestGemmCuda(ExtTestCase):
         res_np = res.detach().cpu().numpy()
         self.assertEqualArray(tt_np, res_np, atol=3e-5)
 
+    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
     def test_matmul_v2(self):
         import torch
 
@@ -131,6 +136,7 @@ class TestGemmCuda(ExtTestCase):
                 res_np = res.detach().cpu().numpy()
                 self.assertEqualArray(tt_np, res_np, atol=3e-5)
 
+    @unittest.skipIf(matmul_v1_cuda is None, reason="CUDA not available")
     def test_matmul_v3(self):
         import torch
 
