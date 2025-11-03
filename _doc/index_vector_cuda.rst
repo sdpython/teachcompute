@@ -15,3 +15,9 @@ Tensor manipulations with CUDA
     :maxdepth: 1
     
     auto_examples/plot_bench_cuda_vector_sum
+
+.. toctree::
+    :caption: Gemm on CUDA
+    :maxdepth: 1
+    
+    auto_examples/plot_bench_cuda_gemm

@@ -11,6 +11,37 @@ import numpy
 from numpy.testing import assert_allclose
 
 
+def requires_cuda(msg: str = "", version: str = "", memory: int = 0):
+    """
+    Skips a test if cuda is not available.
+
+    :param msg: to overwrite the message
+    :param version: minimum version
+    :param memory: minimum number of Gb to run the test
+    """
+    import torch
+
+    if torch.cuda.device_count() == 0:
+        msg = msg or "only runs on CUDA but torch does not have it"
+        return unittest.skip(msg or "cuda not installed")
+    if version:
+        import packaging.versions as pv
+
+        if pv.Version(torch.version.cuda) < pv.Version(version):
+            msg = msg or f"CUDA older than {version}"
+        return unittest.skip(
+            msg or f"cuda not recent enough {torch.version.cuda} < {version}"
+        )
+
+    if memory:
+        m = torch.cuda.get_device_properties(0).total_memory / 2**30
+        if m < memory:
+            msg = msg or f"available memory is not enough {m} < {memory} (Gb)"
+            return unittest.skip(msg)
+
+    return lambda x: x
+
+
 def is_azure() -> bool:
     "Tells if the job is running on Azure DevOps."
     return os.environ.get("AZURE_HTTP_USER_AGENT", "undefined") != "undefined"

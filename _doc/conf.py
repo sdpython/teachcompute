@@ -4,7 +4,7 @@ import sys
 from sphinx_runpython.conf_helper import has_dvipng, has_dvisvgm
 from sphinx_runpython.github_link import make_linkcode_resolve
 
-from teachcompute import __version__
+from teachcompute import __version__, has_cuda
 
 extensions = [
     "nbsphinx",
@@ -136,8 +136,10 @@ sphinx_gallery_conf = {
 }
 
 skip_torch = False
+skip_cuda = False
 if int(os.environ.get("UNITTEST_GOING", "0")):
-    pass
+    skip_torch = True
+    skip_cuda = True
 else:
     import packaging.version as pv
 
@@ -147,9 +149,15 @@ else:
         skip_torch = True
 
     skip_torch |= pv.Version(transformers.__version__) < pv.Version("4.49.999")
+    skip_cuda = has_cuda()
 
 if skip_torch:
-    sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)).*"
+    if skip_cuda:
+        sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)|(cuda)).*"
+    else:
+        sphinx_gallery_conf["ignore_pattern"] = ".*((plot_export_model_onnx)).*"
+elif skip_cuda:
+    sphinx_gallery_conf["ignore_pattern"] = ".*((cuda)).*"
 
 # next
 

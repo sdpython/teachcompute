@@ -692,6 +692,10 @@ def get_ext_modules():
                         f"teachcompute/validation/cuda/cuda_example_py.{ext}",
                     ),
                     CMakeExtension(
+                        "teachcompute.validation.cuda.cuda_gemm",
+                        f"teachcompute/validation/cuda/cuda_gemm.{ext}",
+                    ),
+                    CMakeExtension(
                         "teachcompute.validation.cuda.cuda_monitor",
                         f"teachcompute/validation/cuda/cuda_monitor.{ext}",
                     ),
