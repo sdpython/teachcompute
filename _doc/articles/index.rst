@@ -10,6 +10,7 @@ Ou *blog*.
     :caption: 2025
     :maxdepth: 1
 
+    2025-11-05-soark-3a
     2025-05-31-route2025
 
 .. toctree::
