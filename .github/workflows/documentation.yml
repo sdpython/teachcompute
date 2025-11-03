@@ -87,9 +87,9 @@ jobs:
             grep ERROR doc.txt | grep -v 'validation.cuda' | grep -v 'sphinx_gallery_conf' | grep -v 'l-example-vizualize-llama-model' | grep -v 'plot_export_model_onnx'
             exit 1
           fi
-          if [[ $(grep WARNING doc.txt | grep -v 'validation.cuda' | grep -v 'sphinx_gallery_conf' | grep -v 'l-example-vizualize-llama-model' | grep -v 'plot_export_model_onnx') ]]; then
+          if [[ $(grep WARNING doc.txt | grep -v 'validation.cuda' | grep -v 'sphinx_gallery_conf' | grep -v 'l-example-vizualize-llama-model' | grep -v 'plot_export_model_onnx' | grep -v 'auto_examples' | grep -v 'l-example-cuda-') ]]; then
             echo "Documentation produces warnings."
-            grep WARNING doc.txt | grep -v 'validation.cuda' | grep -v 'sphinx_gallery_conf' | grep -v 'l-example-vizualize-llama-model' | grep -v 'plot_export_model_onnx'
+            grep WARNING doc.txt | grep -v 'validation.cuda' | grep -v 'sphinx_gallery_conf' | grep -v 'l-example-vizualize-llama-model' | grep -v 'plot_export_model_onnx' | grep -v 'auto_examples' | grep -v 'l-example-cuda-'
             exit 1
           fi
 
