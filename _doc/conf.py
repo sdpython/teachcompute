@@ -149,7 +149,7 @@ else:
         skip_torch = True
 
     skip_torch |= pv.Version(transformers.__version__) < pv.Version("4.49.999")
-    skip_cuda = has_cuda()
+    skip_cuda = not has_cuda()
 
 if skip_torch:
     if skip_cuda:

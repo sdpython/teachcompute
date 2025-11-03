@@ -67,7 +67,9 @@ cuda_gemm
         )
 
     names = [
-        "matmul_c1",
+        "matmul_v1_cuda",
+        "matmul_v2_cuda",
+        "matmul_v3_cuda",
     ]
     names.sort()
 
