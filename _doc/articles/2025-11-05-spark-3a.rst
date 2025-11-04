@@ -1,5 +1,7 @@
-2025-11-05 : données massives et spark
-======================================
+2025-11-05 : données massives, spark ...
+========================================
+
+**Spark**
 
 :epkg:`Spark` est une solution logicielle qui permet de manipuler de très
 grands jeux de données de façon distribuée.
@@ -21,6 +23,23 @@ grands jeux de données de façon distribuée.
 * `spark sur SSPCloud <https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Spark%22%5D>`_,
   `Spark Kubernetes Cluster <https://github.com/InseeFrLab/formation-spark/blob/main/3-spark-kubernetes/3-spark-kubernetes.ipynb>`_
 
+**Distribution et Hash**
 
+* :ref:`Hash et distribution <nbl-practice-expose-hash_distribution>`
 
+**Algorithmes de streaming**
 
+* algorithmes de streaming: régression linéaire, random forest
+* réseaux de neurones ?
+* :ref:`Reservoir Sample <nbl-practice-mapreduce-reservoir_sampling>`
+* :epkg:`BJKST`
+* random forests ?
+
+**Donnéees en local**
+
+* :ref:`SQL en local <nbl-practice-mapreduce-sql_map_reduce>`
+
+**ChatGPT, LeChat, ...**
+
+Ces outils fonctionnent très bien sur le code. Ils ont absorbé la plupart
+des tutoriels existants. Ils fournissent de très bons exemples pour démarrer.

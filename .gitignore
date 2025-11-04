@@ -33,6 +33,8 @@ _doc/examples/plot_*.xlsx
 _doc/examples/*.html
 _doc/_static/require.js
 _doc/_static/viz.js
+_doc/practice/expose/pageviews-*
+_doc/practice/mapreduce/*.db3
 _doc/practice/mapreduce/*.gz
 _doc/practice/mapreduce/mortality.*
 _doc/practice/spark/*.csv
