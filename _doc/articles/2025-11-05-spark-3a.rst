@@ -43,3 +43,7 @@ grands jeux de données de façon distribuée.
 
 Ces outils fonctionnent très bien sur le code. Ils ont absorbé la plupart
 des tutoriels existants. Ils fournissent de très bons exemples pour démarrer.
+
+Le livre cité lors du cours
+`Six degrés de liberté <https://fr.wikipedia.org/wiki/Six_degr%C3%A9s_de_libert%C3%A9>`_.
+Peut-on disparaître numériquement ?
