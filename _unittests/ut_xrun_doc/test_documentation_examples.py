@@ -7,7 +7,6 @@ import time
 from teachcompute import __file__ as teachcompute_file, has_cuda
 from teachcompute.ext_test_case import ExtTestCase, has_transformers, is_apple
 
-
 VERBOSE = 0
 ROOT = os.path.realpath(os.path.abspath(os.path.join(teachcompute_file, "..", "..")))
 

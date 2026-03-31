@@ -39,7 +39,6 @@ from teachcompute.validation.cython.td_mul_cython import (
     c_multiply_matrix_parallel_transposed as cmulparamtr,
 )
 
-
 va = numpy.random.randn(150, 100).astype(numpy.float64)
 vb = numpy.random.randn(100, 100).astype(numpy.float64)
 ctx = {
