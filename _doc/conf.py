@@ -73,7 +73,7 @@ nbsphinx_epilog = """
 """
 
 # The following is used by sphinx.ext.linkcode to provide links to github
-linkcode_resolve = make_linkcode_resolve(
+_linkcode_resolve = make_linkcode_resolve(
     "teachcompute",
     (
         "https://github.com/sdpython/teachcompute/"
@@ -81,6 +81,11 @@ linkcode_resolve = make_linkcode_resolve(
         "{path}#L{lineno}"
     ),
 )
+
+
+def linkcode_resolve(domain, info):
+    return _linkcode_resolve(domain, info)
+
 
 latex_elements = {
     "papersize": "a4",
@@ -123,6 +128,9 @@ nitpick_ignore = [
 
 nitpick_ignore_regex = [
     ("py:class", ".*numpy[.].*"),
+    ("py:class", "pandas.core.frame.DataFrame"),
+    ("py:class", ":.*"),
+    ("py:class", "\\].*"),
     ("py:func", ".*[.]PyCapsule[.].*"),
     ("py:func", ".*numpy[.].*"),
     ("py:func", ".*scipy[.].*"),
