@@ -7,7 +7,7 @@ coverage
 cython>=3.0.10
 cython-lint
 cytoolz
-git+https://github.com/sdpython/experimental-experiment.git; sys_platform != 'darwin'
+git+https://github.com/sdpython/yet-another-onnx-builder.git; sys_platform != 'darwin'
 furo
 ipython
 joblib
@@ -17,7 +17,6 @@ mypy
 nbsphinx
 numba
 onnx
-onnx-diagnostic>=0.3.0
 openpyxl
 pandas
 pillow
