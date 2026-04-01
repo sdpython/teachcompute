@@ -96,22 +96,21 @@ latex_elements = {
 mathjax3_config = {"chtml": {"displayAlign": "left"}}
 
 intersphinx_mapping = {
-    "experimental_experiment": (
-        "https://sdpython.github.io/doc/experimental-experiment/dev/",
-        None,
-    ),
     "IPython": ("https://ipython.readthedocs.io/en/stable/", None),
     "matplotlib": ("https://matplotlib.org/", None),
     "numpy": ("https://numpy.org/doc/stable", None),
     "onnx": ("https://onnx.ai/onnx/", None),
     "onnx_array_api": ("https://sdpython.github.io/doc/onnx-array-api/dev/", None),
-    "onnx_diagnostic": ("https://sdpython.github.io/doc/onnx-diagnostic/dev/", None),
     "onnx_extended": ("https://sdpython.github.io/doc/onnx-extended/dev/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
     "python": (f"https://docs.python.org/{sys.version_info.major}", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     "sklearn": ("https://scikit-learn.org/stable/", None),
     "torch": ("https://pytorch.org/docs/stable/", None),
+    "yobx": (
+        "https://sdpython.github.io/doc/yet-another-onnx-builder/dev/",
+        None,
+    ),
 }
 
 # Check intersphinx reference targets exist

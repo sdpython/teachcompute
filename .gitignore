@@ -1,5 +1,7 @@
 *.dot
 *.dylib
+*.ep
+*.ep.graph
 *.prof
 *.pyc
 *.pyd
@@ -9,6 +11,7 @@
 *.c
 .build_path.txt
 *.onnx
+*.xlsx
 plot*.png
 plot*.csv
 plot*.xlsx

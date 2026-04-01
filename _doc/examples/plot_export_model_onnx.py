@@ -96,10 +96,17 @@ print("done.")
 
 
 def export(model, args, filename, dynamic_shapes):
-    from experimental_experiment.torch_interpreter import to_onnx, ExportOptions
-    from onnx_diagnostic.torch_export_patches import bypass_export_some_errors
+    from yobx.torch import (
+        to_onnx,
+        ExportOptions,
+        apply_patches_for_model,
+        register_flattening_functions,
+    )
 
-    with bypass_export_some_errors(patch_transformers=True):
+    with (
+        register_flattening_functions(patch_transformers=True),
+        apply_patches_for_model(patch_transformers=True, model=model),
+    ):
         to_onnx(
             model,
             args,

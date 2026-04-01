@@ -7,7 +7,7 @@ coverage
 cython>=3.0.10
 cython-lint
 cytoolz
-git+https://github.com/sdpython/experimental-experiment.git; sys_platform != 'darwin'
+git+https://github.com/xadupre/yet-another-onnx-builder.git; sys_platform != 'darwin'
 furo
 ipython
 joblib
@@ -17,8 +17,9 @@ mypy
 nbsphinx
 numba
 onnx
-onnx-diagnostic>=0.3.0
+onnxscript
 openpyxl
+optree
 pandas
 pillow
 protobuf
@@ -28,7 +29,7 @@ pytest
 pytest-cov
 torchaudio
 torchvision
-transformers>=4.49; sys_platform != 'darwin'
+transformers>=5.3; sys_platform != 'darwin'
 ruff
 sphinx
 sphinx-gallery
