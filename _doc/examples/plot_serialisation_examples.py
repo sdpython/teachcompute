@@ -15,6 +15,7 @@ notemmant via les :epkg:`API REST`.
 Ecriture (json)
 +++++++++++++++
 """
+
 from io import StringIO, BytesIO
 import timeit
 import json
@@ -24,7 +25,6 @@ import cloudpickle
 import pickle
 import matplotlib.pyplot as plt
 import pandas
-
 
 data = {
     "records": [
