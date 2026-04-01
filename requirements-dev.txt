@@ -7,7 +7,7 @@ coverage
 cython>=3.0.10
 cython-lint
 cytoolz
-git+https://github.com/sdpython/yet-another-onnx-builder.git; sys_platform != 'darwin'
+git+https://github.com/xadupre/yet-another-onnx-builder.git; sys_platform != 'darwin'
 furo
 ipython
 joblib
