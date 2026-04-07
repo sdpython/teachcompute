@@ -53,6 +53,14 @@ Séance 1 - 1/04: pararalléliser comment?
 Séance 2 - 8/04: python, pybind11, cython
 ++++++++++++++++++++++++++++++++++++++++++
 
+* notion d'algortihmes parallélisés, algorithmes de streaming
+* réduction : problèmes numériques
+* générateur de hasard, séquences de hasard parallélisées
+* cas de la descente de gradient, problème de converge
+* offloading
+
+python et c++
+
 * introduction à :epkg:`cython`, :epkg:`numba`, :epkg:`pybind11`
 * voir `_tutoriels <https://github.com/sdpython/teachcompute/tree/main/_tutoriels>`_
   et `tutorials.yml <https://github.com/sdpython/teachcompute/blob/main/.github/workflows/tutorials.yml>`_
