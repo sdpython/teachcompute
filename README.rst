@@ -1,9 +1,10 @@
 
-.. image:: https://dev.azure.com/xavierdupre3/teachcompute/_apis/build/status%2Fsdpython.teachcompute?branchName=main
-    :target: https://dev.azure.com/xavierdupre3/teachcompute/_build/latest?definitionId=29&branchName=main
+.. image:: https://github.com/sdpython/teachcompute/actions/workflows/documentation.yml/badge.svg
+    :target: https://github.com/sdpython/teachcompute/actions/workflows/documentation.yml
+    :alt: Build Status
 
-.. image:: https://ci.appveyor.com/api/projects/status/fl1sge2kumhg8v51?svg=true
-    :target: https://ci.appveyor.com/project/sdpython/teachcompute
+.. image:: https://github.com/sdpython/teachcompute/actions/workflows/wheels-windows.yml/badge.svg
+    :target: https://github.com/sdpython/teachcompute/actions/workflows/wheels-windows.yml
     :alt: Build Status Windows
 
 .. image:: https://badge.fury.io/py/teachcompute.svg
