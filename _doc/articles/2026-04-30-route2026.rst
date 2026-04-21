@@ -112,29 +112,19 @@ Lecture de benchmark.
 * utilisation de plusieurs processeurs, CPUs, GPUs..., NPU, `intel-npu <https://github.com/intel/intel-npu-acceleration-library>`_
 * qui fait quoi ? data scientist, développeur
 
-Séance 4 - 22/04: fusion d'opérations et projets
-++++++++++++++++++++++++++++++++++++++++++++++++
+Séance 4 - 22/04: mémoire et C++
+++++++++++++++++++++++++++++++++
 
-* Benchmark à partir de `cython_mat <https://github.com/sdpython/teachcompute/tree/main/_tutoriels/cython_mat>`_
-* Profiling
-* fusion d'opérations : cas de l'`attention <https://en.wikipedia.org/wiki/Attention_(machine_learning)>`_:
+* notion de cache line (64 octets cache miss, flase sharing)
+* Translation Lookaside Buffer (TLB,), TLB miss
+* mémoire alignée (posix_memalign)
+* option de compilation
 
-.. math::
-    
-    Attention(Q,K,V)=softmax\left(\frac{QK'}{\sqrt{d_k}}\right)V
-
-avec 
-
-:math:`Q \in \mathbb{R}^{m \times d_q}`, :math:`K \in \mathbb{R}^{m \times d_k}`, :math:`V \in \mathbb{R}^{m \times d_V}`
-et :
-
-.. math::
-  
-    softmax(z_1,...z_n)_i = \frac{e_i}{\sum_{i=1}^{n} e_i}
-
-Utilisation de vos compétences statistiques pour fabriquer un benchmark
-adaptatif où l'on trouve la meilleure option de parallélisation
-pour un algorithme parallélisé avec moins d'essais qu'une grille.
+* notions C/C++
+* STL
+* OpenMP
+* écriture de threads sans OpenMP
+* interfaçage avec cython, nanobind
 
 Sujets connexes
 +++++++++++++++
