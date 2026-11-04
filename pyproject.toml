@@ -155,6 +155,10 @@ skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp310-* cp314-* cp314t-* cp315-*"
 archs = ["AMD64"]
 build = "cp*"
 skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* pypy*"
+# PyTorch loads its own DLLs before importing the extension.
+repair-wheel-command = "delvewheel repair -w {dest_dir} -v --exclude c10.dll;torch.dll;torch_cpu.dll;torch_python.dll {wheel}"
+test-requires = ["torch"]
+test-command = "python -c \"import teachcompute;teachcompute.check_installation(val=True)\" && python {project}/_unittests/ut_torch_extensions/test_fcts_piecewise_linear.py"
 
 [tool.cython-lint]
 max-line-length = 88

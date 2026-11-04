@@ -1,4 +1,5 @@
 2026-11-04 - une technique pour chaque échelle, chaque problème
+===============================================================
 
 **Plan**
 
@@ -16,6 +17,7 @@
 Qu'est ce qui change ?
 
 A-t-on encore besoin d'un outil comme Grafana ?
+
 - POC
 - Production ?
 - Dépendance ?
@@ -153,7 +155,7 @@ A-t-on encore besoin d'un outil comme Grafana ?
 
 
 Capacités transversales
-=======================
+-----------------------
 
 - Corrélation spatio-temporelle des observations de capteurs.
 - Fusion de données multi-capteurs (bruit, température, fumée, vibrations,

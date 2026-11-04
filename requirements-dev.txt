@@ -1,3 +1,6 @@
+--find-links https://github.com/xadupre/onnx-light/releases/expanded_assets/0.2.6
+# Select the full wheel rather than the reduced build on Linux CI.
+onnx-light @ https://github.com/xadupre/onnx-light/releases/download/0.2.6/onnx_light-0.2.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl ; python_version == "3.12" and sys_platform == "linux" and platform_machine == "x86_64"
 black
 black-nb
 clang-format
