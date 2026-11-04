@@ -10,6 +10,7 @@ Ou *blog*.
     :caption: 2026
     :maxdepth: 1
 
+    2026-11-04-technique
     2026-04-30-route2026
 
 .. toctree::
