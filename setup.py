@@ -215,15 +215,19 @@ class cmake_build_class_extension(Command):
         (
             "use-cuda=",
             None,
-            "If cuda is available, CUDA is "
-            "used by default unless this option is set to 0",
+            (
+                "If cuda is available, CUDA is "
+                "used by default unless this option is set to 0"
+            ),
         ),
         ("use-nvtx=", None, "Enables compilation with NVTX events."),
         (
             "cuda-version=",
             None,
-            "If cuda is available, it searches the installed version "
-            "unless this option is defined.",
+            (
+                "If cuda is available, it searches the installed version "
+                "unless this option is defined."
+            ),
         ),
         (
             "parallel=",
@@ -233,17 +237,21 @@ class cmake_build_class_extension(Command):
         (
             "cuda-build=",
             None,
-            "CUDA code can be compiled to be working with "
-            "different architectures, this flag can optimize "
-            "for a specific machine, possible values: DEFAULT, "
-            "H100, H100opt",
+            (
+                "CUDA code can be compiled to be working with "
+                "different architectures, this flag can optimize "
+                "for a specific machine, possible values: DEFAULT, "
+                "H100, H100opt"
+            ),
         ),
         (
             "cuda-link=",
             None,
-            "CUDA can statically linked (STATIC) or dynamically "
-            "(SHARED), default is STATIC."
-            "STATIC",
+            (
+                "CUDA can statically linked (STATIC) or dynamically "
+                "(SHARED), default is STATIC."
+                "STATIC"
+            ),
         ),
         (
             "cuda-nvcc=",
@@ -411,10 +419,18 @@ class cmake_build_class_extension(Command):
 
         try:
             import torch.utils
-            from torch.utils.cpp_extension import include_paths, library_paths
 
-            torch_include = ";".join(include_paths())
-            torch_libraries = ";".join(library_paths())
+            # cpp_extension probes the CUDA driver even for CPU header paths.
+            torch_dir = os.path.dirname(torch.__file__)
+            torch_include = ";".join(
+                [
+                    os.path.join(torch_dir, "include"),
+                    os.path.join(
+                        torch_dir, "include", "torch", "csrc", "api", "include"
+                    ),
+                ]
+            )
+            torch_libraries = os.path.join(torch_dir, "lib")
             torch_prefix = torch.utils.cmake_prefix_path
         except ImportError:
             torch_include = None

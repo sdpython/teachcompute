@@ -129,7 +129,7 @@ test-command = "python -c \"import teachcompute;teachcompute.check_installation(
 [tool.cibuildwheel.linux]
 archs = ["x86_64"]
 build = "cp*"
-skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* pypy* *musllinux*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* cp315t-* pypy* *musllinux*"
 manylinux-x86_64-image = "manylinux_2_28"
 before-build = "pip install auditwheel-symbols abi3audit;python -c 'import sysconfig;print(sysconfig.get_platform())'"
 build-verbosity = 1
@@ -148,13 +148,17 @@ environment = """
 """
 build = "cp*"
 before-build = "brew install llvm libomp"
-skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp310-* cp314-* cp314t-* cp315-*"
+skip = "pypy* pp* cp36-* cp37-* cp38-* cp39-* cp310-* cp314-* cp314t-* cp315-* cp315t-*"
 # environment="LDFLAGS='-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/libomp/lib' CPPFLAGS='-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/opt/libomp/include'"
 
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
 build = "cp*"
-skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* pypy*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp314-* cp314t-* cp315-* cp315t-* pypy*"
+# PyTorch loads its own DLLs before importing the extension.
+repair-wheel-command = "delvewheel repair -w {dest_dir} -v --exclude c10.dll;torch.dll;torch_cpu.dll;torch_python.dll {wheel}"
+test-requires = ["torch"]
+test-command = "python -c \"import teachcompute;teachcompute.check_installation(val=True)\" && python {project}/_unittests/ut_torch_extensions/test_fcts_piecewise_linear.py"
 
 [tool.cython-lint]
 max-line-length = 88
