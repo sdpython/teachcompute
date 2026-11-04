@@ -1,8 +1,32 @@
 2026-11-04 - une technique pour chaque échelle, chaque problème
 
+**Plan**
+
+* Partie 1 : voyage technique d'un POC jusqu'à une grosse entreprise de données
+* Partie 2 : quelques cas pratiques
+
+**Cas pratiques**
+
+* Monter un petit dashboard avec github
+* Comment le faire sans gituhb ?
+* Spark et Map Reduce, une logique différente pour écrire des calculs
+
+**L'IA ou les agents**
+
+Qu'est ce qui change ?
+
+A-t-on encore besoin d'un outil comme Grafana ?
+- POC
+- Production ?
+- Dépendance ?
 
 **De la startup acoustique à la plateforme mondiale de données**
 
+- des données qu'on collecte
+- des données qu'on produit avec les outils collectant les données (pannes, ...)
+- lire et écrire en même temps
+- pandas / polars
+- ClickHouse / PostgreSQL
 
 30 étapes de développement technologique et industriel.
 
